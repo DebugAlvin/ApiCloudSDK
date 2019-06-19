@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .viewList {
+            padding: 5px;
+            overflow: hidden;
+            background: none
+        }
+
+        .viewList li {
+            width: 50%;
+            float: left;
+            padding: 5px;
+        }
+
+        .viewList .list-view {
+            background: #fff;
+            overflow: hidden;
+
+        }
+
+        .viewList li img {
+            width: 100%;
+            display: block;
+        }
+
+        .viewList .aui-img-object {
+            max-width: 100%;
+            height: auto;;
+        }
+
+        .viewList .aui-ellipsis-1 {
+            padding: 5px 10px 0 10px;
+        }
+
+        .viewList .aui-img-footer {
+            padding: 0 10px 10px 10px;
+            overflow: hidden;
+        }
+
+        .viewList .aui-list-view-cell:after {
+            border-bottom: none;
+        }
+
+        .viewList .aui-img-footer .ico-gwc {
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="viewList">
+    <div>
+        <ul class="aui-list-view" v-bind:class="{'viewList':isA}">
+            <transition-group name="list" tag="p">
+                <li class="aui-list-view-cell aui-img" v-for="(vo,index) in list" tapmode v-on:click="open_goods(vo.id)" v-bind:key="index">
+                    <div class="list-view">
+                        <img class="aui-img-object aui-pull-left" :src="vo.url">
+                        <div class="aui-img-body aui-ellipsis-1">
+                            {{ vo.goods_name }}
+                        </div>
+                        <div class="aui-img-footer">
+                            <span class="aui-text-danger goods-price">¥<strong>{{ vo.price }}</strong>元</span>
+                            <span class="aui-btn aui-btn-info aui-pull-right">前往购买</span>
+                        </div>
+                    </div>
+                </li>
+            </transition-group>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#viewList',
+        data: {
+            isA: 0,
+            cate_id: 0,
+            is_new: 0,
+            is_hot: 0,
+            is_rec: 0,
+            page: 1,
+            list: [],
+            keywords: ''
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: cate_goodslist_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            keywords: vm.keywords,
+                            cate_id: vm.cate_id,
+                            is_new: vm.is_new,
+                            is_hot: vm.is_hot,
+                            is_rec: vm.is_rec,
+                            page: vm.page
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (vm.page == 1) {
+                            if(!ret.data.data.length){
+                                api.toast({
+                                    msg: '暂无数据',
+                                    duration: 2000,
+                                    location: 'bottom'
+                                });
+                            }
+                            vm.list = ret.data.data;
+                        } else {
+                            for (var i = 0; i < ret.data.data.length; i++) {
+                                vm.list.push(ret.data.data[i]);
+                            }
+                        }
+                        vm.page += 1;
+                    } else {
+                        //api.alert(JSON.stringify(err));
+						api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            },
+            open_goods: function (info_id) {
+                api.openWin({
+                    name: 'goods_detail',
+                    url: 'widget://html/index/goods_detail.html',
+                    pageParam: {
+                        info_id: info_id
+                    },
+                    delay: 300
+                });
+            }
+        }
+    });
+    apiready = function () {
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            if(!vm.keywords){
+                alert("请输入搜索内容");
+            }else{
+                vm.page = 1;
+                vm.init();
+            }
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+        api.addEventListener({
+            name: 'scrolltobottom',
+            extra: {
+                threshold: 0            //设置距离底部多少距离时触发，默认值为0，数字类型
+            }
+        }, function (ret, err) {
+            vm.init();
+        });
+
+        api.addEventListener({
+            name: 'search_init'
+        }, function (ret, err) {
+            vm.keywords = ret.value.keywords;
+            vm.page = 1;
+            vm.init();
+        });
+
+    };
+
+</script>
+<!--gb1b62bd2b359279-->
+<!--j406b5cb35d94480-->
+<!--l9f0c542ab8b2852-->
+<!--o15aaec37665a464-->
+<!--a4099e863fed9783-->
+<!--nfb1ae7ab23ff441-->
+<!--m51e7d32a22fa862-->
+<!--q5e92de552965165-->
+<!--hcd2302f627a8991-->
+<!--fd970a6b74e4f279-->
+<!--p608b6ff4589b673-->
+<!--bchlilicgoajmdmqngoggbnboglaffjlldlc-->
+<!--oelpopknfkdhpqeqmbflgjmqibijncgkmfoj-->

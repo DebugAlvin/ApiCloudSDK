@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header style="background: " class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()"><span class="aui-iconfont aui-icon-left"></span></a>
+    <div class="aui-title">订单付款</div>
+</header>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        var order_id = api.pageParam.order_id;
+        var order_total = api.pageParam.order_total;
+        api.openFrame ({
+            name: 'cart_pay_body',
+            url: 'widget://html/cart/pay_body.html',
+            rect:{
+                x:0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: api.winHeight - $api.dom('header').offsetHeight
+            },
+            bounces:true,
+            pageParam: {
+                order_id: order_id,
+                order_total: order_total
+            }
+        });
+    };
+</script>
+<!--oa875efa89a63560-->
+<!--h5ad41dd4377e132-->
+<!--ddb7bc1874d8e677-->
+<!--ifc0b1f542eb0534-->
+<!--b40a2744d8482303-->
+<!--e11802a6e4b4d958-->
+<!--da07e9e41c5a4352-->
+<!--dbb16fd2c48eb625-->
+<!--l93b7da58023d875-->
+<!--ib440ca7affca708-->
+<!--nf0461a25c792737-->
+<!--gdepkicgmljodnfjbpikcqiafejkoloienqo-->
+<!--llikadagdofhhohdmpghmhqhhffhjjecljhj-->

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">帮助</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'usercenter_help',
+            url: usercenter_help_url,
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--je38710f33301492-->
+<!--c1c0f63c3976d137-->
+<!--cf7e4aaf6fb93398-->
+<!--b6fee7d2dfa78912-->
+<!--k16d407d1ee2b494-->
+<!--qfd0019cbf892258-->
+<!--pca798d430fc9163-->
+<!--nfb2ec7dc721c995-->
+<!--qf9ecb3db6830875-->
+<!--h74ff85ec37b9415-->
+<!--m95dc2431bc3a496-->
+<!--ngnlmefnqenjcjlglpedlgooiemqalqnmqcm-->
+<!--ilmoogahhjlkijgimcacmglfdaobpapokjpb-->

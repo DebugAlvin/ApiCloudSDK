@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/public.css" />
+    <style>
+        .aui-nav {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .aui-nav div {
+            height: 55px;
+        }
+
+        .aui-nav .buy {
+            line-height: 55px;
+            background: #22AC38;
+            color: #fff;
+        }
+
+        .aui-nav .aui-iconfont {
+            font-size: 20px;
+        }
+
+        #main {
+            background: #e74c3c
+        }
+
+        .cannot_buy {
+            background: #eee !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header style="background: ;" class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+        <a class="aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left" style="color:#000"></span>
+        </a>
+        <div class="aui-title">
+            商品详情
+        </div>
+        <!-- <a class="aui-pull-right" onclick="shareTo();">
+        <img src="../../image/bk2.png" width="20"/>
+    </a> -->
+    </header>
+
+    <footer class="aui-nav">
+        <div class="aui-col-xs-2 aui-border-t">
+            <div class="aui-col-xs-12 aui-border-r" tapmode v-on:click="add_goods_collect()">
+                <span class="aui-iconfont aui-icon-favor"></span>
+                <p id="collection-title">收藏</p>
+            </div>
+            <div class="aui-col-xs-6" tapmode @click="open_meiQia()" style="display: none;">
+                <span class="aui-iconfont aui-icon-service"></span>
+                <p>咨询</p>
+            </div>
+        </div>
+        <div v-if="is_has==1">
+            <div class="aui-col-xs-5 buy aui-border-t" tapmode v-on:click="add_to_cart()">
+                加入购物车
+            </div>
+            <div class="aui-col-xs-5 buy aui-border-t" id="main" tapmode v-on:click="order_confirm()">
+                立即购买
+            </div>
+        </div>
+        <!-- <div v-else>
+        <div class="aui-col-xs-5 buy cannot_buy aui-border-t">
+            加入购物车
+        </div>
+        <div class="aui-col-xs-5 buy cannot_buy aui-border-t">
+            立即购买
+        </div>
+    </div> -->
+
+    </footer>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: 'footer',
+            data: {
+                info_id: 0,
+                goods_id: 0,
+                goods_sum: 0,
+                goods_info: {},
+                goods: {"standard":["","",""]},
+                is_has: 1
+            },
+            methods: {
+                add_to_cart: function() {
+                    // check_login();
+                    if (!is_login()) {
+                      api.ajax({
+                          url: goods_info_url,
+                          method: 'post',
+                          timeout: 30,
+                          dataType: 'json',
+                          returnAll: false,
+                          data: {
+                              values: {
+                                  info_id: vm.info_id,
+                                  standard_value1: vm.goods.standard[0],
+                                  standard_value2: vm.goods.standard[1],
+                                  standard_value3: vm.goods.standard[2],
+                              }
+                          }
+                      }, function (ret, err) {
+                          if (ret) {
+                              if(ret.status == 0){
+                                  console.log(JSON.stringify(ret));
+                                  api.toast({
+                                      msg: '此产品暂时无货',
+                                      duration: 2000,
+                                      location: 'bottom'
+                                  });
+                                  vm.is_has = 0;
+                                  api.sendEvent({
+                                      name: 'assin_cartinfo',
+                                      extra: {
+                                          goods_id: vm.goods.id,
+                                          goods_sum: vm.goods_sum,
+                                          is_has: vm.is_has
+                                      }
+                                  });
+                                  return false;
+                              }else{
+                                  console.log(JSON.stringify(ret));
+                                  vm.is_has = 1;
+                                  // vm.goods_info = ret.data.goods_info;
+                                  var storage = window.localStorage
+                                  var carList = []
+                                  var isPUSH = 1
+                                  var values = {
+                                    goods_id: vm.goods_id,
+                                    info_id: vm.info_id,
+                                    goods_sum: vm.goods_sum,
+                                    goods_name: ret.data.goods_info.goods_name,
+                                    status: ret.status,
+                                    price: ret.data.goods_info.price,
+                                    url: ret.data.goods_info.url
+                                  }
+                                  if (storage.carList) {
+                                    carList = JSON.parse(storage.getItem('carList'))
+                                    for (var i = 0; i < carList.length; i++) {
+                                      if (carList[i].goods_id == vm.goods_id) {
+                                        carList[i].goods_sum += vm.goods_sum
+                                        isPUSH = 0
+                                      }
+                                    }
+                                    isPUSH ? carList.push(values) : ""
+                                    storage.setItem('carList',JSON.stringify(carList))
+                                  }else {
+                                    carList.push(values)
+                                    storage.setItem('carList',JSON.stringify(carList))
+                                  }
+                                  // console.log(typeof carList)
+                                  api.toast({
+                                      msg: '添加成功',
+                                      duration: 2000,
+                                      location: 'bottom'
+                                  })
+                              }
+
+                          } else {
+                            //  api.alert(JSON.stringify(err));
+                            api.toast({
+                                msg: '您当前的网络不太好，请重新试试!',
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                          }
+                      })
+                        return
+                    }
+                    api.ajax({
+                        url: add_to_cart_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                goods_id: vm.goods_id,
+                                info_id: vm.info_id,
+                                goods_sum: vm.goods_sum,
+                                token: $api.getStorage('token'),
+                                deviceid: api.deviceId,
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            if (ret.status == 1) {
+                                api.toast({
+                                    msg: '添加成功',
+                                    duration: 2000,
+                                    location: 'bottom'
+                                });
+                                //更新全局购物车数量显示function
+                                api.sendEvent({
+                                    name: 'tatal_goods_sum',
+                                });
+                                api.sendEvent({
+                                    name: 'update_cart_list', //更新购物车列表
+                                });
+                            }
+                        } else {
+                            console.log(JSON.stringify(err))
+                        }
+                    });
+                },
+                add_goods_collect: function() {
+                    check_login();
+                    api.ajax({
+                        url: add_goods_collect_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                token: $api.getStorage('token'),
+                                deviceid: api.deviceId,
+                                goods_id: vm.goods_id,
+                                info_id: vm.info_id
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            api.toast({
+                                msg: ret.msg,
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                        } else {
+                            //api.alert(JSON.stringify(err));
+                            api.toast({
+                                msg: '您当前的网络不太好，请重新试试!',
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                        }
+                    });
+                },
+                order_confirm: function() {
+                    check_login();
+                    api.ajax({
+                        url: add_to_cart_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                goods_id: vm.goods_id,
+                                info_id: vm.info_id,
+                                goods_sum: !vm.goods_sum ? 1 : vm.goods_sum,
+                                token: $api.getStorage('token'),
+                                deviceid: api.deviceId,
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            if (ret.status == 1) {
+                                //更新全局购物车数量显示function
+                                api.sendEvent({
+                                    name: 'tatal_goods_sum',
+                                });
+                                api.openWin({
+                                    name: 'cart_order_confirm',
+                                    url: 'widget://html/cart/order_confirm.html',
+                                });
+                            } else {
+                                go_login();
+                            }
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
+                },
+                open_meiQia: function() {
+                    api.toast({
+                        msg: '有问题请拨打0592-3118111',
+                        duration: 5000,
+                        location: 'bottom'
+                    });
+                }
+            }
+        });
+
+        apiready = function() {
+            $api.fixIos7Bar(document.querySelector('header'));
+            var info_id = api.pageParam.info_id;
+            vm.info_id = info_id;
+
+            api.openFrame({
+                name: 'index_goods_detail_1',
+                url: 'goods_detail_1.html',
+                rect: {
+                    x: 0,
+                    y: $api.dom('header').offsetHeight,
+                    w: 'auto',
+                    h: api.winHeight - $api.dom('header').offsetHeight - $api.dom('footer').offsetHeight
+                },
+                bounces: true,
+                pageParam: {
+                    info_id: info_id
+                }
+            });
+            //监听网络连接事件
+            api.addEventListener({
+                name: 'assin_cartinfo' //添加购物车信息赋值
+            }, function(ret, err) {
+                console.log(JSON.stringify(ret.value));
+                vm.goods_id = ret.value.goods_id;
+                vm.goods_sum = ret.value.goods_sum;
+                vm.is_has = ret.value.is_has;
+            });
+        };
+
+        function shareTo() {
+            var obj = api.require('pullMenu');
+            var arrayPath = [{
+                normal: 'widget://image/logo_wechat.png',
+                highlight: 'widget://image/logo_wechat.png'
+            }, {
+                normal: 'widget://image/logo_wechatmoments.png',
+                highlight: 'widget://image/logo_wechatmoments.png'
+            }, ];
+            obj.open({
+                type: 'down',
+                h: '200',
+                alpha: '1',
+                bgColor: '#F2F4F9',
+                btnArray: arrayPath
+            }, function(ret, err) {
+                if (ret.index == 0) {
+                    sharetoFriend();
+                }
+                if (ret.index == 1) {
+                    sharetoFriendCircle();
+                }
+            });
+            if (api.systemType == 'ios') {
+                obj.show();
+            }
+        }
+
+        function sharetoFriend() {
+
+            //获取微信分享H5链接
+            var shareUrl = goods_share_url + '/info_id/' + vm.info_id;
+            var wx = api.require('wx');
+            wx.isInstalled(function(ret, err) {
+                if (ret.installed) {
+                    wx.shareWebpage({
+                        apiKey: '',
+                        scene: 'session',
+                        title: '',
+                        description: '',
+                        thumb: 'widget://image/logo-icon-168.png',
+                        contentUrl: shareUrl
+                    }, function(ret, err) {
+                        if (ret.status) {
+                            api.alert({
+                                title: '微信分享',
+                                msg: '微信分享成功',
+                                buttons: ['确定']
+                            });
+                        } else {
+                            api.alert({
+                                title: '微信分享',
+                                msg: '微信分享失败',
+                                buttons: ['确定']
+                            });
+                        }
+                    });
+                } else {
+                    api.alert({
+                        title: '提示',
+                        msg: '当前设备未安装微信客户端'
+                    });
+                }
+            });
+
+        }
+
+        function sharetoFriendCircle() {
+
+            //获取微信分享H5链接
+            var shareUrl = goods_share_url + '/info_id/' + vm.info_id;
+            var wx = api.require('wx');
+            wx.isInstalled(function(ret, err) {
+                if (ret.installed) {
+                    //alert("当前设备已安装微信客户端");
+                    wx.shareWebpage({
+                        apiKey: '',
+                        scene: 'timeline',
+                        title: '',
+                        description: '',
+                        thumb: 'widget://image/logo-icon-168.png',
+                        contentUrl: shareUrl
+                    }, function(ret, err) {
+                        if (ret.status) {
+                            api.alert({
+                                title: '微信分享',
+                                msg: '微信分享成功',
+                                buttons: ['确定']
+                            });
+                        } else {
+                            api.alert({
+                                title: '微信分享',
+                                msg: '微信分享失败',
+                                buttons: ['确定']
+                            });
+                        }
+                    });
+                } else {
+                    api.alert({
+                        title: '微信安装',
+                        msg: '装个微信试试吧，',
+                        buttons: ['确定']
+                    });
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>
+<!--bc2796513d7a2380-->
+<!--ef95bb1f52072972-->
+<!--oa1c7ced22d4a629-->
+<!--k35050d836c65496-->
+<!--g24efb222e566692-->
+<!--gf5f39855a504818-->
+<!--ma46889e0ac92352-->
+<!--m7513c8ab9f0c550-->
+<!--ff2f46d28ba26178-->
+<!--h6d7dedf6783a187-->
+<!--c0dad6ba3e1b8278-->
+<!--qdjeenjkgkfljohnihoqopngaekhipqoelae-->
+<!--qhkooqgnhggqchmcgcdemfcopoeillqdibij-->

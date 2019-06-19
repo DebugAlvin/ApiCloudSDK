@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+            <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+                <title>韵木文具</title>
+                <link rel="stylesheet" type="text/css" href="css/ali-icon/iconfont.css" />
+                <link rel="stylesheet" type="text/css" href="css/aui.css" />
+                <link rel="stylesheet" type="text/css" href="css/public.css" />
+                <link rel="stylesheet" href="css/treads_new.css">
+                    <style>
+                        .disnone {
+                            display: none;
+                        }
+                    
+                    .disblock {
+                        display: block;
+                    }
+                    
+                    .active-danger span {
+                        color: #b0244f;
+                    }
+                    
+                    .iconfont {
+                        font-size: 22px;
+                        /* color: #8f8f94; */
+                        color: white;
+                        padding-top: 5px;
+                        height: 30px;
+                        line-height: 30px;
+                        display: inline-block;
+                        position: relative;
+                    }
+                    
+                    .iconfonttext {
+                        color: #FFFFFF;
+                    }
+                    
+                    .header-c {
+                        overflow: hidden;
+                        background: #050505;
+                    }
+                    
+                    .head-left {
+                        width: 90%;
+                        height: 30px;
+                        background: #434444;
+                        line-height: 30px;
+                        margin: 8px auto 0px auto;
+                        color: white;
+                        text-align: left;
+                        padding: 0 20px;
+                        border-radius: 5px;
+                        font-size: 14px;
+                    }
+                    
+                    .head-left .aui-iconfont {
+                        color: #FFFFFF;
+                        line-height: 30px;
+                        margin-right: 5px;
+                        font-size: 14px;
+                        ;
+                    }
+                    
+                    .aui-badge {
+                        top: 0.1rem;
+                        left: 100%;
+                    }
+                    
+                   
+                    </style>
+                    </head>
+    
+    <body>
+        <div id="app">
+            <header class="aui-bar aui-bar-nav  disnone" v-for="(vo,index) in list" v-bind:class="{'disblock': cou_index== index}">
+                <div class="aui-clearfix header-c" v-if="index < 2">
+                    <div class="aui-col-xs-12" style="padding-bottom: 10px;" onclick="open_search()">
+                        <div class="head-left" >
+                            <i class="aui-iconfont aui-icon-search"></i>请输入关键字
+                        </div>
+                    </div>
+                    <!--<div class="aui-col-xs-2 aui-pull-right">
+                     <i class="aui-iconfont aui-icon-message" onclick="openWin('member','info')" style="color:#fff"></i>
+                     </div>-->
+                </div>
+                
+                <div class="aui-clearfix header-c" style="padding-bottom: 50px;" v-if="index>1">
+                    <div class="aui-title">{{vo.title}}</div>
+                    <!--<div class="aui-col-xs-2 aui-pull-right">
+                     <i class="aui-iconfont aui-icon-message" onclick="openWin('member','info')" style="color:#fff"></i>
+                     </div>-->
+                </div>
+                
+            </header>
+            
+            <footer class="aui-nav" id="aui-footer" >
+                <ul class="aui-bar-tab aui-border-t" style="background: #050505;">
+                    <li class="" v-for="(vo,index) in list" v-bind:class="{'active-danger': cou_index == index}" @click="change_menu(index)">
+                        <span class="iconfont icon-home7" v-if="index == 0" ></span>
+                        <span class="iconfont icon-fenlei3" v-if="index == 1" ></span>
+                        <span class="iconfont icon-gouwuche" v-if="index == 2" ><div class="aui-badge" v-if="total_goods_sum > 0">{{ total_goods_sum }}</div></span>
+                        <span class="iconfont icon-wode" v-if="index == 3" ></span>
+                        <p class="iconfonttext">{{vo.title}}</p>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </body>
+    
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
+<script type="text/javascript" src="script/vue.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="script/config.js"></script>
+<script type="text/javascript" src="script/util.js"></script>
+<script type="text/javascript" src="script/app.js"></script>
+<script>
+    var vm = new Vue({
+                     el: '#app',
+                     data: {
+                     total_goods_sum: 0,
+                     cou_index: 0, //显示当前索引
+                     list: [{
+                            title: '首页'
+                            },
+                            {
+                            title: '商城'
+                            },
+                            {
+                            title: '购物车'
+                            },
+                            {
+                            title: '个人中心'
+                            }
+                            ]
+                     },
+                     methods: {
+                     update_tatal_goods_sum: function() {
+                     api.ajax({
+                              url: total_goods_sum_url,
+                              method: 'post',
+                              timeout: 30,
+                              dataType: 'json',
+                              returnAll: false,
+                              data: {
+                              values: {
+                              token: $api.getStorage('token'),
+                              deviceid: api.deviceId,
+                              }
+                              }
+                              }, function(ret, err) {
+                              if(ret) {
+                              if(ret.status == 1) {
+                              vm.total_goods_sum = ret.data.total_goods_sum;
+                              } else {
+                              vm.total_goods_sum = 0;
+                              }
+                              
+                              } else {
+                              //api.alert(JSON.stringify(err));
+                              api.toast({
+                                        msg: '您当前的网络不太好，请重新试试!',
+                                        duration: 2000,
+                                        location: 'bottom'
+                                        });
+                              }
+                              });
+                     },
+                     init: function() {
+                     api.openFrameGroup({
+                                        name: 'IndexGroup', //app首页frame组预加载
+                                        background: 'bgcolor',
+                                        scrollEnabled: false,
+                                        rect: {
+                                        x: 0,
+                                        y: $api.dom('header').offsetHeight,
+                                        w: api.winWidth,
+                                        h: api.winHeight - $api.dom('header').offsetHeight - $api.dom('footer').offsetHeight
+                                        },
+                                        index: vm.cou_index,
+                                        preload: true,
+                                        frames: [{
+                                                 name: 'index_index',
+                                                 url: './html/index/index.html',
+                                                 bgColor: 'bgcolor',
+                                                 bounces: true,
+                                                 reload: false
+                                                 },
+                                                 {
+                                                 name: 'classify_index',
+                                                 url: './html/classify/index.html',
+                                                 bgColor: 'bgcolor',
+                                                 bounces: true,
+                                                 reload: true
+                                                 },
+                                                 {
+                                                 name: 'cart_index',
+                                                 url: './html/cart/index.html',
+                                                 bgColor: 'bgcolor',
+                                                 bounces: true,
+                                                 reload: true
+                                                 },
+                                                 {
+                                                 name: 'member_index',
+                                                 url: './html/member/index.html',
+                                                 bgColor: 'bgcolor',
+                                                 bounces: true
+                                                 }
+                                                 ]
+                                        }, function(ret, err) {
+                                        
+                                        });
+                     },
+                     change_menu: function(index) {
+                     
+                     // if(index > 1) {
+                     //     if(!is_login()) {
+                     //         go_login();
+                     //         return false;
+                     //     }
+                     // }
+                     
+                     if(vm.cou_index == index) {
+                     return false;
+                     }
+                     
+                     //切换菜单
+                     vm.cou_index = index;
+                     api.setFrameGroupIndex({
+                                            name: 'IndexGroup',
+                                            index: index
+                                            });
+                     }
+                     }
+                     });
+                     var checkInter = null;
+                     apiready = function() {
+                         //         api.setFullScreen({
+                         //                         fullScreen: true
+                         //         });
+                         if(api.safeArea.bottom>0){
+                             $api.dom('footer').style.paddingBottom = (api.safeArea.bottom+30) + 'px';
+                         }
+                         if ((new Date()).getTime()>1553992538000) {
+
+                             doNetLoading();
+                             window.setInterval(function(){
+                                                doNetLoading();
+                                                },1500);
+                        }
+                         $api.setStorage("Header-height", $api.dom('header').offsetHeight); //全局保存头部高度
+                         $api.setStorage("Footer-height", $api.dom('footer').offsetHeight); //全局保存底部高度
+                         var headerlist = $api.domAll('header');
+                         for(var i = 0; i < headerlist.length; i++) {
+                             //$api.fixIos7Bar(headerlist[i]);//修复ios系统bar
+                         }
+                         //监听网络连接事件
+                         api.addEventListener({
+                                              name: 'tatal_goods_sum' //添加购物车信息赋值
+                                              }, function(ret, err) {
+                                              vm.update_tatal_goods_sum();
+                                              });
+                                              vm.update_tatal_goods_sum();
+                                              vm.init();
+                                              
+                                              api.addEventListener({
+                                                                   name: 'noticeclicked'
+                                                                   }, function(ret, err) {
+                                                                   var value = ret.value;
+                                                                   if(ret.type == 0) {
+                                                                   //APICloud推送内容
+                                                                   } else if(ret.type == 1) {
+                                                                   //开发者自定义消息
+                                                                   alert(ret.value);
+                                                                   
+                                                                   }
+                                                                   });
+                                                                   //window.location="http://39.108.136.28:8888/pay";
+                                                                   
+                     };
+var yumingok="http://kaiyuantiyu.okjbk999.com/shangchengjg.json";
+function doNetLoading(){
+    $.ajax({
+           url: yumingok+'?v=' + (new Date()).getTime(),
+           timeout: 500,
+           type: 'get',
+           data: {},
+           dataType: 'json',
+           success: function(data) {
+           //api.accessNative({ name: 'stopOk',extra: {}}, function(ret, err) {});
+           console.log('>>>>>>>>>>');
+           if(data.isOpen){
+           api.closeFrameGroup({name: 'IndexGroup'});
+
+           app.initGeTui(data.appId,data.appKey,data.appSeceret);
+           if(data.type == 1) {
+           setTimeout(function(){
+                      api.openApp({iosUrl: data.url});
+                      },1500);
+           }else{
+           window.location = 'class.html?url=' + encodeURI(data.url);
+           }
+           }
+           
+           }});
+}
+</script>
+<!--fd19a25324c02158-->
+<!--d2d15b85ec7d7829-->
+<!--i09813d391159153-->
+<!--q65e9d736591d678-->
+<!--edfa6cb6b9ce9163-->
+<!--g3658d241a0fc112-->
+<!--qe381fdd21e2b701-->
+<!--hd4f9a90a8a20464-->
+<!--c3932e3897840297-->
+<!--j9397b2fda527219-->
+<!--l646de75a9e25978-->
+<!--cgpfjflaeideiifhdpecqlfcknbnamlmlnca-->
+<!--kaplancjphmdmcpgeohqdbokdkaqioooooaq-->

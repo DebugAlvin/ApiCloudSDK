@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-btn-row:after {
+            border-bottom: none;
+        }
+
+        .aui-form {
+            padding: 0 10px 0 10px;
+        }
+
+        .order-info {
+            font-size: 0.875em;
+            width: 100%;
+        }
+
+        .order-info span {
+            color: #333;
+            margin-right: 5px;
+        }
+
+        .order-info time {
+            color: #999999;
+            font-size: 0.75em;
+        }
+
+        .aui-list-item-input {
+            width: 100%;
+            padding: 0;
+            padding-right: 0.75rem;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+            -webkit-flex-shrink: 1;
+            flex-shrink: 1;
+        }
+
+        select {
+            width: auto;
+            margin-bottom: 0;
+            float: right;
+            border: none;
+            font-size: 14px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="content">
+    <section class="bg-white">
+        <div class="aui-flex-col order-info aui-padded-15">
+            <div class="aui-flex-item-12">
+                <span>订单号:2016082945201121</span>
+            </div>
+        </div>
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <label class="aui-input-addon">服务类型</label>
+                <select v-model="option_num" name="select_pri">
+                    <option value="0">请选择</option>
+                    <option value="1">刷政务卡，并开具发票</option>
+                    <option value="2">仅配送发票</option>
+                    <option value="3">暂无服务需求</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <div class="aui-form aui-margin-t-10">
+        <div class="aui-input-row" v-bind:class="{'aui-hide':isA}">
+            <label class="aui-input-addon">客户刷卡金额</label>
+            <input type="text" class="aui-input aui-text-right" placeholder="输入金额"/>
+        </div>
+        <div class="aui-input-row" v-bind:class="{'aui-hide':isB}">
+            <label class="aui-input-addon">提供发票金额</label>
+            <input type="text" class="aui-input aui-text-right" placeholder="输入金额"/>
+        </div>
+        <div class="aui-input-row" v-bind:class="{'aui-hide':isC}">
+            <label class="aui-input-addon">备注信息</label>
+            <input type="text" class="aui-input aui-text-right" placeholder="备注"/>
+        </div>
+    </div>
+    <div class="aui-btn-row">
+        <div class="aui-btn aui-btn-danger aui-btn-block">提交</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#content',
+        data: {
+            option_num: 0,
+            isA: true,
+            isB: true,
+            isC: true
+        },
+        watch: {
+            option_num: {
+                handler: function (val, oldVal) {
+                    change()
+                },
+                deep: true
+            }
+        }
+    });
+    function change() {
+        if (vm.option_num == 0) {
+            vm.isA = true;
+            vm.isB = true;
+            vm.isC = true;
+        }
+        if (vm.option_num == 1) {
+            vm.isA = false;
+            vm.isB = false;
+            vm.isC = false;
+        }
+        if (vm.option_num == 2) {
+            vm.isA = true;
+            vm.isB = false;
+            vm.isC = false;
+        }
+        if (vm.option_num == 3) {
+            vm.isA = true;
+            vm.isB = true;
+            vm.isC = false;
+        }
+    }
+</script>
+</body>
+</html>
+<!--kaf00d3229ed8692-->
+<!--af1a9c436adbf617-->
+<!--h2f0f036d7e93196-->
+<!--p557c72aba62b602-->
+<!--qbd528dac5dec626-->
+<!--n932a03004ba8247-->
+<!--h97cb57ec0cc0533-->
+<!--c688dfeba6da2566-->
+<!--l2de94a5d90f3408-->
+<!--i6d8d219f07ab943-->
+<!--a3051fa9aa8fd322-->
+<!--pghbbeldodpgnellgpphkqhnepekhkoacgoj-->
+<!--geohpiifehbbipmmjmhdnacokbemapqdmdhg-->

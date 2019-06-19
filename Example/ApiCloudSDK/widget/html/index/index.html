@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-slide.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-flex.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        #classify {
+            padding: 10px 0 5px 0;
+            margin-bottom: 10px;
+        }
+
+        #classify img {
+            width: 50%;
+        }
+
+        #banner {
+            margin-bottom: 10px;
+        }
+
+        #banner img {
+            width: 100%;
+            display: block;
+        }
+
+        .hot-list img {
+            width: 80%;
+            display: block;
+            margin: 0 auto 5px;
+        }
+        #gongge img{
+            width:100%
+        }
+        .aui-grid-nine li{
+            padding: 10px;
+        }
+        .aui-slide-node img {
+            max-height: 200px !important;height: auto;
+        }
+        .title{
+            font-size: 13px;
+        }
+        #classify p{
+            font-size: 13px;
+        }
+        .viewList {
+            padding: 5px;
+            overflow: hidden;
+            background: none
+        }
+
+        .viewList li {
+            width: 50%;
+            float: left;
+            padding: 5px;
+        }
+
+        .viewList .list-view {
+            background: #fff;
+            overflow: hidden;
+
+        }
+
+        .viewList li img {
+            width: 100%;
+            display: block;
+        }
+
+        .viewList .aui-img-object {
+            max-width: 100%;
+            height: auto;;
+        }
+
+        .viewList .aui-ellipsis-2 {
+            padding: 5px 10px 0 10px;
+        }
+
+        .viewList .aui-img-footer {
+            padding: 0 10px 10px 10px;
+            overflow: hidden;
+        }
+
+        .viewList .aui-list-view-cell:after {
+            border-bottom: none;
+        }
+
+        .viewList .aui-img-footer .ico-gwc {
+            bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="aui-slide">
+            <div class="aui-slide-wrap">
+                <div class="aui-slide-node bg-dark aui-text-center" v-for="(ads1,index) in ads1_list" tapmode v-on:click="open_goods(ads1.goods_id)">
+                    <img :src="ads1.url" alt="" style="height: 10rem;">
+                </div>
+            </div>
+            <div class="aui-slide-page-wrap"><!--分页容器--></div>
+        </div>
+        <section class="aui-flex-col aui-text-center bg-white aui-border-b" id="classify" >
+            <div class="aui-flex-item-3" tapmode v-on:click="open_goodslist(1)">
+                <img src="../../image/01.png"/><p class="icten">运动达人</p>
+            </div>
+            <div class="aui-flex-item-3" tapmode v-on:click="open_goodslist(2)">
+                <img src="../../image/02.png"/><p class="icten">运动品牌</p>
+            </div>
+            <div class="aui-flex-item-3" tapmode v-on:click="open_goodslist(3)">
+                <img src="../../image/03.png"/><p class="icten">清仓优惠</p>
+            </div>
+            <div class="aui-flex-item-3" tapmode v-on:click="open_goodslist(4)">
+                <img src="../../image/04.png"/><p class="icten">火热推荐</p>
+            </div>
+						
+
+        </section>
+        <section class="aui-content" id="banner" style="display:none;">
+            <img src="../../image/5836ad3aN45a75063.jpg"/>
+        </section>
+        <section class="bg-white aui-content" id="gongge" style="display:none;">
+            <div class="title aui-padded-10">
+                每日精品
+            </div>
+            <div class="aui-content">
+                <ul class="aui-grid-nine">
+                    <li sytle="height:100px" class="aui-col-xs-12 aui-text-center" tapmode v-on:click="open_goods(ads2.goods_id)" v-for="(ads2,index) in ads2_list">
+                        <img :src="ads2.url" style="height: 100px;"/>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="aui-content bg-white">
+            <div class="title aui-padded-10 aui-border-b" >
+                热门商品
+            </div>
+            <ul class="aui-list-view" v-bind:class="{'viewList':1}">
+                <transition-group name="list" tag="p">
+                <li class="aui-list-view-cell aui-img" v-for="(vo,index) in goods_list" tapmode v-on:click="open_goods(vo.uuid)" v-bind:key="index">
+                    <img class="aui-img-object aui-pull-left" style="height: 160px;"  :src="vo.url" v-if="vo.url">
+                    <img class="aui-img-object aui-pull-left" style="height: 160px;" src="../../image/default.png" v-else>
+                    <div class="aui-img-body aui-ellipsis-2" style="height: 45px;">
+                        {{ vo.goods_name }}
+                    </div>
+                    <div class="aui-img-footer">
+                    <span class="aui-text-danger goods-price">
+                        ¥<strong>{{ vo.price }}</strong>元
+                    </span>
+                     <!--<span class="aui-text-default goods-price" style="float: right;">
+                                                卖出<strong>{{ vo.xiaoliang }}</strong>件
+                    </span>-->
+                    </div>
+                </li>
+                </transition-group>
+            </ul>
+        </section>
+    </div>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../../script/aui-slide.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+		<script type="text/javascript" src="../../script/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="../../script/config.js"></script>
+		<script type="text/javascript" src="../../script/util.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    function goodlist(index) {
+        api.openWin({
+            name: 'index_goods_list',
+            url: 'widget://html/index/goods_list.html',
+            pageParam: {
+                index: index
+            }
+        });
+    }
+</script>
+<script>
+    var slide = null;
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            ads1_list: [
+            ],
+            ads2_list: [],
+            goods_list: []
+        },
+        methods: {
+            init: function () {
+							util.showProgress();
+                api.ajax({
+                    url: index_url,
+                    method: 'post',
+                    timeout: 500,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            name: 'values'
+                        }
+                    }
+                }, function (ret, err) {
+									util.hideProgress();
+                    if (ret) {
+                        vm.ads1_list = ret.data.ads1_list;
+                        vm.ads2_list = ret.data.ads2_list;
+                        vm.goods_list = ret.data.goods_list;
+                        console.log(JSON.stringify(vm.ads1_list));
+                        console.log(JSON.stringify(vm.ads2_list));
+                        console.log(JSON.stringify(vm.goods_list));
+                        setTimeout(function () {
+                            slide = new auiSlide({
+                                container: document.getElementById("aui-slide"),
+                                "height": 120,
+                                "speed": 300,
+                                "pageShow": true,
+                                "pageStyle": 'dot',
+                                "loop": true,
+                                'autoPlay': 5000,
+                                'dotPosition': 'center',
+                            });
+                        },'100');
+                    } else {
+
+                        //api.alert(JSON.stringify(err));
+						api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            },
+            open_goods:function (info_id) {
+                api.openWin({
+                    name: 'index_goods_detail',
+                    url: 'widget://html/index/goods_detail.html',
+                    pageParam: {
+                        info_id: info_id
+                    },
+                    delay: 300,
+                });
+            },
+            open_collect:function () {
+                if(is_login()){
+                    openWin('index','collection')
+                }else{
+                    go_login();
+                }
+            },
+            open_goodslist:function (tag) {
+                var pageParam = '';
+                if(tag == 1){
+                    pageParam = {is_new:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+                }
+                if(tag == 2){
+                    pageParam = {is_hot:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+                }
+                if(tag == 3){
+                    pageParam = {is_rec:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+                }
+                if(tag == 4){
+                    pageParam = {is_active:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+                }
+								if(tag == 5){
+										pageParam = {is_youhui:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+								}
+								if(tag == 6){
+										pageParam = {is_jieri:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+								}
+								if(tag == 7){
+										pageParam = {is_songli:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+								}
+								if(tag == 8){
+										pageParam = {is_chaoliu:1,title:$("#classify").find(".icten").eq(tag-1).text()};
+								}
+                api.openWin({
+                    name: 'goods_list',
+                    url: 'widget://html/index/goods_list.html',
+                    pageParam: pageParam,
+                });
+            }
+        }
+    });
+    apiready = function () {
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function(ret, err) {
+            slide = null;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()",'500');
+        });
+        vm.init();
+    };
+    function goodlist(index) {
+        api.openWin({
+            name: 'index_goods_list',
+            url: 'widget://html/index/goods_list.html',
+            pageParam: {
+                index: index
+            }
+        });
+    }
+</script>
+<!--d3a64b26d04b2862-->
+<!--e5002a4e0eda4572-->
+<!--jbae97fbaf380758-->
+<!--ddf4e26b2dad7451-->
+<!--jb5f386c9e702676-->
+<!--n299d0500e239476-->
+<!--f1542455c167c533-->
+<!--l9d1c2816fbde943-->
+<!--p95b74a5ca364213-->
+<!--d039731115be5659-->
+<!--oa25e711e51d1576-->
+<!--kkeahhmgdnlabeaffpqbeeafiihqnhfdpdnp-->
+<!--afojfbnfhijelqdojdcpgqkoealgjqqalcmi-->

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">用户协议</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'about_us',
+            url: "aboutBody.html",
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--d8c7ac5fd533f604-->
+<!--j435c45dbfb0a511-->
+<!--f5c27c7c2f572144-->
+<!--oe42e5ec4d2b3595-->
+<!--qbccf61d28e45772-->
+<!--c2d2c2db5596c495-->
+<!--m82236b8d266d262-->
+<!--p59483585d2dd602-->
+<!--l8041fdbca36c110-->
+<!--n099d071943ec102-->
+<!--n750a25f342d5982-->
+<!--ljqfidmceqflbmkgeilnbodqaqeeaoenpkpo-->
+<!--gaeodbkqimjalkblnoqcgkjcofommbbgpnlm-->

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-right {
+            color: #999999;
+            font-size: 14px;
+        }
+
+        .aui-pull-right .aui-iconfont {
+            color: #cccccc;
+        }
+
+        .aui-img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="app">
+    <ul class="aui-list-view">
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">软件版本</div>
+            <div class="aui-pull-right aui-text-danger" id="versonHtml">v.1.1</div>
+        </li>
+        <li class="aui-list-view-cell" onclick="openWin('member','about')">
+            <div class="aui-arrow-right">用户协议</div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mobile: '',
+        },
+        methods: {
+            removeTodo: function (index) {
+                this.todos.splice(index, 1)
+            }
+        }
+    });
+    apiready = function () {
+
+        $("#versonHtml").text("v"+api.appVersion);
+
+    };
+</script>
+</body>
+</html>
+<!--l686810b87b66437-->
+<!--f185531448983827-->
+<!--i9a34b163b1dc305-->
+<!--k4ccdb12ce454825-->
+<!--ga88cfcd2a264760-->
+<!--k31d178ddc14f427-->
+<!--jd4b4172149ed253-->
+<!--a076a12f581ab788-->
+<!--gb28e97bd3289175-->
+<!--q4629d9fc28a3160-->
+<!--h55f739476619811-->
+<!--fpqlfiofefcjhgpadnbikehnahjbkeckelnq-->
+<!--igbnkongpqeeddndgbqdfgplibgoojpdoiab-->

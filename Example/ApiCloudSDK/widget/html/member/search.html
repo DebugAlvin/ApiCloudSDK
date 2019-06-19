@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-left {
+            padding-left: 10px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        a {
+            color: #ffffff;
+        }
+        .aui-pull-left {
+            float: left !important;
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+            background-color: transparent;
+        }
+        header {
+            background-color: #ebeced;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div style="line-height: 50px;">
+        <a class="aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+    </div>
+    <div class="aui-searchbar-wrap demo" id="search">
+        <div class="aui-searchbar aui-border-radius" tapmode @click="doSearch()">
+            <i class="aui-iconfont aui-icon-search"></i>
+            <div class="aui-searchbar-text">请输入搜索内容</div>
+            <div class="aui-searchbar-input">
+                <form action="javascript:search();">
+                    <input type="search" placeholder="请输入搜索内容" id="search-input" v-model="keywords">
+                </form>
+            </div>
+            <i class="aui-iconfont aui-icon-roundclosefill" tapmode @click="clearInput()"></i>
+        </div>
+        <div class="aui-searchbar-cancel aui-text-info" tapmode @click="cancelSearch()">取消</div>
+    </div>
+</header>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: 'header',
+        data: {
+            keywords: '',
+        },
+        methods: {
+            doSearch:function () {
+                $api.addCls($api.dom(".aui-searchbar-wrap"),"focus");
+                $api.dom('.aui-searchbar-input input').focus();
+            },
+            clearInput: function () {
+                vm.keywords = '';
+            },
+            cancelSearch:function () {
+                $api.removeCls($api.dom(".aui-searchbar-wrap.focus"),"focus");
+                vm.keywords = '';
+                $api.dom('.aui-searchbar-input input').blur();
+            }
+        }
+    });
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'search_body',
+            url: 'widget://html/member/search_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        });
+        vm.doSearch();//选中焦点
+    };
+
+    function search() {
+        if(vm.keywords){
+            api.sendEvent({
+                name: 'search_init',
+                extra: {
+                    keywords: vm.keywords
+                }
+            });
+        }else{
+            api.alert({
+                title: '搜索提示',
+                msg: '您没有输入任何内容'
+            });
+        }
+        vm.cancelSearch();
+    }
+</script>
+<!--qc9bc25832c93646-->
+<!--b401255a9a4c3864-->
+<!--n43f46d1b1641120-->
+<!--q0546d4f9b42d762-->
+<!--ic2f9f37755ec166-->
+<!--n8476acb36d5c768-->
+<!--dd7d14dd950ed772-->
+<!--o2e39abd12fa4662-->
+<!--e7d365023f65b720-->
+<!--cb5578a9a848f758-->
+<!--j59f873130d77227-->
+<!--ppmkjcojjkcmlidqpdjabgbfhaqclfnngeab-->
+<!--pjnbicooeiomnnqmkqcklhnlmngqihqcgkle-->

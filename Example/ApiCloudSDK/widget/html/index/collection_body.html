@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .viewList {
+            padding: 5px;
+            overflow: hidden;
+            background: none
+        }
+
+        .viewList li {
+            width: 50%;
+            float: left;
+            padding: 5px;
+        }
+
+        .viewList .list-view {
+            background: #fff;
+            overflow: hidden;
+
+        }
+
+        .viewList li img {
+            width: 100%;
+            display: block;
+        }
+
+        .viewList .aui-img-object {
+            max-width: 100%;
+            height: auto;;
+        }
+
+        .viewList .aui-ellipsis-1 {
+            padding: 5px 10px 0 10px;
+        }
+
+        .viewList .aui-img-footer {
+            padding: 0 10px 10px 10px;
+            overflow: hidden;
+        }
+
+        .viewList .aui-list-view-cell:after {
+            border-bottom: none;
+        }
+
+        .viewList .aui-img-footer .ico-gwc {
+            bottom: 10px;
+        }
+        aui-list-view .aui-img-object {
+            width: 60px;
+            height: 60px;
+            !important;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="viewList" v-cloak style="background:#585858;">
+    <ul class="aui-list-view">
+            <li class="aui-list-view-cell aui-img" v-for="(vo,index) in list" >
+                <div class="list-view">
+                    <img class="aui-img-object aui-pull-left" :src="vo.url" tapmode v-on:click="open_goods(vo.info_id)">
+                    <div class="aui-img-body aui-ellipsis-1" tapmode v-on:click="open_goods(vo.info_id)">
+                        {{ vo.goods_name }}
+                    </div>
+                    <div class="aui-img-footer">
+                        <span class="aui-text-danger goods-price" tapmode v-on:click="open_goods(vo.info_id)">¥<strong>{{ vo.price }}</strong>元</span>
+                        <span style="float: right;">
+
+                              <span class="aui-btn aui-btn-danger" tapmode v-on:click="collect_canle(index)">取消收藏</span>
+
+                        </span>
+                    </div>
+                </div>
+            </li>
+    </ul>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#viewList',
+        data: {
+            page:1,
+            list: []
+        },
+        methods: {
+            open_goods:function (info_id) {
+                api.openWin({
+                    name: 'index_goods_detail',
+                    url: 'widget://html/index/goods_detail.html',
+                    pageParam: {
+                        info_id: info_id
+                    }
+                });
+            },
+            init: function () {
+                api.ajax({
+                    url: list_goods_collect_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            page: vm.page
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if(vm.page == 1){
+                            vm.list = ret.data.data;
+                        }else{
+                            for(var i=0;i<ret.data.data.length;i++){
+                                vm.list.push(ret.data.data[i]);
+                            }
+                        };
+                        vm.page +=1;
+                    } else {
+                        //api.alert(JSON.stringify(err));
+						api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            },
+            collect_canle:function (index) {
+            	api.confirm( {
+  title: '提示',
+  msg: '确认取消当前收藏？',
+  buttons: [ '确定', '取消' ]
+}, function ( ret, err ) {
+  var indexxx = ret.buttonIndex;
+  if ( indexxx == 1 ) {
+    var id = vm.list[index].info_id;
+                api.ajax({
+                    url: delete_goods_collect_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            goods_id: id
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            setTimeout(function () {
+                                vm.list.splice(index, 1)
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+  }
+} )
+
+
+
+
+            }
+        }
+    });
+    apiready = function () {
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function(ret, err) {
+            vm.page = 1;
+            vm.init();
+            setInterval("api.refreshHeaderLoadDone()",'1000');
+        });
+        vm.init();
+    };
+</script>
+<!--e12e7c4947ebc310-->
+<!--g929a01b2ae30937-->
+<!--p69b275d3073c129-->
+<!--q9a823a00200a534-->
+<!--d9395ae11b90c513-->
+<!--kb91f03984491133-->
+<!--of17da1665ff4972-->
+<!--p58b3cc2bac6f315-->
+<!--o933217a884b4242-->
+<!--d8a7579a28257818-->
+<!--b3fd6fb5a88b1211-->
+<!--cjbpfdlnblembblmhlbgmoimmfinnicfofnc-->
+<!--lcenncjnjfegibbpbnkjoeqmqegeolilpllh-->

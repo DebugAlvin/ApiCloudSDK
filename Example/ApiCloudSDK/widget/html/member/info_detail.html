@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <style>
+        .box {
+            width: 80%;
+            height: 280px;
+            margin:0 auto;
+            margin-top: 50%;;
+            background: #fff;
+            border-radius: 5px;;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            padding: 15px 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .center {
+            margin-top: 10px;
+            padding: 0 20px;
+            font-size: 14px;
+            line-height: 28px;
+            height: 200px;
+            overflow: scroll
+        }
+
+        .borde, .border-t, .border-l, .border-b, .border-r {
+            position: relative
+        }
+
+        .border-b {
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .borde:after, .border-t:after, .border-l:after, .border-b:after, .border-r:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            bottom: -100%;
+            left: 0;
+            -webkit-transform-origin: 0 0;
+            pointer-events: none;
+            -webkit-transform: scale(0.5);
+        }
+        .right{
+            width:30px;
+            height: 30px;
+            line-height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 20px;;
+            position: absolute;
+            z-index: 99;
+            right:-15px;
+            top:-15px;
+            color:#000
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="dialog" v-cloak>
+    <div class="title border-b">
+        {{art.title}}
+        <div class="right" onclick="col()">×</div>
+    </div>
+    <div class="center" v-html="art.content">
+    </div>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    function col() {
+        api.closeFrame();
+    }
+</script>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: '#dialog',
+        data: {
+            art: {
+                "title": "",
+                "content": ""
+            }
+        }
+    });
+    apiready = function () {
+        console.log(JSON.stringify(api.pageParam.art));
+        vm.art = api.pageParam.art;
+    };
+</script>
+<!--ed8f6a75ad622836-->
+<!--p5265573a23df277-->
+<!--gf0b6f3e8406a762-->
+<!--n3280552098a0905-->
+<!--o78dc518cfde0769-->
+<!--ocfaf3030e77c792-->
+<!--i793d139df192345-->
+<!--me0976cd4d03b344-->
+<!--q406ab32187eb65-->
+<!--b126046388277915-->
+<!--a09f58a95de6d727-->
+<!--eemlfaicmkooffooidibbiehhkliqhlklfin-->
+<!--jdhbfohejleebndhkfbckcacamkgoklkfjpc-->

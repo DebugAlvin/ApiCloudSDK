@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .cent-box {
+            width: 100%;
+            height: auto;
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .cent-box strong {
+            font-size: 20px;
+        }
+
+        .wantmeet {
+            padding: 10px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .aui-img-object {
+            width: 12px;
+            height: 12px;
+        }
+
+        .aui-img-body {
+            position: relative;
+        }
+
+        .aui-img-body .img-footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: 12px;
+        }
+        .active {
+            color: #FB604C;
+            border-left: 2px solid #FB604C;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="aui-content">
+        <div class="cent-box">
+            <div class="aui-padded-15">
+                <div>钱包余额</div>
+                <strong>￥{{ member_info.money  }}</strong>
+            </div>
+        </div>
+    <section class="bg-white wantmeet aui-border-b">
+            <div class="aui-col-xs-6 aui-border-r aui-text-danger" onclick="openWin('member','withdrawals')">
+                <img class="aui-img-object" src="../../image/tixian.png"/>&nbsp;我要提现
+            </div>
+            <div class="aui-col-xs-6 aui-text-danger" onclick="openWin('member','authentication')">
+                <img class="aui-img-object" src="../../image/renzheng.png"/>&nbsp;提现认证
+            </div>
+        </section>
+    </div>
+    <section class="bg-white">
+        <div class="title aui-padded-10 active">提现记录</div>
+        <ul class="aui-user-view">
+            <transition-group name="list" tag="p">
+            <li class="aui-user-view-cell" v-for="(vo,index) in list" v-bind:key="index">
+                <div class="aui-img-body">
+                <span>提现金额
+                    <strong class="aui-text-danger">￥{{ vo.money }}</strong>
+                    <em tapmode v-on:click="member_withdraw_delete(index)"><i class="aui-iconfont aui-icon-delete"></i></em>
+                </span>
+                    <p>{{ vo.create_time|time }}</p>
+                    <div class="img-footer" v-if="vo.status == 1">
+                        <p class="aui-text-success">已完成</p>
+                    </div>
+                    <div class="img-footer" v-if="vo.status == 0">
+                        <p class="aui-text-warning">正在办理</p>
+                    </div>
+                    <div class="img-footer" v-if="vo.status == 2">
+                        <p class="aui-text-danger">已退回</p>
+                    </div>
+                </div>
+            </li>
+            </transition-group>
+        </ul>
+    </section>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            member_info: '',
+            total: '',
+            per_page: '',
+            page: 1,
+            list: [],
+
+        },
+        methods: {
+            init: function (index) {
+                api.ajax({
+                    url: my_wallet_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            page: vm.page
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            vm.member_info = ret.data.member_info;
+                            if(vm.page == 1){
+                                vm.list = ret.data.list;
+                                vm.page += 1;
+                            }else{
+                                for(var i=0; i<ret.data.list.length; i++){
+                                    vm.list.push(ret.data.list[i]);
+                                }
+                            }
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            member_withdraw_delete:function (index) {
+                var id = vm.list[index].id;
+                api.ajax({
+                    url: member_withdraw_delete_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            id: id
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            setTimeout(function () {
+                                vm.list.splice(index, 1)
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+    };
+</script>
+<!--h62b2cb734113489-->
+<!--o05a234dcb01e346-->
+<!--gfe784477efe3906-->
+<!--p87fa02caca59951-->
+<!--c3c9ffebd8c25339-->
+<!--b8b01fdbee752365-->
+<!--k69a4c335af86970-->
+<!--g649949857ab9799-->
+<!--nadb3c2c971e5284-->
+<!--e848339cf38e5186-->
+<!--i80992a6ce47b276-->
+<!--bbodeleqkqkjdjnmhabapjaldmplfoqgilic-->
+<!--pkpmbqehchlkhdqdqgbplkaapngpjqbbpmkd-->

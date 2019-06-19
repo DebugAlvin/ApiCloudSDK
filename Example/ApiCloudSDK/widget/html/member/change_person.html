@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+        <a class="aui-pull-left" tapmode onclick="closeWin()"><span class="aui-iconfont aui-icon-left"></span></a>
+        <div class="aui-title">指派服务负责人</div>
+        <a class="aui-pull-right" tapmode v-on:click="submit_data()" style="color: #333;">保存</a>
+    </header>
+</body>
+</html>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: 'header',
+        data: {
+            area_deliveryman_mid: '',
+            order_id: '',
+            order_sn: '',
+            service_number: '',
+            content: '',
+            area_agent_order: [],
+        },
+        methods: {
+            submit_data: function () {
+                api.ajax({
+                    url: add_area_deliveryman_order_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            mid: vm.area_deliveryman_mid,
+                            order_id: vm.order_id,
+                            order_sn: vm.order_sn,
+                            service_number: vm.service_number,
+                            content: vm.content,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            api.sendEvent({
+                                name: 'update_assign_list',
+                            });
+                            setTimeout(function () {
+                                api.closeWin();
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        var area_agent_order = api.pageParam.area_agent_order;
+        vm.area_agent_order = api.pageParam.area_agent_order;
+        vm.order_id = area_agent_order.order_id;
+        vm.order_sn = area_agent_order.order_sn;
+        vm.service_number = area_agent_order.service_number;
+        vm.content = area_agent_order.content;
+        api.openFrame({
+            name: 'member_change_person_body',
+            url: './change_person_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                area_agent_order: vm.area_agent_order
+            }
+        });
+        //监听网络连接事件
+        api.addEventListener({
+            name: 'area_deliveryman_mid'//指派业务员ID
+        }, function (ret, err) {
+            if (ret) {
+                vm.area_deliveryman_mid = ret.value.area_deliveryman_mid;
+                console.log(JSON.stringify(ret));
+            } else {
+                console.log(JSON.stringify(err));
+            }
+        });
+    };
+</script>
+<!--o1e57ab32d833228-->
+<!--i3a4c94aa3e50736-->
+<!--a226772554636868-->
+<!--e48c60242f712845-->
+<!--j3fc296d01b5b709-->
+<!--cd3ce4d662d68575-->
+<!--ib97294e5d732349-->
+<!--odb9a264264e6584-->
+<!--f68b813073478917-->
+<!--g34629814b345514-->
+<!--fecf322a8cc2f991-->
+<!--aeepiqkkgncgldfhkhebbocgpjedohohqpbe-->
+<!--gdegcpjbbkmhnqgopbnoddgeoclqfckepaif-->

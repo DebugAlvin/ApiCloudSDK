@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-bar-nav .aui-title {
+            right: 3.5rem;
+            left: 3.5rem;
+        }
+
+        .aui-tab-item.aui-active {
+            border-bottom: none
+        }
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b" id="header">
+    <a class="aui-pull-left" tapmode onclick="closeWin()"><span class="aui-iconfont aui-icon-left"></span></a>
+    <div class="aui-title">服务指派</div>
+</header>
+<div class="aui-tab aui-tab-danger" id="tab">
+    <ul class="aui-tab-nav aui-border-b">
+        <li class="active aui-item" onclick="groupindex(0)">未指派</li>
+        <li class="aui-item" onclick="groupindex(1)">已指派</li>
+        <li class="aui-item" onclick="groupindex(2)">已处理</li>
+    </ul>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        openFrameGroup();
+    };
+    function openFrameGroup(k) {
+        api.openFrameGroup({
+            name: 'member_assign',
+            background: '#f4f4f4',
+            scrollEnabled: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight + $api.byId('tab').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            index: 0,
+            frames: [
+                {
+                    name: 'member_assign_1',
+                    url: 'assign_1.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                },
+                {
+                    name: 'member_assign_2',
+                    url: 'assign_2.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                },
+                {
+                    name: 'member_assign_3',
+                    url: 'assign_3.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                }
+            ]
+        }, function (ret, err) {
+            var index = ret.index;
+            setFrameGroupStatus(index)
+        });
+    }
+    function groupindex(index) {
+        api.setFrameGroupIndex({
+            name: 'member_assign',
+            index: index,
+            scroll: true
+        });
+        setFrameGroupStatus(index)
+    }
+    function setFrameGroupStatus(index) {
+        var tab = document.getElementById('tab');
+        var tablist = tab.getElementsByClassName("aui-item");
+        for (var i = 0; i < tablist.length; i++) {
+            $api.removeCls(tablist[i], 'active');
+        }
+        $api.addCls(tablist[index], 'active');
+    }
+</script>
+</body>
+</html>
+<!--ka81dbc2f3b80676-->
+<!--n3f09872d1d80470-->
+<!--p7e1c5453a3b1645-->
+<!--p69696500ce49858-->
+<!--m5adeb9530894437-->
+<!--ce17f3032f637412-->
+<!--f898f6aba44ec967-->
+<!--qe9b36ecb59cd1-->
+<!--j4e89468d29f8785-->
+<!--l6d743e9a039d354-->
+<!--a9729a58e49b4824-->
+<!--cpldghjccmgojhiglbadaflankpqbedibmjp-->
+<!--jiolhhleggigmacimdcnecqeimffnaikodaq-->

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-right{
+            font-size: 12px;
+            color: #999;
+        }
+        #addres{
+            padding: 13px 15px 0 15px;
+        }
+        #addres .aui-user-view{
+            margin-bottom: 0;
+        }
+        #addres .aui-list-view-cell:last-child:after{
+            border-bottom: none;
+        }
+        .aui-img-object{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        #fotlist{
+            padding: 20px 0 ;
+        }
+        #res_list{
+            color: #999999;
+            min-height: 50px;
+        }
+        .aui-list-view-cell{
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="aui-content">
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell">
+                    区域代理账号
+                    <span class="aui-pull-right">{{ member.mobile }}</span>
+                </li>
+                <li class="aui-list-view-cell">
+                    代理人姓名
+                    <span class="aui-pull-right">{{ member.name }}</span>
+                </li>
+                <li class="aui-list-view-cell">
+                    联系电话
+                    <span class="aui-pull-right">{{ member.mobile }}</span>
+                </li>
+                <li class="aui-list-view-cell" id="addres">
+                    <div>代理区域</div>
+                    <div class="aui-margin-t-10" id="res_list">
+                        <ul class="aui-user-view">
+                            <li class="aui-list-view-cell" v-for="(vo,index) in agent_list">
+                                <i class="aui-iconfont aui-icon-location aui-text-danger"></i>
+                                {{ vo.info }} {{ vo.end_time }}
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="aui-list-view-cell">
+                    有效期
+                    <span class="aui-pull-right">{{ agent_list[0].end_time|time }}</span>
+                </li>
+            </ul>
+        </div>
+        <section class="aui-content bg-white">
+            <div class="title aui-padded-10 aui-border-b">
+                区域负责人
+            </div>
+            <div class="aui-row aui-text-center aui-overflow" id="fotlist">
+                <div class="aui-col-xs-3" v-for="(vo,index) in deliveryman_list" tapmode v-on:click="addmem_info(index)">
+                    <img class="aui-img-object" src="../../image/user.png">
+                    <p>{{ vo.name }}</p>
+                </div>
+                <div class="aui-col-xs-3" onclick="openWin('member','addmem')">
+                    <img class="aui-img-object" src="../../image/addmember.png">
+                    <p>新增</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            member: '',
+            agent_list: [],
+            deliveryman_list: []
+        },
+        methods: {
+            init: function (index) {
+                api.ajax({
+                    url: daili_info_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token')
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if(ret.status == 1){
+                            vm.member = ret.data.member;
+                            vm.agent_list = ret.data.agent_list;
+                            vm.deliveryman_list = ret.data.deliveryman_list;
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+
+            },
+            addmem_info:function (index) {
+                var id = vm.deliveryman_list[index].id;
+                api.openWin({
+                    name: 'member_addmem_info',
+                    url: 'widget://html/member/addmem_info.html',
+                    pageParam: {
+                        id:id
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+    };
+</script>
+<!--n8f5287d8a9d6643-->
+<!--m480392eb268d170-->
+<!--e651b7e466a45253-->
+<!--i924dbfbc8796561-->
+<!--f7c735c0175f6172-->
+<!--a7411ddc704e9448-->
+<!--g473137754b69686-->
+<!--m5befefbffa83716-->
+<!--gc0ea2d33f822690-->
+<!--f60e3573f5fe8388-->
+<!--me504501b008c107-->
+<!--bpgmbiolhdpecpqhnbmhkjpdaecfpekejjel-->
+<!--ioqlfccooogqellakommclehiocgcqkfjcgg-->

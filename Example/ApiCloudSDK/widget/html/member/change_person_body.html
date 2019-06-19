@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-img-body{
+            line-height: 60px;
+        }
+        .aui-pull-right{
+            font-size: 12px;
+            color: #999999;
+        }
+        .aui-img-object{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="aui-content" id="app" v-cloak>
+        <ul class="aui-list-view">
+            <transition-group name="list" tag="p">
+            <li class="aui-list-view-cell aui-img aui-counter-list" v-for="(vo,index) in list" v-bind:key="index">
+                <input class="aui-pull-left aui-radio aui-radio-danger" type="radio" :value="vo.mid" v-model="area_deliveryman_mid">
+                <img class="aui-img-object aui-pull-left" src="../../image/noavatar.gif">
+                <div class="aui-img-body">
+                    {{ vo.name }}<div class="aui-pull-right">{{ vo.mobile }}</div>
+                </div>
+            </li>
+            </transition-group>
+        </ul>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            area_deliveryman_mid: '',
+            page: 1,
+            list: []
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: deliveryman_list_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            vm.list = ret.data;
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+        },
+        watch: {
+            area_deliveryman_mid: {
+                handler: function (val, oldVal) {
+                    console.log(this.area_deliveryman_mid);
+                    api.sendEvent({
+                        name: 'area_deliveryman_mid',
+                        extra: {
+                            area_deliveryman_mid: this.area_deliveryman_mid
+                        }
+                    });
+                },
+                deep: true
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+    };
+</script>
+<!--bf39b27a6cb4622-->
+<!--o732680b03ee7343-->
+<!--ga73633c8f5cb445-->
+<!--faa4f77a43909102-->
+<!--ga07abcfa0b80845-->
+<!--pd8793dc36b5b344-->
+<!--b839ac61a94ca641-->
+<!--baeda2e653d54945-->
+<!--jb2e60c3fa724828-->
+<!--c2d2ae86c1914617-->
+<!--g5cbd921e6a10735-->
+<!--bgncnqmckqcnemhemkjnddipljncdaljbjaa-->
+<!--geijcmmgickjnmideicjdfpgblfeqqknqfiq-->

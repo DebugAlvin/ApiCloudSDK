@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header style="background: ;" class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">关于我们</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_aboutMe_body',
+            url: './aboutMeBody.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: api.winHeight - $api.dom('header').offsetHeight
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--b7a53d0b3610f764-->
+<!--m091d93c3a480550-->
+<!--m739cc9c5b7d8239-->
+<!--nabf71bac8104290-->
+<!--he9f354d9b149517-->
+<!--qa115aa9ab816569-->
+<!--o0bd735ea4620833-->
+<!--g42fd4a69e2e7419-->
+<!--a4665eb7a13b2887-->
+<!--j96c0b011751a792-->
+<!--q5fd63a9ca50d722-->
+<!--qopfeacqepmijfqlhjochcfbfpgjhpaihjho-->
+<!--hbnlkaqcajeiaghgolmnjkfkdeibqfpahabd-->

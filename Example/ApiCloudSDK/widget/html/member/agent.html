@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">代理信息</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_agent_body',
+            url: './agent_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--gc62fd2504c25366-->
+<!--kd93761b104fc30-->
+<!--q081b7b7883cb45-->
+<!--l7637630cb6f4372-->
+<!--a8dbb0649eb68565-->
+<!--kae5f9b9ec6c924-->
+<!--jfb048171ef41181-->
+<!--fd27dcb1b9d43827-->
+<!--gb48fafba602c247-->
+<!--pb26a8317ec19981-->
+<!--n267faf69a4f5651-->
+<!--jlmlbjiibldogdbicclidakahcqocpqjahmm-->
+<!--emclfjngphkiolinbbmgflpepbemigqdkkpb-->

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+            <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+            <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+                <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+                <link rel="stylesheet" type="text/css" href="../../css/public.css" />
+                <style>
+                    .my-header {
+                        background-color: #050505;
+                        position: relative;
+                        margin-bottom: 0;
+                    }
+                
+                .my-info {
+                    position: relative;
+                    padding: 20px 0;
+                    width: 100%;
+                    bottom: 0;
+                    /*margin-left: 10px;*/
+                    text-align: center;
+                }
+                
+                .my-info img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                }
+                
+                .my-info p.nickname {
+                    /*margin-top: 5px;
+                     margin-left: 5px;*/
+                    color: #fff;
+                    font-size: 18px;
+                }
+                
+                .amount-info {
+                    color: #fff;
+                    padding: 8px 0;
+                    background: #F26564;
+                    overflow: hidden;
+                }
+                
+                .box-title {
+                    margin: 10px;
+                    height: 20px;
+                    line-height: 20px;
+                    border-left: 5px solid green;
+                    color: #666;
+                    font-weight: 700;
+                    padding-left: 10px;
+                }
+                
+                .img-list {
+                    overflow: hidden;
+                    padding-bottom: 10px;
+                }
+                
+                .img-list .aui-col-xs-4 {
+                    padding-top: 15px;
+                }
+                
+                .img-list img {
+                    width: 20px;
+                    height: 20px;
+                }
+                
+                .aui-list-view i.aui-iconfont {
+                    padding: 5px;
+                    border-radius: 4px;
+                    margin-right: 10px;
+                    color: #ffffff;
+                    font-size: 1.125em;
+                }
+                
+                .aui-list-view-cell:last-child:after {
+                    border: none
+                }
+                .aui-badge {
+                    z-index: 99;
+                    display: block;
+                    text-align: center;
+                    padding: 0.1rem 0.3rem;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    line-height: 1.2rem;
+                    font-size: 0.6rem;
+                    color: #ffffff;
+                    background-color: #ff2600;
+                    border-radius: 0.8rem;
+                    position: absolute;
+                    top: 0.2rem;
+                    left: 85%;
+                }
+                .startIcon{
+                    height: 30px;
+                    width: 30px;
+                }
+                .startIconspan{
+                    height: 30px;
+                }
+                .startIconText{
+                    float: left;line-height: 30px;margin-left: 5px;
+                }
+                .bodybackground{
+                    /*background:url(../../image/loginbg.png);
+                     background-size:cover;*/
+                    background-color: #eeeeee;
+                }
+                </style>
+                </head>
+    <body class="bodybackground">
+        <div id="app" v-cloak  >
+            <div class="aui-content my-header">
+                <div class="my-info" v-if="!token" onclick="check_login()">
+                    <p class="nickname" tapmode v-on:click="login()">登录</p>
+                </div>
+                <div class="my-info" v-if="token">
+                    <img src="../../image/admin1.png" alt="">
+                        <p class="nickname">{{ member_info.username }}
+                        <!-- <br /> -->
+                        <!-- {{ member_info.mobile }} -->
+                        </p>
+                        </div>
+            </div>
+            <div class="aui-content aui-text-center amount-info" style="display: none;">
+                <div class="aui-col-xs-6" style="border-right:1px solid #DA4342" onclick="openWin('member','mycode')">我的推广二维码</div>
+                <div class="aui-col-xs-6" tapmode v-on:click="administration()">账户管理</div>
+            </div>
+            
+            <!-- =================================================================== -->
+            
+            <div  class="aui-content">
+                <ul style="background-color:none;" class="aui-grid-nine">
+                    <li  class="aui-col-xs-4 aui-text-center" tapmode v-on:click="address_list()" v-if="token">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a01.png" />
+                        <p>地址管理</p>
+                    </li>
+                    <li class="aui-col-xs-4 aui-text-center" tapmode v-on:click="administration()">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a02.png" />
+                        <p>账户管理</p>
+                    </li>
+                    <li class="aui-col-xs-4 aui-text-center" tapmode v-on:click="open_collect()">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a03.png" />
+                        <p>我的收藏</p>
+                    </li>
+                    <li class="aui-col-xs-4 aui-text-center" tapmode onclick="goodlist(0)">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a04.png" />
+                        <p>待付款</p>
+                    </li>
+                    <li class="aui-col-xs-4 aui-text-center" tapmode onclick="goodlist(1)">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a05.png" />
+                        <p>待收货</p>
+                    </li>
+                    <li class="aui-col-xs-4 aui-text-center" tapmode onclick="goodlist(2)">
+                        <!-- <span class="aui-iconfont aui-icon-my aui-text-primary"></span> -->
+                        <img style="border:none;height: 30px;    width: 30px;" src="../../image/a06.png" />
+                        <p>已完成</p>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- =================================================================== -->
+            <div>
+                <div class="aui-content bg-white">
+                    <div class="aui-line-x"></div>
+                    <!-- <div class="box-title">与我相关</div> -->
+                    <div style="background:none; " class="aui-content bg-white aui-border-t aui-border-b">
+                        <ul class="aui-list-view">
+                            
+                            <li class="aui-list-view-cell">
+                                <div class="aui-arrow-right aui-ellipsis-1 startIconspan" tapmode onclick="openWin('member','about')">
+                                    <span style="float: left;"><img src="../../image/xieyi01.png" class="startIcon startIconspan" /></span><span
+                                        style="" class="startIconText">用户协议</span>
+                                    
+                                </div>
+                            </li>
+                            <li class="aui-list-view-cell">
+                                <div class="aui-arrow-right aui-ellipsis-1 startIconspan" tapmode v-on:click="aboutMe()">
+                                    <span style="float: left;"><img src="../../image/aboutMe01.png" class="startIcon startIconspan" /></span><span
+                                        style="" class="startIconText">关于我们</span>
+                                    
+                                </div>
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div> -->
+            <!-- <div class="aui-content bg-white">
+             <div class="aui-line-x"></div>
+             <div class="box-title">订单</div>
+             
+             <ul class="aui-list-view"> -->
+            <!-- <li class="aui-list-view-cell">
+             <div class="aui-arrow-right aui-ellipsis-1 startIconspan" tapmode onclick="goodlist(0)">
+             
+             <span style="float: left;"><img src="../../image/daifukuan.png" class="startIcon startIconspan" /></span><span
+             style="" class="startIconText">代付款</span>
+             <div class="aui-badge" v-if="order_count0>0">{{order_count0}}</div>
+             </div>
+             </li> -->
+            <!-- <li class="aui-list-view-cell">
+             <div class="aui-arrow-right aui-ellipsis-1 startIconspan" tapmode onclick="goodlist(1)">
+             <span style="float: left;"><img src="../../image/daifahuo.png" class="startIcon startIconspan" /></span><span
+             style="" class="startIconText">待收货</span>
+             <div class="aui-badge" v-if="order_count1>0">{{ order_count1 }}</div>
+             </div>
+             </li> -->
+            <!-- <li class="aui-list-view-cell " tapmode onclick="goodlist(2)">
+             <div class="aui-arrow-right aui-ellipsis-1 startIconspan">
+             <span style="float: left;"><img src="../../image/wanchengx.png" class="startIcon startIconspan" /></span><span
+             style="" class="startIconText">已完成</span>
+             
+             </div>
+             </li> -->
+            <!-- </ul>
+             </div> -->
+            <!-- </div> -->
+        </div>
+        
+        
+        <script type="text/javascript" src="../../script/api.js"></script>
+        <script type="text/javascript" src="../../script/common.js"></script>
+        <script type="text/javascript" src="../../script/vue.js"></script>
+        <script type="text/javascript">
+            function goodlist(index) {
+                if (is_login()) {
+                    api.openWin({
+                                name: 'member_order_list',
+                                url: 'widget://html/member/order_list.html',
+                                pageParam: {
+                                index: index
+                                }
+                                });
+                } else {
+                    check_login();
+                }
+            }
+        </script>
+    </body>
+</html>
+<script>
+    var vm = new Vue({
+                     el: '#app',
+                     data: {
+                     token: $api.getStorage('token'),
+                     member_info: $api.getStorage('member_info'),
+                     area_agent_count: 0, //代理区域数量
+                     area_deliveryman_id: 0, //业务员ID
+                     order_count0: 0, //待付款
+                     order_count1: 0, //待收货
+                     isLogin: is_login()
+                     },
+                     methods: {
+                     login: function() {
+                     openWin('member', 'login');
+                     },
+                     open_my_wallet: function() {
+                     if (is_login()) {
+                     openWin('member', 'wallet');
+                     } else {
+                     go_login();
+                     }
+                     },
+                     open_order_fenxiao: function() {
+                     if (is_login()) {
+                     openWin('member', 'subcomm');
+                     } else {
+                     go_login();
+                     }
+                     },
+                     help: function() {
+                     api.openWin({
+                                 name: 'member_help',
+                                 url: 'widget://html/member/help.html'
+                                 });
+                     },
+                     aboutMe: function() {
+                     openWin('member', 'aboutMe');
+                     },
+                     administration: function() {
+                     var res = is_login();
+                     if (res) {
+                     openWin('member', 'administration');
+                     } else {
+                     go_login();
+                     }
+                     
+                     },
+                     address_list: function() {
+                     if (is_login()) {
+                     api.openWin({
+                                 name: 'address_list_win',
+                                 url: 'widget://html/member/address_list_win.html',
+                                 });
+                     } else {
+                     go_login();
+                     }
+                     
+                     },
+                     open_collect: function() {
+                     if (is_login()) {
+                     openWin('index', 'collection')
+                     } else {
+                     go_login();
+                     }
+                     },
+                     my_deliveryman_order: function() {
+                     if (is_login()) {
+                     openWin('member', 'service_list')
+                     } else {
+                     go_login();
+                     }
+                     },
+                     init: function() {
+                     vm.token = $api.getStorage('token');
+                     vm.member_info = $api.getStorage('member_info');
+                     api.ajax({
+                              url: user_center_url,
+                              method: 'post',
+                              timeout: 30,
+                              dataType: 'json',
+                              returnAll: false,
+                              data: {
+                              values: {
+                              token: $api.getStorage('token'),
+                              deviceid: api.deviceId
+                              }
+                              }
+                              }, function(ret, err) {
+                              if (ret) {
+                              console.log(JSON.stringify(ret));
+                              if (ret.status == 1) {
+                              vm.area_agent_count = ret.data.area_agent_count;
+                              vm.area_deliveryman_id = ret.data.area_deliveryman_id;
+                              vm.token = $api.getStorage('token');
+                              vm.order_count0 = ret.data.order_count0;
+                              vm.order_count1 = ret.data.order_count1;
+                              } else {
+                              api.toast({
+                                        msg: ret.msg,
+                                        duration: 2000,
+                                        location: 'bottom'
+                                        });
+                              vm.area_agent_count = 0;
+                              vm.area_deliveryman_id = 0;
+                              vm.token = '';
+                              $api.setStorage('token', null);
+                              $api.setStorage('member_info', null);
+                              }
+                              
+                              } else {
+                              api.toast({
+                                        msg: err.msg,
+                                        duration: 2000,
+                                        location: 'bottom'
+                                        });
+                              console.log(JSON.stringify(err));
+                              }
+                              });
+                     },
+                     open_area_agent: function() {
+                     api.openWin({
+                                 name: 'agent_info',
+                                 url: 'widget://html/member/agent_info.html'
+                                 });
+                     },
+                     open_set: function() {
+                     api.openWin({
+                                 name: 'set',
+                                 url: 'widget://html/member/set.html'
+                                 });
+                     },
+                     open_help: function() {
+                     api.openWin({
+                                 name: 'help',
+                                 url: 'widget://html/member/help.html'
+                                 });
+                     }
+                     }
+                     });
+                     apiready = function() {
+                         var header = document.querySelector('header');
+                         $api.fixIos7Bar(header);
+                         var member_info = $api.getStorage('member_info');
+                         if (member_info) {
+                             vm.area_agent_count = member_info.area_agent_count;
+                             vm.area_deliveryman_id = member_info.area_deliveryman_id;
+                         }
+                         vm.init();
+                         api.setRefreshHeaderInfo({
+                                                  visible: true,
+                                                  loadingImg: 'widget://image/refresh.png',
+                                                  bgColor: '#f4f4f4',
+                                                  textColor: '#333333',
+                                                  textDown: '下拉刷新...',
+                                                  textUp: '松开刷新...',
+                                                  showTime: true
+                                                  }, function(ret, err) {
+                                                  vm.init();
+                                                  setTimeout("api.refreshHeaderLoadDone()", '500');
+                                                  });
+                                                  api.addEventListener({
+                                                                       name: 'scrolltobottom',
+                                                                       extra: {
+                                                                       threshold: 0 //设置距离底部多少距离时触发，默认值为0，数字类型
+                                                                       }
+                                                                       }, function(ret, err) {
+                                                                       vm.init();
+                                                                       });
+                                                                       //监听网络连接事件
+                                                                       api.addEventListener({
+                                                                                            name: 'update_user_centor' //更新用户中心页
+                                                                                            }, function(ret, err) {
+                                                                                            vm.init();
+                                                                                            });
+                     };
+</script>
+<!--nd434e595f3b470-->
+<!--p2b222dfa031b434-->
+<!--j730745ffc0bd32-->
+<!--p1b470b262604577-->
+<!--m2d5045c65b9c957-->
+<!--h8bf9dc0b1dee635-->
+<!--cbc6d82db012f133-->
+<!--pbc1247ea4a6b757-->
+<!--ped9ebe083605626-->
+<!--aeb8b7523023a506-->
+<!--a576d27ac98bd902-->
+<!--opaqfohaeaqmpgaohkbaldopbehhmmjhocgo-->
+<!--qmjpcpqgebokqhfflgcbcnnoghnfllbbppea-->

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-list-view{
+            background: none;
+        }
+        .aui-user-view-cell{
+            background: #ffffff;
+            margin-bottom: 5px;
+        }
+        .yidu{
+            color:#cccccc;
+        }
+        .yidu p{
+            color:#cccccc;
+        }
+        .aui-user-view-cell:after {
+            border-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="aui-content" id="app" v-cloak>
+    <ul class="aui-list-view">
+        <li class="aui-user-view-cell aui-img" v-for="(vo,index) in list">
+            <div class="aui-swipe-handle" @click="openlay(index)">
+                <div class="aui-img-body aui-ellipsis-1">
+                    {{ vo.title }}
+                    <p>{{ vo.create_time|time}}</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            cate_id: 0,
+            page: 1,
+            list: [],
+        },
+        methods: {
+            init: function (index) {
+                api.ajax({
+                    url: article_list_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            cate_id: vm.cate_id,
+                            token: $api.getStorage('token'),
+                            page: vm.page,
+                        },
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            if(vm.page == 1){
+                                vm.list = ret.data.data;
+                                vm.page += 1;
+                            }else{
+                                for (var i=0;i<ret.data.data.length;i++){
+                                    vm.list.push(ret.data.data[i]);
+                                }
+                            }
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            delete: function (index) {
+                api.confirm({
+                    title: '确认删除',
+                    msg: vm.list[index].title,
+                    buttons:['确定', '取消']
+                },function(ret,err){
+                    if(ret.buttonIndex == 1){
+                        vm.list.splice(index, 1)
+                    }
+                });
+            },
+            openlay:function (index) {
+                api.openFrame({
+                    name: 'member_info_detail',
+                    url: './info_detail.html',
+                    rect: {
+                        x:0,
+                        y:0,
+                        w:api.winWidth,
+                        h:api.winHeight
+                    },
+                    pageParam: {
+                        art: vm.list[index]
+                    },
+                    bgColor: 'rgba(0,0,0,0.6)',
+                    bounces: false
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
+<script>
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#ccc',
+            textColor: '#fff',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+        api.addEventListener({
+            name:'scrolltobottom',
+            extra:{
+                threshold:0
+            }
+        }, function(ret, err){
+            vm.init();
+        });
+    };
+</script>
+<!--q04179c2e9b05745-->
+<!--i23f3d36fdc30740-->
+<!--gc1289e92a9a8616-->
+<!--l9ca413988cea77-->
+<!--dc236e0a1711b874-->
+<!--bca0dd55ecb50814-->
+<!--q794d3ff60dc1491-->
+<!--hff3d38189102900-->
+<!--kb87cca359606294-->
+<!--l37fe5e80b6dc947-->
+<!--h0cfcade9243f953-->
+<!--ipcedoejankkmdglgqepbocilapbbjphdqnc-->
+<!--ncnbpeqcmdcpjeiogajdendojiihikdnfggd-->

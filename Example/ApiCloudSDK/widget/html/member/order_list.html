@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-bar-nav .aui-title {
+            right: 3.5rem;
+            left: 3.5rem;
+        }
+
+        .aui-tab-item.aui-active {
+            border-bottom: none
+        }
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b" id="header">
+    <a class="aui-pull-left" tapmode onclick="closeWin()"><span class="aui-iconfont aui-icon-left"></span></a>
+    <div class="aui-title">订单</div>
+</header>
+<div class="aui-tab aui-tab-danger" id="tab">
+    <ul class="aui-tab-nav aui-border-b">
+        <li class="aui-item active" onclick="groupindex(0)">待付款</li>
+        <li class="aui-item" onclick="groupindex(1)">待收货</li>
+        <li class="aui-item" onclick="groupindex(2)">已完成</li>
+    </ul>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        var k = api.pageParam.index ? api.pageParam.index : 0;
+        openFrameGroup(k);
+    };
+    function openFrameGroup(k) {
+        api.openFrameGroup({
+            name: 'member_order_list',
+            background: '#f4f4f4',
+            scrollEnabled: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight + $api.byId('tab').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            index: k,
+            frames: [
+                {
+                    name: 'order_list_1',
+                    url: 'order_list_1.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                },
+                {
+                    name: 'order_list_2',
+                    url: 'order_list_2.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                },
+                {
+                    name: 'order_list_3',
+                    url: 'order_list_3.html',
+                    bounces: true,
+                    bgColor: '#f4f4f4'
+                }
+            ]
+        }, function (ret, err) {
+            var index = ret.index;
+            setFrameGroupStatus(index)
+        });
+    }
+    function groupindex(index) {
+        api.setFrameGroupIndex({
+            name: 'member_order_list',
+            index: index,
+            scroll: true
+        });
+        setFrameGroupStatus(index)
+    }
+    function setFrameGroupStatus(index) {
+        var tab = document.getElementById('tab');
+        var tablist = tab.getElementsByClassName("aui-item");
+        for (var i = 0; i < tablist.length; i++) {
+            $api.removeCls(tablist[i], 'active');
+        }
+        $api.addCls(tablist[index], 'active');
+    }
+</script>
+</body>
+</html>
+<!--k0aadac7dec993-->
+<!--a11c26e258559328-->
+<!--dbe89489800e4223-->
+<!--i9f425ba74c1c346-->
+<!--ib169aca6e247524-->
+<!--mbf036af14365919-->
+<!--g133e3e241150862-->
+<!--c773581359d47684-->
+<!--k7e87fa7d7dab721-->
+<!--ief61c5417907981-->
+<!--b30c1a364f78b328-->
+<!--mchfqompnlkfmbhohhofcppbeoidbljbjgkq-->
+<!--qbmogldhldcnfdkfmfhmkhqjanjcbdanfncg-->

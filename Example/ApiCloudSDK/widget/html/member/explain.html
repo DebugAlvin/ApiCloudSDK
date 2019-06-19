@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">提现说明</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_explain_body',
+            url: explain_content_url,
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--jf6ac4e93eea0798-->
+<!--ec3f21ff619a0996-->
+<!--d035bc7a7b9c4934-->
+<!--a5a14979e0841943-->
+<!--j869adc244cb5376-->
+<!--d0ecb2d06699f338-->
+<!--kc63929bd9af3611-->
+<!--jd0a2b51dde55810-->
+<!--d10b62e9433d8557-->
+<!--p02e458734b6a543-->
+<!--dc80ccc5ac66b360-->
+<!--fkkfkidnjlfgphgjkeklhmejaegdapidgcch-->
+<!--lhngegokjkiefeaanobfocgcobpnqpgdghel-->

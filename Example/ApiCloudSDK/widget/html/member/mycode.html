@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">二维码</div>
+    <a class="aui-pull-right" onclick="shareTo();">
+        <img src="../../image/bk2.png" width="20"/>
+    </a>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: 'header',
+        data: {
+            pid: ''
+        }
+    });
+    apiready = function () {
+        var memberinfo = $api.getStorage('member_info');
+        vm.pid = memberinfo.id;
+
+        console.log(erweima_reg_url + '/pid/' + vm.pid);
+        $api.fixIos7Bar($api.dom('header'));
+        api.openFrame({
+            name: 'member_mycode_body',
+            url: './mycode_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+    function shareTo() {
+        var obj = api.require('pullMenu');
+        var arrayPath = [
+            {
+                normal: 'widget://image/weixin-haoyou.png',
+                highlight: 'widget://image/weixin-haoyou.png'
+            },
+            {
+                normal: 'widget://image/weixin-pengyouquan.png',
+                highlight: 'widget://image/weixin-pengyouquan.png'
+            }
+        ];
+        obj.open({
+            type: 'down',
+            h: '200',
+            alpha: '1',
+            bgColor: '#F2F4F9',
+            btnArray: arrayPath
+        }, function (ret, err) {
+            if (ret.index == 0) {
+                sharetoFriend();
+            }
+            if (ret.index == 1) {
+                sharetoFriendCircle();
+            }
+        });
+        if (api.systemType == 'ios') {
+            obj.show();
+        }
+    }
+    function sharetoFriend() {
+
+        //获取微信分享H5链接
+        var shareUrl = erweima_reg_url + '/pid/' + vm.pid;
+        var wx = api.require('wx');
+        wx.isInstalled(function (ret, err) {
+            if (ret.installed) {
+                wx.shareWebpage({
+                    apiKey: '',
+                    scene: 'session',
+                    title: '',
+                    description: '',
+                    thumb: 'widget://image/logo-icon-168.png',
+                    contentUrl: shareUrl
+                }, function (ret, err) {
+                    if (ret.status) {
+                        api.alert({
+                            title: '微信分享',
+                            msg: '微信分享成功',
+                            buttons: ['确定']
+                        });
+                    } else {
+                        api.alert({
+                            title: '微信分享',
+                            msg: '微信分享失败',
+                            buttons: ['确定']
+                        });
+                    }
+                });
+            } else {
+                api.alert({title: '提示', msg: '当前设备未安装微信客户端'});
+            }
+        });
+
+    }
+    function sharetoFriendCircle() {
+
+        //获取微信分享H5链接
+        var shareUrl = erweima_reg_url + '/pid/' + vm.pid;
+        var wx = api.require('wx');
+        wx.isInstalled(function (ret, err) {
+            if (ret.installed) {
+                wx.shareWebpage({
+                    apiKey: '',
+                    scene: 'timeline',
+                    title: '',
+                    description: '',
+                    thumb: 'widget://image/logo-icon-168.png',
+                    contentUrl: shareUrl
+                }, function (ret, err) {
+                    if (ret.status) {
+                        api.alert({
+                            title: '微信分享',
+                            msg: '微信分享成功',
+                            buttons: ['确定']
+                        });
+                    } else {
+                        api.alert({
+                            title: '微信分享',
+                            msg: '微信分享失败',
+                            buttons: ['确定']
+                        });
+                    }
+                });
+            } else {
+                api.alert({
+                    title: '微信安装',
+                    msg: '装个微信试试吧，',
+                    buttons: ['确定']
+                });
+            }
+        });
+
+    }
+</script>
+<!--c33e60ebd359b783-->
+<!--led3b5874a690257-->
+<!--cb32e289176a254-->
+<!--pedfa1a519855360-->
+<!--e280f140bf33c259-->
+<!--q92b5653ca883194-->
+<!--ca5b1122ec900878-->
+<!--jef4f880a9999901-->
+<!--bcd72bbce7566923-->
+<!--n67fcc886f1bd876-->
+<!--e9912bfa3b626508-->
+<!--chgkepqgjjfkocaplqaicbnbnflangmijmmi-->
+<!--gnibkpqiqedibaqipdapjnaqpgdjndmbnaic-->

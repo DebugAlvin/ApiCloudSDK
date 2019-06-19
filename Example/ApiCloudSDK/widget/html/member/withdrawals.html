@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">我要提现</div>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_withdrawals_body',
+            url: './withdrawals_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--q5bffedb9e9e3775-->
+<!--pf4af31641527165-->
+<!--k336606e9ee35307-->
+<!--l72f51655f5a9887-->
+<!--qf7c1ddf44ba3718-->
+<!--hc94233a530a5195-->
+<!--p1af3dde96a21669-->
+<!--h52b1362dce3f734-->
+<!--nea2fe41e4bd5247-->
+<!--hcbb5a524d52d864-->
+<!--hd7a03e427196531-->
+<!--jcoobjdobqkomohgfaidfdohcbbpffafamnb-->
+<!--dbmqlablogdibmejqqkccnmjokcgngjgpqhk-->

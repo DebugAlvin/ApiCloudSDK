@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+
+
+    .aui-input-row:first-child:after {
+        border-top: none;
+    }
+
+    .aui-btn-row:after {
+        border-bottom: none;
+    }
+        .aui-pull-right {
+            color: #999999;
+            font-size: 14px;
+        }
+
+        .aui-pull-right .aui-iconfont {
+            color: #cccccc;
+        }
+
+        .aui-img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="app" v-cloak>
+    <ul class="aui-list-view">
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">账号</div>
+            <div class="aui-pull-right">{{ info.mobile }}</div>
+        </li>
+        <li class="aui-list-view-cell" onclick="openWin('member','cg_nickname')">
+            <div class="aui-pull-left">昵称</div>
+            <div class="aui-pull-right">{{ info.username }}</div>
+        </li>
+        <li class="aui-list-view-cell" onclick="openWin('member','cg_password')">
+            <div class="aui-pull-left">修改密码</div>
+            <div class="aui-pull-right">建议定期修改登录密码</div>
+        </li>
+        <!--<li class="aui-list-view-cell" onclick="login_out()">
+            <div class="aui-pull-left">退出</div>
+        </li>-->
+    </ul>
+    <div class="aui-btn-row" style="padding:0px 20px 0px 20px;border:none;">
+        <div style="background:#d9d0d0;border:none;" class="aui-btn aui-btn-danger aui-btn-block" tapmode onclick="login_out()">退出登录</div>
+    </div>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    function login_out() {
+        $api.setStorage('token',null);
+        $api.setStorage('member_info',null);
+        //更新全局购物车数量显示function
+        api.sendEvent({
+            name: 'tatal_goods_sum',
+        });
+        api.sendEvent({
+            name: 'update_user_centor'
+        });
+        api.sendEvent({
+            name: 'update_cart_list',
+        });
+        setTimeout(function () {
+            api.closeWin();
+        },500);
+
+    }
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            info: '',
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: user_center_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            deviceid: api.deviceId
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        vm.info = ret.data;
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.addEventListener({
+            name: 'administration_body_init'
+        }, function (ret, err) {
+            vm.init();
+        });
+    };
+</script>
+<!--n697e26718986185-->
+<!--n81f637b2354f84-->
+<!--ad36fedcec4a5931-->
+<!--e6594b614d649185-->
+<!--kf68cf9dd014e179-->
+<!--q3cab9d19b8dd808-->
+<!--b80c4edfef33b328-->
+<!--je32daa24286f301-->
+<!--jfc6b05c0e959260-->
+<!--h54f19979f069873-->
+<!--kdd0638adc33a275-->
+<!--memccfaekfmnaqmlgbngldaeamimdqheheib-->
+<!--mgajiegdddqofphhhkpligajiqjjneaqbpno-->

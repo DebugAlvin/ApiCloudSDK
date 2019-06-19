@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-flex.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-user-view {
+            margin-bottom: 0;
+        }
+
+        .aui-user-view-cell .aui-img-object{
+            border-radius: 0;
+            max-width: 30px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            margin-top: 10px;
+        }
+        .order-info{
+            font-size: 0.875em;
+            width: 100%;
+        }
+        .order-info span {
+            color: #333;
+            margin-right: 5px;
+        }
+        .order-info time {
+            color: #999999;
+            font-size: 0.75em;
+        }
+        .btn .aui-btn {
+            font-size: 0.75em;
+        }
+        .btn .aui-btn:first-child {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <transition-group name="list" tag="p">
+        <section class="aui-content bg-white" v-for="(vo,index) in list" v-bind:key="index">
+            <div class="aui-flex-col aui-padded-10">
+                <div class="aui-flex-item-12 order-info">
+                    <span>任务编号：{{ vo.service_number }}</span>
+                    <time>{{ vo.create_time|time }}</time>
+                    <i class="aui-iconfont aui-icon-delete aui-pull-right"></i>
+                </div>
+            </div>
+            <div class="aui-flex-col">
+                <div class="aui-flex-item-12">
+                    <ul class="aui-user-view">
+                        <li class="aui-user-view-cell aui-img">
+                            <img class="aui-img-object aui-pull-left" src="../../image/ditu.png">
+                            <div class="aui-img-body">
+                                <span>客户地址</span>
+                                <p>{{ vo.address_info }}</p>
+                            </div>
+                        </li>
+                        <li class="aui-user-view-cell aui-img">
+                            <img class="aui-img-object aui-pull-left" src="../../image/lianxir.png">
+
+                            <div class="aui-img-body">
+                                <span>联系方式</span>
+                                <p>{{ vo.name }} {{ vo.mobile }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="aui-flex-col aui-padded-10 aui-border-b">
+                <div class="aui-flex-item-12">
+                    <p>
+                        关联订单号：{{vo.order_sn}}&nbsp;&nbsp;<strong class="aui-text-danger aui-pull-right">￥{{vo.order_total}}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="aui-flex-col aui-padded-15 btn">
+                <div class="aui-flex-item-12 aui-text-right">
+                    <div class="aui-btn aui-btn-outlined aui-btn-info" tapmode v-on:click="call_phone(index)">呼叫</div>
+                    <div class="aui-btn aui-btn-outlined aui-btn-warning" onclick="openWin('member','task_processing')">处理</div>
+                </div>
+            </div>
+        </section>
+    </transition-group>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            stauts: 0,
+            page: 1,
+            list: []
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: my_deliveryman_order_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            page: vm.page,
+                            status: 2
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            if(vm.page == 1){
+                                vm.list = ret.data;
+                                vm.page += 1;
+                            }else{
+                                for (var i=0;i<ret.data.length;i++){
+                                    vm.list.push(ret.data[i]);
+                                }
+                            }
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            call_phone:function (index) {
+                api.call({
+                    type: 'tel_prompt',
+                    number: vm.list[index].mobile
+                });
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+        api.addEventListener({
+            name: 'scrolltobottom',
+            extra: {
+                threshold: 0            //设置距离底部多少距离时触发，默认值为0，数字类型
+            }
+        }, function (ret, err) {
+            vm.init();
+        });
+        //监听网络连接事件
+        api.addEventListener({
+            name: 'update_assign_list'//更新指派
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+        });
+    };
+</script>
+<!--k3dd479c4330f168-->
+<!--d9a3abb77015b808-->
+<!--d34db1dbfd310360-->
+<!--lb7cd44c2ce87275-->
+<!--l404fac603eb8391-->
+<!--m17f51d87d2df35-->
+<!--o51e553b915c642-->
+<!--qeac7e07775ea142-->
+<!--f9ae1c6c59d23198-->
+<!--l1a630f6abacf33-->
+<!--j684f180da9a8310-->
+<!--nobofpdnfpggqelbgdgldodoheiidqgfgmaq-->
+<!--mghdlemlqdmmhlcaqoabfdjleppmffoacodk-->

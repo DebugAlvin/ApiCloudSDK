@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-form{
+            padding: 0 10px;}
+        .aui-input-row:first-child:after{
+            border-top: none;
+        }
+        .aui-btn-row:after{
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="aui-form">
+        <div class="aui-input-row">
+            <label class="aui-input-addon">姓  名</label>
+            <input type="text" class="aui-input" placeholder="姓名" v-model="name" />
+        </div>
+        <div class="aui-input-row">
+            <label class="aui-input-addon">平台账号</label>
+            <input type="number" class="aui-input" placeholder="平台账号（手机号" v-model="mobile"/>
+        </div>
+    </div>
+    <div class="aui-btn-row">
+        <div class="aui-btn aui-btn-danger aui-btn-block" tapmode v-on:click="add_area_deliveryman()">保存</div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                mobile: '',
+            },
+            methods: {
+                add_area_deliveryman: function () {
+                    if (vm.name == '') {
+                        api.toast({
+                            msg: '请输入姓名',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        return
+                    }
+                    if (vm.mobile == '') {
+                        api.toast({
+                            msg: '请输入平台账号',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        return
+                    }
+                    if (!(/^1[3|4|5|8]\d{9}$/.test(vm.mobile))) {
+                        api.toast({
+                            msg: '手机号码有误',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        return
+                    }
+                    api.ajax({
+                        url: add_area_deliveryman_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                token: $api.getStorage('token'),
+                                name: vm.name,
+                                mobile: vm.mobile,
+                            }
+                        }
+                    }, function (ret, err) {
+                        if (ret) {
+                            api.toast({
+                                msg: ret.msg,
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                            if (ret.status == 1) {
+                                setTimeout(function () {
+                                    api.closeWin({
+                                        name: 'member_addmem'
+                                    });
+                                },500);
+                            }
+                            console.log(JSON.stringify(ret));
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
+                }
+            }
+        });
+</script>
+<!--l92e8bb11628f452-->
+<!--pfde38c7d65f1983-->
+<!--of4cea6180e7e633-->
+<!--ne353ac8de436992-->
+<!--d045f8be385e6669-->
+<!--h96ac149c3702140-->
+<!--c5815b58fb58f288-->
+<!--p6950a6514b3e536-->
+<!--qe76347ceeec3252-->
+<!--f32c983b8aae1226-->
+<!--eb4679b3ddb88242-->
+<!--conqfgbcdfpckeojodmqidkhdmacebakknak-->
+<!--njhgacfkohnhddbkmabeikgaebighngamlqk-->

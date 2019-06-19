@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">服务详情</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_service_info_body',
+            url: './service_info_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--ce6c2d62651c6997-->
+<!--k29d85ca6662c757-->
+<!--bf8a23007c926443-->
+<!--o2606a176c768717-->
+<!--jd3a941d1beaa287-->
+<!--d4d7b1fea3517388-->
+<!--f8cea7db31255928-->
+<!--e4791c6259e142-->
+<!--l3b55b0fe3766859-->
+<!--oa59d0780c714333-->
+<!--bd08d8fe0327e552-->
+<!--hmnammbcnefdhcpjkphbfgghonbgjgeclncc-->
+<!--lqkipdgoqjejqcibdmeqakqqllqiamnmhaea-->

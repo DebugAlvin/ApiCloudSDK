@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-input-row:first-child:after{
+            border-top:none
+        }
+
+        .aui-btn-row:after{
+             border-bottom:none
+        }
+        .aui-overflow{
+            padding:0 15px;
+        }
+        .aui-overflow span{
+            font-size: 14px;
+        }
+        .aui-btn-default {
+            color: #ffffff;
+            background-color: #b9b9b9 !important;
+            border: 1px solid #bdc3c7;
+        }
+
+
+        input::-webkit-input-placeholder { /* WebKit browsers */
+        color: #7b7b7b;
+        }
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #7b7b7b;
+        }
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #7b7b7b;
+        }
+        input:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #7b7b7b;
+        }
+    </style>
+</head>
+<body style="padding-top:150px;padding-right:28px; background:#eee;background-size:cover;">
+<div class="aui-content" id="app" >
+    <div class="aui-form" style="background:none;">
+        <div class="aui-input-row">
+            <i  style="position:relative;left:35px;top:-8px;" class="aui-input-addon  aui-iconfont aui-icon-people"></i>
+            <input style="padding-left:40px;background:rgba(255,255,255,0.4);" type="number" class="" placeholder="输入注册手机号" v-model="mobile">
+        </div>
+        <div class="aui-input-row">
+            <i style="position:relative;left:35px;top:-8px;" class="aui-input-addon  aui-iconfont aui-icon-lock"></i>
+            <input style="padding-left:40px;background:rgba(255,255,255,0.4);" type="password" class=""placeholder="输入登录密码" v-model="password">
+        </div>
+    </div>
+
+    <div style="padding-left:28px;" class="aui-btn-row" v-if="is_ok">
+        <div class="aui-btn aui-btn-danger aui-btn-block" tapmode v-on:click="member_login()">登录</div>
+    </div>
+    <div style="padding-left:28px;" class="aui-btn-row" v-else>
+        <div class="aui-btn aui-btn-default aui-btn-block">登录</div>
+    </div>
+    <div style="padding:10px 0px 0px 30px;" class="aui-overflow">
+        <span class="aui-pull-left aui-text-info" tapmode v-on:click="findpassword()" >忘记密码</span>
+        <span class="aui-pull-right">
+            没有账号？<span class="aui-text-info"  tapmode v-on:click="reg()" >立即注册</span>
+        </span>
+    </div>
+</div>
+<footer class="aui-nav aui-padded-t-5" id="footer">
+    <p class="aui-text-center">Copyright@2019-2022</p>
+    <p class="aui-text-center">东联体育版权所有</p>
+</footer>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mobile: '',
+            password: '',
+            deviceid: '',
+            is_ok: 0
+        },
+        methods: {
+            member_login: function () {
+                if (!vm.mobile) {
+                    api.toast({
+                        msg: '填写手机号',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if (!vm.password) {
+                    api.toast({
+                        msg: '填写密码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                api.ajax({
+                    url: login_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            mobile: vm.mobile,
+                            password: vm.password,
+                            deviceid: vm.deviceid,
+                        }
+                    }
+                }, function (ret, err) {
+                	 console.log(JSON.stringify(ret));
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if(ret.status == 1){
+                            $api.setStorage('token', ret.data.token);
+                            $api.setStorage('member_info', ret.data);
+                            //更新全局购物车数量显示function
+                            api.sendEvent({
+                                name: 'tatal_goods_sum'
+                            });
+                            api.sendEvent({
+                                name: 'update_user_centor'
+                            });
+                            api.sendEvent({
+                                name: 'update_cart_list',
+                            });
+                            setTimeout(function () {
+                                api.setFrameGroupIndex({
+                                    name: 'footer_tab',
+                                    index: 0
+                                });
+                                api.closeWin({
+                                    name: 'member_login'
+                                });
+                            }, 500)
+                        }
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            findpassword:function () {
+                api.openWin({
+                    name: 'member_change_password',
+                    url: 'widget://html/member/change_password.html'
+                });
+            },
+            reg:function () {
+                api.openWin({
+                    name: 'member_registered',
+                    url: 'widget://html/member/registered.html'
+                });
+            },
+        },
+        watch: {
+            mobile: {
+                handler: function (val, oldVal) {
+                    if(val && vm.password){
+                        vm.is_ok = 1;
+                    }
+                },
+                deep: true
+            },
+            password: {
+                handler: function (val, oldVal) {
+                    if(val && vm.mobile){
+                        vm.is_ok = 1;
+                    }
+                },
+                deep: true
+            }
+        }
+    });
+    apiready = function () {
+        vm.deviceid = api.deviceId;
+    };
+</script>
+<!--m7b82be96f761710-->
+<!--q33eaee790a45838-->
+<!--f3470336581fa710-->
+<!--b23a900add122112-->
+<!--ifbfdabccf0fc972-->
+<!--oc0cae0bea891433-->
+<!--nd6057addbb24671-->
+<!--p2857e75787e131-->
+<!--gc755eda64dd4575-->
+<!--q607dfad6f1ce546-->
+<!--ka8e012c5d9f3572-->
+<!--omeqfciolkpiagcqkqpflolohpmnfbogooqb-->
+<!--gdcngjkilcdqjbqlohibcgcbaflqccqkibni-->

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-flex.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-right {
+            color: #999999;
+            font-size: 14px;
+        }
+        .box-title{
+            height: 20px;
+            line-height: 20px;
+            border-left: 5px solid #ff9900;
+            color: #666;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+
+        .aui-list-view .aui-img-object {
+            max-width: 40px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #orderList .aui-img-body {
+            font-size: 12px;
+        }
+
+        #orderList .aui-img-body p {
+            font-size: 10px;
+            margin-top: 5px;
+        }
+        #addresList .aui-img-object{
+            border-radius: 0;
+            max-width: 30px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            margin-top: 10px;
+        }
+        .aui-margin-b-10{
+            margin-bottom: 10px;
+        }
+        .list-view.aui-list-view-cell:after{
+            border-bottom: 0;
+        }
+        #aui-footer{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content'>
+    <ul class="aui-list-view aui-margin-b-10">
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">订单号</div>
+            <div class="aui-pull-right">
+                2016082945201121
+            </div>
+        </li>
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">下单时间</div>
+            <div class="aui-pull-right">
+                2016-03-25   13:34
+            </div>
+        </li>
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">订单状态</div>
+            <div class="aui-pull-right aui-text-danger">
+                等待付款
+            </div>
+        </li>
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">快递公司</div>
+            <div class="aui-pull-right">
+                顺丰快递
+            </div>
+        </li>
+        <li class="aui-list-view-cell" id="addresList">
+            <div class="aui-padded-b-10">收货地址</div>
+            <ul class="aui-user-view" style="margin-bottom: 0;">
+                <li class="aui-user-view-cell aui-img">
+                    <img class="aui-img-object aui-pull-left" src="../../image/ditu.png">
+                    <div class="aui-img-body">
+                        <span>收货地址</span>
+
+                        <p>河南省郑州市金水区 心怡路11号富威大厦12A2-1 郑州市地税局办事处</p>
+                    </div>
+                </li>
+                <li class="aui-user-view-cell aui-img">
+                    <img class="aui-img-object aui-pull-left" src="../../image/lianxir.png">
+
+                    <div class="aui-img-body">
+                        <span>联系方式</span>
+
+                        <p>李心培 18011014741</p>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <section class="aui-padded-10 bg-white">
+        <div class="aui-flex-col">
+            <div class="aui-flex-item-12" id="orderList">
+                <div class="aui-content" style="margin-bottom: 0;">
+                    <div class="box-title">商品</div>
+                    <div class="aui-margin-t-10 aui-border-t">
+                        <ul class="aui-list-view aui-margin-t-10" style="margin-bottom: 0;">
+                            <li class="aui-list-view-cell aui-img">
+                                <img class="aui-img-object aui-pull-left" src="../../image/demo2.png">
+
+                                <div class="aui-img-body">
+                                    <div class="aui-ellipsis-1">商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                                    <p>型号：蓝色 &nbsp;数量：× 1</p>
+                                </div>
+                            </li>
+                            <li class="aui-list-view-cell aui-img">
+                                <img class="aui-img-object aui-pull-left" src="../../image/demo2.png">
+
+                                <div class="aui-img-body">
+                                    <div class="aui-ellipsis-1">商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                                    <p>型号：蓝色 &nbsp;数量：× 1</p>
+                                </div>
+                            </li>
+                            <li class="aui-list-view-cell aui-img">
+                                <img class="aui-img-object aui-pull-left" src="../../image/demo2.png">
+
+                                <div class="aui-img-body">
+                                    <div class="aui-ellipsis-1">商品名称商品名称商品名称商品名称商品名称商品名称</div>
+                                    <p>型号：蓝色 &nbsp;数量：× 1</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ul class="aui-list-view aui-margin-t-10 aui-margin-b-10">
+        <li class="aui-list-view-cell">
+            <div class="aui-pull-left">备注信息</div>
+        </li>
+        <li class="list-view aui-list-view-cell">
+            <textarea rows="3" cols="20" style="margin-bottom: 0;"></textarea>
+        </li>
+    </ul>
+</div>
+<div class="aui-row aui-padded-15 bg-white" id="aui-footer">
+    <div class="aui-col-xs-12 aui-border-b aui-padded-b-10">
+        商品总计
+        <span class="aui-pull-right aui-text-danger">￥50</span>
+    </div>
+    <div class="aui-col-xs-12 aui-margin-t-10">
+        运费
+        <span class="aui-pull-right aui-text-danger">￥50</span>
+    </div>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
+<!--e5a6c6bb1b127824-->
+<!--fa6f04e1252cf731-->
+<!--c7ad6b6863666147-->
+<!--a67c41c43e14968-->
+<!--l2c74a2174140511-->
+<!--i4682fd4d7b7b820-->
+<!--m97f639e9f448337-->
+<!--l89d10f1fc632483-->
+<!--nc250f2e66905785-->
+<!--bc3417e4c6789556-->
+<!--e898bede2ae1d79-->
+<!--lcacjaqjicbgchfoepolkqfpkqjebblllggg-->
+<!--ickdghahlkomgjkjenhfliqohmpljgapdkfm-->

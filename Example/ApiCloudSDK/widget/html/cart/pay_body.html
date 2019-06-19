@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-list-view-cell{
+            padding: 5px 15px;
+        }
+        .aui-img-body{
+            line-height: 60px;
+        }
+        .aui-list-view .aui-img-object {
+            max-width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 10px;
+        }
+        .aui-nav{
+            height: 55px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 55px;
+        }
+        .aui-nav .aui-col-xs-4{
+            color:#666666;
+        }
+        #right{
+            color:#fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="aui-content">
+            <ul class="aui-list-view">
+                <li class="aui-list-view-cell aui-img aui-counter-list" style="display: none;">
+                    <input class="aui-pull-left aui-radio aui-radio-danger" type="radio" value="1" v-model="pay_ways">
+                    <img class="aui-img-object aui-pull-left" src="../../image/weixin.png">
+                    <div class="aui-img-body">
+                        微信支付
+                    </div>
+                </li>
+                <li class="aui-list-view-cell aui-img aui-counter-list">
+                    <input class="aui-pull-left aui-radio aui-radio-danger" type="radio" value="2" v-model="pay_ways">
+                    <img class="aui-img-object aui-pull-left" src="../../image/zhifubao.png">
+                    <div class="aui-img-body">
+                        支付宝
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer class="aui-nav">
+            <div class="aui-col-xs-8 aui-border-t">
+                金额：<strong class="aui-text-danger">￥{{order_total}}</strong>
+            </div>
+            <div style="background: ;" class="aui-col-xs-4 aui-bg-info aui-border-t" id="right" tapmode v-on:click="gopay()">
+                付款
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/app.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            order_total: '0.00',
+            order_id: '',
+            pay_ways: 2//支付方式,1：微信，2：支付宝，3：货到付款
+        },
+        methods: {
+            gopay: function () {
+
+                if(vm.pay_ways == 2){
+                	util.showProgress();
+                	app.initAliPay();
+                    app.AliPay("商品合并下单", vm.order_total, vm.order_id, function (ret, err) {
+                	 util.hideProgress();
+            if (ret.code == "9000") {
+
+            } else {
+            	 api.toast({msg:"支付失败"});
+            }
+        });
+
+
+                    //支付宝支付
+
+                }
+            }
+        }
+    });
+    apiready = function () {
+        vm.order_total = api.pageParam.order_total;
+        vm.order_id = api.pageParam.order_id;
+
+        //关闭确认订单页面，防止重复提交，不知为何必须加一个延时操作，才能关闭指定窗口
+        setTimeout(function () {
+            console.log('500毫秒关闭确认订单页面');
+            api.closeWin({
+                name: 'cart_order_confirm'
+            });
+        },500);
+    };
+</script>
+<!--n6ccebc920560718-->
+<!--e90ef21fd9adf739-->
+<!--n873225842dd949-->
+<!--c3494cb9c1b59934-->
+<!--j1bf86e5c266c743-->
+<!--l178a72488495565-->
+<!--be07c1af1fb68560-->
+<!--la31d10a691ef200-->
+<!--c64aaba7a395e435-->
+<!--hbc745aaf0890309-->
+<!--m8063fe0b016d390-->
+<!--dcdqapnfmnqiamogilbfonbmlfclqpfbbohc-->
+<!--jqolmpnphfggbdgmkdejminbkeqbilkakdkp-->

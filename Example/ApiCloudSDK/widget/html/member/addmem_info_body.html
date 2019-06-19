@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-right {
+            font-size: 12px;
+            color: #999;
+        }
+        .aui-btn-row:after{
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul class="aui-list-view">
+            <li class="aui-list-view-cell">姓名<span class="aui-pull-right">{{ name }}</span></li>
+            <li class="aui-list-view-cell">联系电话<span class="aui-pull-right">{{ mobile }}</span></li>
+        </ul>
+        <ul class="aui-list-view aui-margin-t-10">
+            <li class="aui-list-view-cell">平台账号<span class="aui-pull-right">{{ mobile }}</span></li>
+        </ul>
+        <ul class="aui-list-view aui-margin-t-10">
+            <li class="aui-list-view-cell">启用状态
+                <input type="checkbox" class="aui-switch aui-pull-right aui-pull-right"  v-model="status">
+            </li>
+        </ul>
+        <div class="aui-btn-row" tapmode v-on:click="delete_area_deliveryman()">
+            <div class="aui-btn aui-btn-danger aui-btn-block">删除此负责人</div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: '',
+            mobile: '',
+            name: '',
+            status: 0,
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: area_deliveryman_detail_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            id: vm.id
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            vm.name = ret.data.name;
+                            vm.mobile = ret.data.mobile;
+                            vm.status = ret.data.status;
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            delete_area_deliveryman:function () {
+                api.ajax({
+                    url: delete_area_deliveryman_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            id: vm.id
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            setTimeout(function () {
+                                api.closeWin({
+                                    name:'member_addmem_info'
+                                });
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        },
+        watch: {
+            status: {
+                handler: function (val, oldVal) {
+                    var c_status = 0;//设置中间变量
+                    if(this.status){
+                        c_status = 1;
+                    }else{
+                        c_status = 0;
+                    }
+                    api.ajax({
+                        url: set_area_deliveryman_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                token: $api.getStorage('token'),
+                                id: vm.id,
+                                status: c_status
+                            }
+                        }
+                    }, function (ret, err) {
+                        if (ret) {
+                            console.log(JSON.stringify(ret));
+                        } else {
+                            console.log(JSON.stringify(err));
+                        }
+                    });
+                },
+                deep: true
+            }
+        }
+    });
+    apiready = function () {
+        vm.id = api.pageParam.id;
+        vm.init();
+    };
+</script>
+<!--h63dd05977188938-->
+<!--o24ad448e6da4103-->
+<!--l95fde0ba5890624-->
+<!--jd9ba123ee23e207-->
+<!--k795cd9043ea09-->
+<!--b08560a7665aa151-->
+<!--oebc33e9b6991887-->
+<!--p76056494df8b268-->
+<!--o8aecf6a2e088346-->
+<!--d1fe1ad23bac7810-->
+<!--a7e499718d334640-->
+<!--qnedfhgnnqceofdfnpbodqnlagdfbhpjjacg-->
+<!--hdcgipbbdcnnmoobmnpjnbglgpdehdbfbdja-->

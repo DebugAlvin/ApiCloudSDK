@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">编辑</div>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame ({
+            name: 'address_edit_frm',
+            url: 'widget://html/member/address_edit_frm.html',
+            rect:{
+                x:0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                id: api.pageParam.id
+            },
+            bounces:true
+        });
+    };
+</script>
+</body>
+</html>
+<!--l6f5e0c9617d0761-->
+<!--pbaf162e3ed6b91-->
+<!--ge4e4a771e579697-->
+<!--j6f6018f46051247-->
+<!--dcab916347b92638-->
+<!--dbc989e72599667-->
+<!--a00bd6c42b8dc663-->
+<!--q8ab19a27ed32769-->
+<!--l502eebc92bd833-->
+<!--c74c2998707cd518-->
+<!--d3ef202585f95166-->
+<!--ielncgqhmmmkhgpjanokdddhpjlpnhgiompp-->
+<!--gpmhkaqjnjbkdlcjchkcofbbiiklkkkjdljl-->

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-input-row:first-child:after {
+            border-top: 0;
+        }
+
+        .aui-btn-row:after {
+            border-bottom: none
+        }
+        .aui-form{
+            padding: 0 15px;
+        }
+        #footer{
+            width: 100%;
+            position: fixed;
+            bottom: 0px;
+        }
+        .aui-btn-row{
+            padding: 0 15px 15px 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="aui-content">
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <span class="aui-input-addon">银行卡号</span>
+                <input type="number" class="aui-input" placeholder="银行卡号" v-model="card_number"/>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">开户银行</span>
+                <input type="text" class="aui-input" placeholder="开户银行" v-model="card_bank"/>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">开户人姓名</span>
+                <input type="text" class="aui-input" placeholder="开户人姓名" v-model="auth_name"/>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">开户人证件号</span>
+                <input type="text" class="aui-input" placeholder="开户人证件号" v-model="auth_number"/>
+            </div>
+            <div class="aui-row aui-padded-15" style="padding-left: 0px;">
+                <div class="aui-col-xs-12 aui-text-warning" style="font-size: 12px;">
+                    仅在发生提现行为时，才会使用认证卡号及相关信息
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="aui-btn-row" tapmode v-on:click="submit">
+            <div class="aui-btn aui-btn-danger aui-btn-block">提交</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: 0,
+            card_number: '',
+            card_bank: '',
+            auth_name: '',
+            auth_number: ''
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: member_card_before_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.data) {
+                            vm.id = ret.data.id;
+                            vm.card_number = ret.data.card_number;
+                            vm.card_bank = ret.data.card_bank;
+                            vm.auth_name = ret.data.auth_name;
+                            vm.auth_number = ret.data.auth_number;
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            submit:function () {
+
+                if(!vm.card_number){
+                    api.toast({
+                        msg: '银行卡号不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if(!vm.card_bank){
+                    api.toast({
+                        msg: '开户银行不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if(!vm.auth_name){
+                    api.toast({
+                        msg: '开户人姓名不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if(!vm.auth_number){
+                    api.toast({
+                        msg: '开户人身份证号不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                api.ajax({
+                    url: member_card_update_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            id: vm.id,
+                            card_number: vm.card_number,
+                            card_bank: vm.card_bank,
+                            auth_name: vm.auth_name,
+                            auth_number: vm.auth_number,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            setTimeout(function () {
+                                api.closeWin({
+                                    name:'member_authentication'
+                                });
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+        }
+    });
+    apiready = function () {
+        vm.init();
+    };
+</script>
+<!--m34ba0387d856106-->
+<!--df77319667ee281-->
+<!--c8fd6877ef98d82-->
+<!--k0ec782aa10a4990-->
+<!--ib34ff736224f277-->
+<!--a273cfdfe2efa553-->
+<!--e2e101407eb50535-->
+<!--o43a5d99fc846255-->
+<!--k293e8feeed3282-->
+<!--n31fd1bae6af9434-->
+<!--h0da110e73f85298-->
+<!--clppfojbhdilaafqjgnaofdbqcepmkhqkkmo-->
+<!--dahejdmeombcfnncibfdojgdfmqfkidopfbq-->

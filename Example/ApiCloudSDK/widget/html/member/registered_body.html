@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-input-row:first-child:after{
+            border-top:none
+        }
+        .aui-input-row {
+            width: 100%;
+        }
+
+        .aui-btn-default {
+            /*color: #7b7b7b7b7b7b;
+            background-color: #b9b9b9 !important;
+            border: 1px solid #bdc3c7;*/
+        }
+
+
+        .aui-input-row input{
+              background:rgba(255,255,255,0.2);
+        }
+
+        input::-webkit-input-placeholder { /* WebKit browsers */
+        color: #7b7b7b;
+        }
+        input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #7b7b7b;
+        }
+        input::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #7b7b7b;
+        }
+        input:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #7b7b7b;
+        }
+
+    </style>
+</head>
+<body style="padding-top:80px;background:">
+<div id="app" v-cloak>
+    <div class="aui-content">
+        <div style="background:none;padding:30px;" class="aui-form">
+            <div style="margin-bottom:20px;" class="aui-input-row">
+                <input style="border:1px solid #7b7b7b;border-radius:2px;" type="number" class="aui-input" placeholder="请输入手机号" v-model="mobile"/>
+            </div>
+            <div class="aui-input-row">
+                <div class="aui-col-xs-8 aui-pull-left">
+                    <input style="border:1px solid #7b7b7b;border-radius:2px;"  class="aui-input" type="number" v-model="code" placeholder="输入验证码"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="aui-col-xs-4 aui-pull-right" style="height: 41px;line-height: 37px;padding-left:25px;">
+                    <div style="background:#d9d0d0;border:none;" class="aui-btn" tapmode v-on:click="send_message()" v-bind:class="{ 'aui-btn-danger': timeer==0 }">
+                        <span v-if="timeer == 0">点击获取</span>
+                        <span v-else>{{ timeer }} s</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-bottom:18px;" class="aui-input-row">
+                <input style="border:1px solid #7b7b7b;border-radius:2px;" type="password" class="aui-input" placeholder="输入登录密码" v-model="password"/>
+            </div>
+            <div class="aui-input-row">
+                <input style="border:1px solid #7b7b7b;border-radius:2px;" type="password" class="aui-input" placeholder="再次输入登录密码" v-model="repassword"/>
+            </div>
+        </div>
+    </div>
+    <div class="aui-content-padded" v-if="is_ok">
+        <div class="aui-btn aui-btn-danger aui-btn-block aui-margin-t-10" tapmode @click="subform()">注册</div>
+    </div>
+    <div style="padding:0px 20px 0px 20px;border:none;" class="aui-content-padded" v-else>
+        <div  style="background:#d9d0d0;border:none;" class="aui-btn aui-btn-default aui-btn-block aui-margin-t-10">注册</div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mobile: '',
+            code: '',
+            password: '',
+            repassword: '',
+            reement: '',
+
+            timeer: 0,
+            count: 60,//短信验证码发送间隔时间设置
+            is_ok: 0
+        },
+        methods: {
+            //发送短信验证码
+            send_message: function () {
+                if(vm.timeer >0){
+                    return false;
+                }
+                if (vm.mobile == '') {
+                    alert('请输入手机号码');
+                    return
+                }
+                if (!(/^1[3|4|5|8]\d{9}$/.test(vm.mobile))) {
+                    alert('手机号码有误');
+                    return
+                }
+
+
+                api.ajax({
+                    url: check_mobile_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            mobile: vm.mobile,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+
+                            var temp_count = vm.count;
+                            vm.timeer = temp_count;
+                            var coutnnum = setInterval(function () {
+                                if(vm.timeer == 0){
+                                    clearInterval(coutnnum);
+                                    return;
+                                }else{
+                                    vm.timeer -= 1;
+                                }
+                            },'1000');
+                            api.ajax({
+                                url: sendsms_url,
+                                method: 'post',
+                                timeout: 30,
+                                data: {
+                                    values: {
+                                        mobile: vm.mobile
+                                    }
+                                }
+                            }, function (ret, err) {
+                                api.toast({
+                                    msg: ret.msg,
+                                    duration: 2000,
+                                    location: 'bottom'
+                                });
+                            });
+
+                        }else{
+                            api.toast({
+                                msg: ret.msg,
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+
+                        console.log(JSON.stringify(err));
+                    }
+                });
+
+
+
+
+            },
+            subform:function () {
+                var mobile = vm.mobile;
+                var code = vm.code;
+                var password = vm.password;
+                var repassword = vm.repassword;
+                var reement = vm.reement;
+                if (mobile == '') {
+                    api.toast({
+                        msg: '请输入手机号码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (!(/^1[3|4|5|8]\d{9}$/.test(mobile))) {
+                    api.toast({
+                        msg: '手机号码有误',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (code == '') {
+                    api.toast({
+                        msg: '请输入验证码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (password == '') {
+                    api.toast({
+                        msg: '请输入登录密码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (password.length < 6) {
+                    api.toast({
+                        msg: '登录不能少于6位数',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (repassword == '') {
+                    api.toast({
+                        msg: '请再次输入登录密码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                if (password != repassword) {
+                    api.toast({
+                        msg: '两次输入密码不一致',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return
+                }
+                api.ajax({
+                    url: register_url,
+                    method: 'post',
+                    timeout: 30,
+                    data: {
+                        values: {
+                            mobile: mobile,
+                            smscode: code,
+                            password: password,
+                            deviceid: api.deviceId
+                        }
+                    }
+                }, function (ret, err) {
+                    console.log(JSON.stringify(ret));
+                    api.toast({
+                        msg: ret.msg,
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    api.closeWin({
+                        name:'member_login'
+                    });
+                    api.sendEvent({
+                        name: 'update_user_centor',
+                    });
+                    if (ret.status == 1) {
+                        $api.setStorage('token', ret.data.token);
+                        $api.setStorage('member_info', ret.data);
+                        setTimeout(function () {
+                            api.closeWin({
+                                name: 'member_registered'
+                            });
+                        },500)
+                    }
+                });
+            },
+        },
+        watch: {
+            repassword: {
+                handler: function (val, oldVal) {
+                    console.log(val);
+                    if(vm.mobile && vm.code && vm.password && vm.repassword){
+                        vm.is_ok = 1;
+                    }
+                },
+                deep: true
+            }
+        }
+    });
+</script>
+<!--d68df00b8e5a7585-->
+<!--g3c23449a8449808-->
+<!--j285b63fc135e917-->
+<!--df178cd3140a520-->
+<!--j85cc167bd339219-->
+<!--qe1efa6bd7196488-->
+<!--h05344f23866d195-->
+<!--ocf442f8e972e372-->
+<!--b22b6e722dcf9840-->
+<!--p62dea0df381b219-->
+<!--p364f506acb4f784-->
+<!--kechgfpoglmnfdjqigqhjnioolibldgfcajh-->
+<!--dqaakhkbqiljkqciolcbehjoobiqholjqdqf-->

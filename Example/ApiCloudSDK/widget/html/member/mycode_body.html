@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .ewm{
+            display: block;
+            margin:10px auto;
+            width: 90%;
+        }
+        .title_info{
+            padding:10px 10px 0 10px;
+            font-size: 14px;
+        }
+        .aui-margin-t-5{
+            margin-top: 5px;
+        }
+        .box-title {
+            margin: 10px;
+            height: 20px;
+            line-height: 20px;
+            border-left: 5px solid #ff9900;
+            color: #FCA104;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class='aui-content' id="app" v-cloak>
+    <div class="bg-white aui-padded-10 aui-border-b">
+        <div class="box-title">您的专属推广二维码</div>
+        <img class="ewm" :src="url" alt="二维码" @click="loadpic()"/>
+
+        <div class="box-title">使用方法：</div>
+        <p class="aui-margin-t-5 aui-padded-0-10">1.直接扫描进入注册页；</p>
+        <p class="aui-margin-t-5 aui-padded-0-10">2.点击图片，保存后发送给对方；</p>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            url: '',
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: erweima_qrcode_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        vm.url = ret.data.url;
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            loadpic: function () {
+                api.confirm({
+                    title: '确定下载',
+                    msg: '保存图片',
+                    buttons: ['确定', '取消']
+                }, function (ret, err) {
+                    if (ret) {
+                        api.saveMediaToAlbum({
+                            path: 'fs://erweima.png'
+                        }, function(ret, err) {
+                            if (ret && ret.status) {
+                                api.toast({
+                                    msg: '保存成功',
+                                    duration: 2000,
+                                    location: 'bottom'
+                                });
+                            } else {
+                                api.toast({
+                                    msg: '保存失败',
+                                    duration: 2000,
+                                    location: 'bottom'
+                                });
+                            }
+                        });
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+
+    apiready = function () {
+        vm.init();
+    };
+
+</script>
+<!--f28a0a35cc018395-->
+<!--h221b89a761d3132-->
+<!--b88b0734927e0786-->
+<!--idc6bbca54c9b526-->
+<!--o09af2a98edb5965-->
+<!--l0f49a83598bf878-->
+<!--kc3112310ca82197-->
+<!--d8ea0149ffb8b693-->
+<!--id03b0c0a84c1988-->
+<!--a3b2c09544030509-->
+<!--he366442b1ee5561-->
+<!--cmcokpldllfboillbioadgjkldfidhkqhiap-->
+<!--fobqmmekpflmpnefpcobpjlgkqanbklifjcg-->

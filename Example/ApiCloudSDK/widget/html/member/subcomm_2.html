@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-user-view:after{
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+<div class="aui-content" id="app" v-cloak>
+    <ul class="aui-user-view">
+        <transition-group name="list" tag="p">
+            <li class="aui-user-view-cell aui-img" v-for="(vo,index) in list" v-bind:key="index">
+                <img class="aui-img-object aui-pull-left"src="../../image/noavatar.gif">
+                <div class="aui-img-body">
+                    <span>{{ vo.mobile }}<em>{{ vo.create_time|time}}</em></span>
+                    <p class='aui-ellipsis-1'>产生佣金：<strong class="aui-text-danger">￥{{ vo.effect_money }}</strong></p>
+                </div>
+            </li>
+        </transition-group>
+    </ul>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            type: 1,
+            list: [],
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: withdraw_order_list_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            type: vm.type,
+                            page: vm.page,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            if(vm.page == 1){
+                                vm.list = ret.data.data;
+                                vm.page += 1;
+                            }else{
+                                for (var i=0;i<ret.data.data.length;i++){
+                                    vm.list.push(ret.data.data[i]);
+                                }
+                            }
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#ccc',
+            textColor: '#fff',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+        api.addEventListener({
+            name: 'scrolltobottom',
+            extra: {
+                threshold: 0            //设置距离底部多少距离时触发，默认值为0，数字类型
+            }
+        }, function (ret, err) {
+            vm.init();
+        });
+
+    };
+</script>
+<!--kbacdced21945594-->
+<!--o5689e407aaf8408-->
+<!--m2578af4d8a11931-->
+<!--q6d81abffade1494-->
+<!--m74af7060fe79736-->
+<!--d9e2ce8a9157d664-->
+<!--ie8139ffa51c9871-->
+<!--a999af35aaf32377-->
+<!--d8a62a07ece37689-->
+<!--fdb990fe85791769-->
+<!--i61c2cd92496d426-->
+<!--gbglnfbdmqqajfpgfgjmobegmiheelblojmd-->
+<!--nqajjbahllkdliikmdhfndlqabjqebnjeqgb-->

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-input-row{
+            width: 100%;
+        }
+        .aui-input-row:first-child:after{
+            border-top: none;
+        }
+        .aui-btn-row:after {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class='aui-content' id="app">
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <input type="text" class="aui-input"  v-model="username"/>
+            </div>
+        </div>
+        <p class="aui-padded-10">好名字可以让你的朋友更容易记住你</p>
+        <div class="aui-btn-row" style="padding:0px 20px 0px 20px;border:none;" class="aui-btn-row" tapmode v-on:click="update_username()">
+            <div style="background:#d9d0d0;border:none;" class="aui-btn aui-btn-block aui-btn-danger">修改</div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            token: $api.getStorage('token'),
+            username: ''
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: user_center_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            deviceid: api.deviceId
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        vm.username = ret.data.username;
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            update_username: function () {
+                if(!vm.username){
+                    api.toast({
+                        msg: '输入用户名',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                }
+                api.ajax({
+                    url: update_username_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: vm.token,
+                            deviceid: api.deviceId,
+                            username: vm.username
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            api.sendEvent({
+                                name: 'administration_body_init'
+                            });
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        var member_info = $api.getStorage('member_info');
+        vm.init();
+    };
+</script>
+<!--e32ba7c9ceb0d823-->
+<!--n643e820fed29581-->
+<!--g67e0ee531e40124-->
+<!--h9f39acca099d689-->
+<!--c7169b228dce9443-->
+<!--d9e5fc5f068da481-->
+<!--gef6d2da70857128-->
+<!--q87504d34a07c855-->
+<!--k2124ef6fc992660-->
+<!--l4326a8b2501282-->
+<!--qf8819e7fad89925-->
+<!--bekblljfkgamjgjejnaabgjfeginocgioppj-->
+<!--qdkgbqapeinqmflacpqqodlehfdneomnmcbg-->

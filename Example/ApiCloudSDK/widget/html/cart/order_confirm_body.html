@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-flex.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-pull-right {
+            color: #999999;
+            font-size: 14px;
+        }
+        .box-title{
+            height: 20px;
+            line-height: 20px;
+            border-left: 5px solid #FCA104;
+            color: #FCA104;
+            font-weight: 700;
+            padding-left: 10px;
+        }
+
+        .aui-list-view .aui-img-object {
+            max-width: 40px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #orderList .aui-img-body {
+            font-size: 12px;
+        }
+
+        #orderList .aui-img-body p {
+            font-size: 10px;
+            margin-top: 5px;
+        }
+        #addresList .aui-img-object{
+            border-radius: 0;
+            max-width: 30px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            margin-top: 10px;
+        }
+        .aui-margin-b-10{
+            margin-bottom: 10px;
+        }
+        .list-view.aui-list-view-cell:after{
+            border-bottom: 0;
+        }
+        .radio1{
+            line-height: 40px
+        }
+        #aui-footer{
+            font-size: 14px;
+        }
+        #kuaidi{
+            font-size: 12px;
+            padding: 10px 0 0 0;
+        }
+        .aui-list-view-cell:last-child:after{
+            border-bottom: none;
+        }
+        .aui-user-view-cell:last-child:after{
+             border-bottom: none;
+        }
+        .aui-flex-item-4 label{
+            line-height: 42px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class='aui-content'>
+        <ul class="aui-list-view aui-margin-b-10">
+            <li class="aui-list-view-cell" id="addresList">
+                <div class="aui-padded-b-10 box-title aui-margin-b-10">收货地址</div>
+                <ul class="aui-user-view" style="margin-bottom: 0;" @click="open_address_list()">
+                    <li class="aui-user-view-cell aui-img" v-if="address_info">
+                        <div class="aui-img-body">
+                            <span>收货地址</span>
+                            <p>{{ address_info.pos_name}} {{ address_info.address_info}}</p>
+                            <span>联系方式</span>
+                            <p>{{ address_info.name}}&nbsp;&nbsp;{{ address_info.mobile}}</p>
+                        </div>
+                    </li>
+                    <li class="aui-user-view-cell aui-img" v-else>
+                        <img class="aui-img-object aui-pull-left" src="../../image/ditu04.png">
+                        <div class="aui-img-body">
+                            <span>选择地址或添加新地址</span>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <section class="aui-padded-10 bg-white" style="margin-bottom:10px;display: none;" >
+            <div class="aui-flex-col">
+                <div class="aui-flex-item-12 aui-padded-b-10 aui-border-b">
+                    <div class="aui-content" style="margin-bottom: 0;">
+                        <div class="box-title">配送方式</div>
+                    </div>
+                </div>
+                <div class="aui-flex-item-12" id="kuaidi">
+                    <div class="aui-flex-col">
+                        <div class="aui-flex-item-4">
+                            <label>通用</label>
+                            <input class="aui-radio aui-radio-danger"  type="radio" value="1" v-model="trans_type" />
+                        </div>
+                        <div class="aui-flex-item-4">
+                            <label>仓库配送</label>
+                            <input class="aui-radio aui-radio-danger"  type="radio" value="2" v-model="trans_type" />
+                        </div>
+                        <div class="aui-flex-item-4">
+                            <label>物流配送</label>
+                            <input class="aui-radio aui-radio-danger"  type="radio" value="3" v-model="trans_type" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="aui-padded-10 bg-white">
+            <div class="aui-flex-col">
+                <div class="aui-flex-item-12" id="orderList">
+                    <div class="aui-content" style="margin-bottom: 0;">
+                        <div class="box-title">订购商品</div>
+                        <div class="aui-margin-t-10 aui-border-t">
+                            <ul class="aui-list-view aui-margin-t-10" style="margin-bottom: 0;">
+                                <li class="aui-list-view-cell aui-img" v-for="(vo,index) in list" tapmode v-on:click="open_goods(vo.info_id)">
+                                    <img class="aui-img-object aui-pull-left" :src="vo.url">
+                                    <div class="aui-img-body">
+                                        <div class="aui-ellipsis-1">{{vo.goods_name}}</div>
+                                        <p>
+                                            {{vo.standard_value1}}&nbsp;&nbsp;{{vo.standard_value2}}&nbsp;&nbsp;{{vo.standard_value3}}&nbsp;&nbsp;×{{vo.goods_sum}}
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <ul class="aui-list-view aui-margin-t-10 aui-margin-b-10" style="display: none;">
+            <li class="aui-list-view-cell">
+                <div class="aui-pull-left box-title">备注信息</div>
+            </li>
+            <li class="list-view aui-list-view-cell">
+                <textarea rows="3" cols="20" style="margin-bottom: 0;" v-model="content"></textarea>
+            </li>
+        </ul>
+    </div>
+    <div class="aui-row aui-padded-15 bg-white" id="aui-footer">
+        <div class="aui-col-xs-12 aui-border-b aui-padded-b-10">
+            商品总计
+            <span class="aui-pull-right aui-text-danger">￥{{total_price}}</span>
+        </div>
+        <div class="aui-col-xs-12 aui-margin-t-10">
+            运费
+            <span class="aui-pull-right aui-text-danger">￥{{trans_price}}</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            trans_type: 1,
+            address_info: '',
+            total_price: '0.00',
+            trans_price: '0.00',
+            order_total: '0.00',
+            address_info:'',
+            content:'',
+            list: []
+        },
+        methods: {
+            open_goods:function (info_id) {
+                api.openWin({
+                    name: 'index_goods_detail',
+                    url: 'widget://html/index/goods_detail.html',
+                    pageParam: {
+                        info_id: info_id
+                    },
+                    delay: 300,
+                });
+            },
+            init:function () {
+                api.ajax({
+                    url: order_confirm_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            trans_type: vm.trans_type
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        vm.list = ret.data.list;
+                        vm.address_info = ret.data.address_info;
+                        vm.total_price = ret.data.total_price;
+                        vm.trans_price = ret.data.trans_price;
+                        vm.order_total = ret.data.order_total;
+                        api.sendEvent({
+                            name: 'update_order_total',
+                            extra: {
+                                order_total: vm.order_total,
+                                trans_type: vm.trans_type,
+                                content: vm.content,
+                                address_info: vm.address_info,
+
+                            }
+                        });
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            open_address_list:function () {
+                api.openWin({
+                    name: 'address_list_win',
+                    url: 'widget://html/member/address_list_win.html',
+                    pageParam: {
+                        name: 'pageparamname'
+                    }
+                });
+            }
+        },
+        watch: {
+            trans_type: {
+                handler: function (val, oldVal) {
+                    vm.init();
+                },
+                deep: true
+            }
+        }
+    });
+    apiready = function () {
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function(ret, err) {
+            console.log('----------------------');
+            vm.init();
+            setInterval("api.refreshHeaderLoadDone()",'1000');
+        });
+        vm.init();
+        //监听网络连接事件
+        api.addEventListener({
+            name: 'update_order_confirm'//刷新订单确认页面
+        }, function(ret, err) {
+            vm.init();
+        });
+    };
+</script>
+<!--obd9340fc74ba911-->
+<!--nafdb05bafe74832-->
+<!--jc46db78c93e6967-->
+<!--kda89bc348d00652-->
+<!--e1420705aab87595-->
+<!--p05a7d192752e273-->
+<!--i97210d98a7a8698-->
+<!--odedc57bb7eaa123-->
+<!--f28aa995ca4e276-->
+<!--nf691110cae50424-->
+<!--ae9113f00d1e2315-->
+<!--aoikeoodoeeeagfalicajfmlhbnlfpnnbapm-->
+<!--qodlqqmomegbjdeeofhlgnjipijjllabijdb-->

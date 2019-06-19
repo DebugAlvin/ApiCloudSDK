@@ -1,0 +1,6204 @@
+@charset "utf-8";
+html{font-size: 10px !important;}
+.clearfix {
+  clear: both;
+}
+.bg {
+  background-color: #f5f5f5 !important;
+}
+.bg_w {
+  background-color: #fff;
+}
+.mt60 {
+  margin-top: 60px;
+}
+.mb10 {
+  margin-bottom: 1rem;
+}
+.header .btn_left span {
+  font-size: 1.5rem;
+  position: relative;
+  top: 1px;
+}
+.number {
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  border-radius: 50%;
+  font-size:0.8rem;
+  color: #fff;
+  position: absolute;
+  top: 7px !important;
+  right: 8px !important;
+  z-index: 9999;
+}
+.linears {
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  border-bottom: none;
+  height: 90px;
+  width: 100%;
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+}
+#goods_listColumn {
+    padding: 0 1rem;
+  height: 4.5rem;
+  background-color: #fff;
+}
+#goods_listColumn ul {
+  overflow-x: scroll;
+    display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack:start;-webkit-box-align:center;
+}
+#goods_listColumn ul li {
+  margin-right:2rem;
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 4.5rem;
+}
+/*
+共用
+*/
+.pubDetailRangeBox{padding:0 3.2rem;text-align: center;}
+.pubDetailRangeBox .wrap{position: relative;height:.5rem;padding: 3rem 0;}
+.pubDetailRangeBox .botBox{height:6px;line-height: 6px;border-radius: 3px;background-color: #ccc;}
+.pubDetailRangeBox .topBox{height: 6px;line-height:6px;border-radius:0 3px  3px 0;position: absolute;width:20%;position: absolute;right:0;top:50%;margin-top: -3px; background:#ffb33b;}
+.pubDetailRangeBox .topBox.on{border-radius: 3px;}
+
+.pubDetailRangeBox .txt{position: absolute;top:50%;margin-top: -1px; font-size: 1.2rem;color: #333;text-align: center;}
+.pubDetailRangeBox .txt img{width:7px;}
+.pubDetailRangeBox .lBox{left:4px;-webkit-transform: translate(-50%,0);}
+.pubDetailRangeBox .rBox{right:4px;-webkit-transform: translate(50%,0);white-space: nowrap;}
+
+.pubDetailRangeBox .slideBox{position: absolute;top:50%;margin-top: -27px; right:20%;-webkit-transform: translate(50%,0);text-align: center;font-size: 1.2rem;height:24px;white-space: nowrap;overflow: hidden;line-height:12px;}
+.pubDetailRangeBox .slideBox img{width: 1rem;}
+
+.pubDetailRangeBox .tuijian{height: 20px;line-height: 20px;font-size: 1.2rem;color: #fff;border-radius: 10px;background-color: #ff4d64;display: inline-block;padding: 0 1rem;margin-top:15px;}
+
+
+.copyright {
+  line-height: 2rem;
+  font-size: 1rem;
+  color: #666;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.copyright a {
+  color: #666;
+}
+.topNavBox {
+  width: 100%;
+  position: fixed;
+  top: 45px;
+  z-index: 1001;
+}
+.topNavBox .topNav {
+  /*padding-left: 1.5rem;
+  padding-right: 1.5rem;*/
+  height: 34px;
+  border-bottom: 1px solid #e5e5e5;
+  
+  background-color: #fff;
+  overflow-x: scroll;
+    overflow-y: hidden;
+  width: 100%;box-sizing: border-box;
+}
+.topNavBox .topNav::-webkit-scrollbar {
+    display: none;
+}
+.topNavBox .topNav ul {
+/*padding-left: 1.5rem;display: -webkit-flex;overflow-x: scroll;*/
+  /*width:50rem;*/
+  padding:0 1.5rem;
+    height: 34px;overflow-x: scroll;
+ display:-webkit-box;
+ -webkit-box-orient: horizontal;-webkit-box-pack:start;-webkit-box-align:center;
+}
+.topNavBox .topNav ul::-webkit-scrollbar{display: none;}
+.topNavBox .topNav ul li {
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+}
+.topNavBox .topNav ul li:last-child{padding-right: 5rem;}
+.topNavBox .topNav ul li a {
+  color: #000;
+  font-size: 1.5rem;
+}
+.topNavBox .topNav ul li.on {
+  color: #ff4d64;
+  box-sizing: border-box;
+  border-bottom:3px solid #ff4d64;
+}
+.topNavBox .topNav ul li.on a {
+  color: #ff4d64;
+  font-size: 1.5rem;
+}
+.topNavBox .topNav .arry_btm {
+  display: block;
+  width: 2.5rem;
+  height: 34px;
+  line-height: 34px;
+  text-align: right;
+  position: absolute;
+  right: 0px;
+  top: 0;
+  background-color: #fff;
+  padding-right: 1.5rem;
+  box-shadow: -10px 0 20px #ffffff;
+}
+.topNavBox .topNav .arry_btm .more {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  position: fixed;
+  top:45px;
+  left: 0;
+  z-index: 9999;
+}
+.topNavBox .topNav .arry_btm .more h2 {
+  height: 3.4rem;
+  line-height: 3.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+  color: #999;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+.topNavBox .topNav .arry_btm .more h2 span {
+  position: absolute;
+  top: 9px;
+  right: 1.5rem;
+  font-size: 1.6rem;
+  color: #000;
+}
+.topNavBox .topNav .arry_btm .more ul {
+  width: 100%;
+}
+.topNavBox .topNav .arry_btm .more ul li {
+  width: 33.33%;
+  float: left;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+.topNavBox .topNav .arry_btm .more ul li i {
+  width: 1px;
+  height: 4.4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #e5e5e5;
+}
+.topNavBox .topNav .arry_btm .more ul li span {
+  display: none;
+  margin-left: 1rem;
+}
+.topNavBox .topNav .arry_btm .more ul li.on span {
+  display: inline-block;
+}
+.awards {
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.awards a {
+  display: block;
+  height: auto;
+}
+.awards a p {
+  font-size: 1.3rem;
+  color: #fff;
+}
+.awards a p b {
+  font-weight: bold;
+}
+.awards a p span {
+  margin-left: 1rem;
+}
+.awards a img {
+  width: 100%;
+}
+.results {
+  background-color: #fff;
+  padding: 5px 15px;
+  margin-bottom: 1rem;
+}
+.results p {
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+  padding-right: 20px;
+}
+.results p .img {
+  display: inline-block;
+  width: 5.1rem;
+  height: 3.8rem;
+  border: 1px solid #e5e5e5;
+  margin-left: .5rem;
+  float: right;
+  overflow: hidden;
+}
+.results p .img img {
+  width: 100%;
+  height: auto;
+}
+.results p .span {
+  display: inline-block;
+  width: auto;
+  height: 3.8rem;
+  border: 0px solid #e5e5e5;
+  margin-left: 6px;
+  float: right;
+  overflow: hidden;
+}
+.results p .span span {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #e5e5e5;
+  margin-left: 2px;
+  position: relative;
+  bottom: 2px;
+}
+.results p .icon-arrow_right {
+  color: #333;
+  margin-left: 1rem;
+  position: absolute;
+  right: 0;
+  top: 1.3rem;
+}
+.firefight {
+  background-color: #fff;
+    margin-top: 0.5rem;
+}
+.firefight.activity_details{background-color:#f5f5f5;padding: 1rem;margin-bottom: 0;}
+.firefight.activity_details .activity{background-color:#fff;padding: 0;}
+.firefight h2 {
+  height: 6rem;
+  line-height: 6rem;
+  text-align: center;
+}
+.firefight h2 i {
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background-color: #e5e5e5;
+  position: relative;
+  bottom: 6px;
+}
+.firefight h2 span {
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 1.9rem;
+  color: #000;
+}
+.firefight .firefight_img {
+  padding: 0 10px;
+}
+.firefight .firefight_img img {
+  width: 100%;
+  height: auto;
+}
+.firefight .huopingWrap {
+  padding: 1rem;
+  background-color: #fff;
+}
+.firefight .huoping li {
+  float: left;
+  width: 32%;
+  margin-right: 2%;
+  /*margin-bottom:1rem;*/
+}
+.firefight .huoping li:nth-child(3n){margin-right: 0;}
+.firefight .huoping li a {
+  display: block;
+}
+.firefight .huoping li a img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.firefight .huoping li a p {
+  height: 2.6rem;
+  line-height: 1.3rem;
+  font-size: 1rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.firefight .huoping li a span {
+  display: block;
+  font-size: 1rem;
+  color: #ff4d64;
+    height: 1rem;line-height: 1rem;
+}
+.firefight .activity {
+  padding: 1rem;
+}
+.firefight .activity.jinpin{padding: 0 1rem;margin-bottom: 1.5rem;}
+.firefight .activity li {
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.firefight .activity li .top {
+  position: relative;
+  height: auto;
+}
+.firefight .activity li .top .logo {
+  width: 6.7rem;
+  height: 3.2rem;
+  border: 1px solid #e5e5e5;
+  position: absolute;
+  left: -1px;
+  top: 1.5rem;
+}
+.firefight .activity li .top img {
+  width: 100%;
+  height: auto;
+}
+.firefight .activity li .top .tit {
+  height: 6.5rem;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.firefight .activity li .top .tit p {
+  height: 1.6rem;
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1.6rem;
+  margin-top: 3.4rem;
+    display: -webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow: hidden;text-overflow: ellipsis;
+}
+.firefight .activity li .top .tit p i {
+  height: 1.4rem;
+  width: 2px;
+  display: inline-block;
+  background-color: #ff4d64;
+  margin: 0 0.5rem 0 1rem;
+  position: relative;
+  top: 2px;
+}
+.firefight .activity li .top .titClass2 {
+  width: 84%;
+  height: 6rem;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 8%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.firefight .activity li .top .titClass2 .tit_t {
+  height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  line-height: 1.6rem;
+  margin-top: 1.1rem;
+  text-align: center;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.firefight .activity li .top .titClass2 .price {
+  height: 2.1rem;
+  font-size: 1.9rem;
+  color: #ff4d64;
+  font-weight: bold;
+  line-height: 2.1rem;
+  margin-top: .5rem;
+  text-align: center;
+}
+.firefight .activity li .top .titClass2 .price span {
+  font-size: 1.4rem;
+}
+.firefight .activity li .conditions {
+  height: 4.3rem;
+  line-height: 4.3rem;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  text-align: center;
+}
+.firefight .activity li .bottom {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.firefight .activity li .bottom .this_prize {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  color: #000;
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.firefight .activity li .bottom .this_prize i {
+  display: inline-block;
+  width: 34%;
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0 1rem;
+  position: relative;
+  bottom: .5rem;
+}
+/*.firefight .activity li .bottom a {
+  display: inline-block;
+  width: 5.1rem;
+  height: 3.8rem;
+  line-height: 3.8rem;
+  text-align: center;
+  margin: 0 .5rem;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}*/
+.firefight .activity li .bottom .prizeImg {
+ margin: 0 .5rem;width: 3.4rem;height: 3.4rem; border: 1px solid #e5e5e5;padding: 0.3rem;background-color: #fff;
+  /*height: 100%;
+  width: auto;
+  margin: 0 auto;*/
+}
+.firefight .activity li:last-child {
+  margin-bottom: 0;
+}
+.firefight2 {
+  margin-bottom: .5rem;
+}
+/*.firefight2 .swiper-container {
+  padding: 1rem;
+  background-color: #fff;
+}
+.firefight2 .swiper-container .swiper-slide {
+  width: 32%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+.firefight2 .swiper-container .swiper-slide a {
+  display: block;
+}
+.firefight2 .swiper-container .swiper-slide a img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.firefight2 .swiper-container .swiper-slide a p {
+  height: 2.6rem;
+  line-height: 1.3rem;
+  font-size: 1rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.firefight2 .swiper-container .swiper-slide a span {
+  display: block;
+  font-size: 1rem;
+  color: #ff4d64;
+}*/
+
+/*..........................................*/
+/*#pinhile_home{}
+#pinhile_home .firefight{}
+#pinhile_home .firefight .huopingWrap{padding:0;}
+#pinhile_home .firefight .huopingWrap .box{}
+#pinhile_home .firefight .huopingWrap .box li{width: 32%;margin-right: 2%;float: left;}
+#pinhile_home .firefight .huopingWrap .box li:nth-child(3n){margin-right: 0;}*/
+
+/*..........................................*/
+.firefight2 .activity {
+  padding: 1rem;
+  padding-bottom: 0;
+}
+.firefight2 .activity li {
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  position: relative;
+}
+.firefight2 .activity li .soon {
+  width: 7rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: #ff4d64;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: bold;
+  margin-left: -3.5rem;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 1;
+  border-radius: 0 0 5px 5px;
+}
+.firefight2 .activity li .soon.bulk {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.firefight2 .activity li .top {
+  position: relative;
+  height: auto;
+}
+.firefight2 .activity li .top .logo {
+  width: 6.7rem;
+  height: 3.2rem;
+  border: 1px solid #e5e5e5;
+  position: absolute;
+  left: -1px;
+  top: 1.5rem;
+}
+.firefight2 .activity li .top img {
+  width: 100%;
+  height: auto;
+}
+.firefight2 .activity li .top .tit {
+  width: 84%;
+  height: 6rem;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 8%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.firefight2 .activity li .top .tit .tit_t {
+  height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  line-height: 1.6rem;
+  margin-top: 11px;
+  text-align: center;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.firefight2 .activity li .top .tit .price {
+  height: 2.1rem;
+  font-size: 1.9rem;
+  color: #ff4d64;
+  font-weight: bold;
+  line-height: 2.1rem;
+  margin-top: .5rem;
+  text-align: center;
+}
+.firefight2 .activity li .top .tit .price span {
+  font-size: 1.4rem;
+}
+.firefight2 .activity li .top .tit .price span i {
+  color: #000;
+}
+.firefight2 .activity li .conditions {
+    padding: 1rem;
+  line-height: 2.3rem;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  text-align: center;
+    white-space: normal;
+}
+.firefight2 .activity li .conditions span {
+  color: #333;
+}
+.firefight2 .activity li .bottom {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.firefight2 .activity li .bottom .this_prize {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  color: #000;
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.firefight2 .activity li .bottom .this_prize i {
+  display: inline-block;
+  width: 34%;
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0 1rem;
+  position: relative;
+  bottom: .5rem;
+}
+/*.firefight2 .activity li .bottom a {
+  display: inline-block;
+  width: 5.1rem;
+  height: 3.8rem;
+  line-height: 3.8rem;
+  text-align: center;
+  margin: 0 .5rem;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}*/
+ 
+.firefight2 .activity li .bottom .prizeImg {
+ margin:.5rem;width: 3.4rem;height: 3.4rem; border: 1px solid #e5e5e5;padding: 0.3rem;background-color: #fff;
+  /*height: 100%;
+  width: auto;
+  margin: 0 auto;*/
+}
+.firefight2 .activity li:last-child {
+  margin-bottom: 0;
+}
+.firefight.jxzt li {
+  border: 0;
+  border-radius: 5px 5px 0 0;
+}
+.more {
+  display: block;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  text-align: center;
+  background-color: #fff;
+}
+.industry {
+  position: relative;
+  padding-left: 11.5rem;
+  background-color: #fff;
+}
+.industry .industry_l {
+  height: 100%;
+  width: 9.9rem;
+  background-color: #f5f5f5;
+  position: fixed;
+  left: 0;
+}
+.industry .industry_l ul::-webkit-scrollbar {display: none;}
+.industry .industry_l ul{ height: 100%; overflow-x: scroll;}
+.industry .industry_l ul li {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  padding-left: 1.5rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  font-size: 1.3rem;
+  color: #333;
+}
+.industry .industry_l ul li.on {
+  border-right: 1px solid #fff;
+  background-color: #fff;
+  margin-right: -1px;
+}
+.industry .industry_r {
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+}
+.industry .industry_r .conBox h3 {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #333;
+}
+.industry .industry_r .conBox .theme li {
+  width: 32%;
+  margin-right: 2%;
+  float: left;
+  text-align: center;
+  margin-bottom:2rem;
+}
+.industry .industry_r .conBox .theme li img {
+  width: 100%;
+  height: auto;
+}
+.industry .industry_r .conBox .theme li p {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 1.2rem;
+  color: #333;
+  margin-top:1.5rem;
+ overflow: hidden;
+    text-overflow: ellipsis;
+}
+.industry .industry_r .conBox .theme li:nth-child(3n) {
+  margin-right: 0;
+}
+.industry .industry_r .conBox .select_theme li {
+  width: 48.5%;
+  margin-right: 3%;
+  margin-bottom:2rem;
+  float: left;
+}
+.industry .industry_r .conBox .select_theme li img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+.industry .industry_r .conBox .select_theme li p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1rem;
+  color: #333;
+  margin-top: 1rem;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+.industry .industry_r .conBox .select_theme li p i {
+  display: inline-block;
+  width: 2px;
+  height: 1.2rem;
+  background-color: #ff4d64;
+  position: relative;
+  top: 2px;
+  margin-right:.5rem;
+}
+.industry .industry_r .conBox .select_theme li:nth-child(2n) {
+  margin-right: 0;
+}
+.sequencing {
+  height: auto;
+  background-color: #fff;
+}
+.sequencing li {
+  height: 39px;
+  line-height: 39px;
+  float: left;
+  font-size: 1.3rem;
+  color: #333;
+  text-align: center;
+	border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  width: 25%;
+}
+.sequencing.col3 li {
+  border-bottom: 1px solid #e5e5e5;
+  width: 25%;
+}
+.sequencing.col3 li:nth-child(3) {
+  border-right: 0px solid #e5e5e5;
+}
+.sequencing li span {
+  margin-left: 1rem;
+  position: relative;
+  top: 1px;
+}
+.sequencing li span.icon-screening {
+  margin-right: 1rem;
+}
+.sequencing li i {
+  display: inline-block;
+  width: 1px;
+  height: 3.9rem;
+  background-color: #e5e5e5;
+  float: right;
+}
+.sequencing li.on {
+  color: #ff4d64;
+  border-bottom: 1px solid #ff4d64;
+}
+.fixedBox {
+  position: fixed;
+  width: 100%;
+  top: 8.6rem;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);z-index: 9999;
+}
+.fixedBox .fixed::-webkit-scrollbar {display: none;}
+.fixedBox .fixed {
+  overflow-x: scroll;
+  margin-left: 55px;
+  background-color: #f5f5f5;
+  height: 100%;
+}
+.fixedBox .fixed .column {
+  padding: 0 1.5rem;
+  margin-bottom: .5rem;
+  background-color: #fff;
+  padding-bottom: 1.5rem;
+}
+.fixedBox .fixed .column h2 {
+  height: 4.2rem;
+  line-height: 4.2rem;
+  font-size: 1.3rem;
+  color: #000;
+}
+.fixedBox .fixed .column .conditions li {
+  width: 47%;
+  margin-right: 4%;
+  margin-bottom: 4%;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  float: left;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fixedBox .fixed .column .conditions li p {
+  line-height: 2.8rem;
+  font-size: 1.3rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+.fixedBox .fixed .column .conditions li p span {
+  margin-left: .5rem;
+  display: none;
+}
+.fixedBox .fixed .column .conditions li.on {
+  border: 1px solid #ff4d64;
+  background-color: #ffecef;
+}
+.fixedBox .fixed .column .conditions li.on p {
+  color: #ff4d64;
+}
+.fixedBox .fixed .column .conditions li.on p span {
+  margin-left: .5rem;
+  display: inline-block;
+}
+.fixedBox .fixed .column .conditions li:nth-child(2n) {
+  margin-right: 0;
+}
+.fixedBox .fixed .column .brands{ padding-bottom: 4.6rem;}
+.fixedBox .fixed .column .brands li {
+  width: 31%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  float: left;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fixedBox .fixed .column .brands li p {
+  line-height: 2.8rem;
+  font-size: 1.3rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+.fixedBox .fixed .column .brands li p span {
+  margin-left: .5rem;
+  display: none;
+}
+.fixedBox .fixed .column .brands li.on {
+  border: 1px solid #ff4d64;
+  background-color: #ffecef;
+}
+.fixedBox .fixed .column .brands li.on p {
+  color: #ff4d64;
+}
+.fixedBox .fixed .column .brands li.on p span {
+  margin-left: .5rem;
+  display: inline-block;
+}
+.fixedBox .fixed .column .brands li:nth-child(3n) {
+  margin-right: 0;
+}
+.fixedBox .fixed .column .price{
+  height: 2.8rem;
+  line-height: 2.8rem;
+}
+.fixedBox .fixed .column .price input {
+  width: 42%;
+  border: 1px solid #e5e5e5;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  background-color: transparent;
+  text-indent: 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance:none;
+  float: left;
+}
+.fixedBox .fixed .column .price span {
+  display: inline-block;
+  width: 14%;
+  font-size: 1.3rem;
+  color: #000;
+  text-align: center;
+  float: left;
+}
+.fixedBox .fixed .ftBox {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 55px;
+}
+.fixedBox .fixed .ftBox button {
+  width: 50%;
+  height: 4.4rem;
+  float: left;
+  border: 0;
+  background-color: #fff;
+  font-size: 1.5rem;
+  color: #000;
+  border-top: 1px solid #e5e5e5;
+  padding: 0; 
+  margin: 0;
+  -webkit-appearance:none;
+}
+.fixedBox .fixed .ftBox button.red {
+  background-color: #ff4d64;
+  border-top: 1px solid #ff4d64;
+  color: #fff !important;
+}
+.titlebox {
+  height: 5.5rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  position: relative;
+  padding-left: 13rem;
+}
+.titlebox img {
+  width: 10rem;
+  height: 5.5rem;
+  border-radius: 5px;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+.titlebox p.title {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  padding-left: 12px;
+  position: relative;
+  margin-top: -3px;
+  font-weight: bold;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.titlebox p.title i {
+  display: block;
+  width: 2px;
+  height: 15px;
+  background-color: #ff4d64;
+  position: absolute;
+  top: 3px;
+  left: 0;
+}
+.titlebox p.date {
+  line-height: 1.4rem;
+  padding-left: 1.2rem;
+  font-size: 1.2rem;
+  color: #666;
+  position: absolute;
+  bottom: 1.4rem;
+}
+.titlebox p.tip {
+  line-height: 1.4rem;
+  padding-left: 1.2rem;
+  font-size: 1.2rem;
+  color: #666;
+  position: absolute;
+  bottom: 1.4rem;
+}
+.titlebox p.tip .red{color: #ff4d64;}
+.titlebox span.icon-arrow_right {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  color: #666;
+    font-size: 1.2rem;
+}
+#viewPrizes {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  /*background-color: rgba(0, 0, 0, 0.6);*/
+  z-index: 999;
+}
+#viewPrizes .box{position: absolute;left: 50%;top: 50%;width:83%;
+  left: 50%;top: 50%;-webkit-transform: translate(-50%,-50%)}
+#viewPrizes .prizes {
+  
+  background-color: #fff;
+  /*margin-left: 8%;*/
+  border-radius:1rem;
+  padding-bottom: 1.5rem;
+    overflow: hidden;
+  /*margin-top: 27%;*/
+}
+#viewPrizes .prizes img {
+  width: 100%;
+}
+#viewPrizes .prizes .title {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+#viewPrizes .prizes .price {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.9rem;
+  color: #ff4d64;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2.2rem;
+}
+#viewPrizes .prizes .price span {
+  font-size: 1.4rem;
+  color: #000;
+}
+#viewPrizes .prizes .price span i {
+  color: #ff4d64;
+}
+#viewPrizes .prizes .view {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+  position: relative;
+  text-align: center;
+  margin-top: 21px;
+}
+#viewPrizes .prizes .view span {
+  display: block;
+  width: 58%;
+  height: 15px;
+  line-height: 15px;
+  background-color: #000;
+  font-size: 1.1rem;
+  color: #fff;
+  position: absolute;
+  top: -7px;
+  left: 21%;
+  border-radius: 8px;
+}
+#viewPrizes .prizes .award_period {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 1rem;
+  color: #000;
+  margin: 26px 0 15px 0;
+  text-align: center;
+}
+#viewPrizes .shut_down {
+  height: 4.1rem;
+  line-height: 4.1rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 4.1rem;
+  color: #fff;
+}
+#footer_two {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  height: 45px;
+  overflow: hidden;
+}
+#footer_two ul li {
+  height: 44px;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  float: left;
+  position: relative;
+}
+#footer_two ul li span {
+  font-size: 1.5rem;
+  color: #666;
+}
+#footer_two ul li p {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 1rem;
+  color: #666;
+}
+#footer_two ul li a {
+  display: block;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  font-size: 1.4rem;
+  color: #fff;
+}
+#footer_two ul li i {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius:50%;
+  text-align: center;
+  line-height: 1.2rem;
+  font-size:0.8rem;
+  color: #fff;
+  background-color: #ff4d64;
+  position: absolute;
+  top: 1px;
+  left: 50%;margin-left: 0.4rem;
+}
+#footer_two ul li.detail {
+  height: 39px;
+  width: 25%;
+  float: left;
+  padding-top:5px;
+}
+#footer_two ul li.detail b {
+  display: inline-block;
+  height: 34px;
+  line-height: 34px;
+  font-size: 1.4rem;
+  color: #ff4d64;
+}
+#footer_two ul li.orange {
+  background-color: #ff8a36;
+  color: #fff;
+  border-top: 1px solid #ff8a36;
+}
+#footer_two ul li.orange span {
+  color: #fff;
+}
+#footer_two ul li.orange p {
+  color: #fff;
+}
+#footer_two ul li.price span {
+  color: #ff4d64;
+  font-weight: bold;
+}
+#footer_two ul li.reds {
+  background-color: #ff4d64;
+    border-top: solid 1px #ff4d64;
+}
+#footer_two ul li.reds span {
+  color: #fff;
+}
+#footer_two ul li.reds > a {
+  color: #fff !important;
+}
+#footer_two ul li.reds p {
+  color: #fff;
+}
+#footer_two ul li.on {
+  display: none;
+}
+#footer_two ul li.w50 {
+  width: 50%;
+}
+#footer_two ul li.w50 > a {
+  color: #333;
+}
+#footer_two ul li.small {
+  width: 22.5%;
+  padding-top: 5px;
+  height: 39px;
+}
+#footer_two ul li.big {
+  width: 27.5%;
+  background-color: #ff8a36;
+  border-top: 1px solid #ff8a36;
+}
+#footer_two ul li.bigs {
+  width: 27.5%;
+  background-color: #ff4d64;
+  border-top: 1px solid #ff4d64;
+}
+#footer_two ul.on li.price.on {
+  display: block;
+}
+#footer_two ul.on li.reds.on {
+  display: block;
+}
+#footer_two ul.on li.price {
+  display: none;
+}
+#footer_two ul.on li.reds {
+  display: none;
+}
+#footer_two .check_out {
+  height: 44px;
+  line-height: 44px;
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+}
+#footer_two .check_out p {
+  width: 72%;
+}
+#footer_two .check_out p .widget-checkbox {
+  /*width: 20px;
+  height: 20px;
+  background-size: 40px 20px;
+  background-position: 0 0;*/
+  margin-left: 1rem;
+}
+#footer_two .check_out p .widget-checkbox.on {
+  /*background-position: -20px 0;*/
+}
+#footer_two .check_out p .all {
+  margin-left: 6px;
+  font-size: 1.3rem;
+  color: #666;
+}
+#footer_two .check_out p .delet {
+  margin-left: 25px;
+  font-size: 1.3rem;
+  color: #000;
+}
+#footer_two .check_out p .price {
+  font-size: 1.3rem;
+  color: #fc6866;
+  float: right;
+  margin-right: 1.5rem;
+}
+#footer_two .check_out p .price i {
+  color: #000;
+}
+#footer_two .check_out p .price1 {
+  margin-left: 1.5rem;
+  font-size: 1.3rem;
+  color: #fc6866;
+  margin-right: 1.5rem;
+}
+#footer_two .check_out p .price1 i {
+  color: #000;
+}
+#footer_two .check_out p .del {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  color: #999;
+  font-size: 1.4rem;
+  text-decoration: line-through;
+}
+#footer_two .check_out .checkOut {
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  width: 28%;
+  text-align: center;
+  background-color: #ff4d64;
+  color: #fff;
+  font-size: 1.4rem;
+  position: absolute;
+  right: 0;
+  top: -1px;
+  padding: 0;
+  margin: 0; 
+  -webkit-appearance:none;
+}
+#footer_two .check_half a {
+  display: block;
+  width: 50%;
+  float: left;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-top: 1px solid #e5e5e5;
+  font-size: 1.3rem;
+  color: #000;
+  text-align: center;
+}
+#footer_two .check_half a.checkOut {
+  color: #fff;
+  background-color: #5bc0de;
+  border-top: 1px solid #5bc0de;
+}
+#footer_two button {
+  width: 100%;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #ff4d64;
+  border: 0;
+}
+.lotterySchedule {
+  background-color: #fff;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+}
+.lotterySchedule .top {
+  /*width: 82%;*/
+  height: 2.8rem;
+  line-height: 2.8rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  border: 1px solid #ff4d64;
+  border-radius: 15px;
+  margin: 0 3.2rem;
+}
+.lotterySchedule .top b {
+  font-weight: bold;
+}
+.lotterySchedule .top i {
+  color: #000;
+}
+.lotterySchedule .rangeBox {
+  width: 82%;
+  margin-top: 1.3rem;
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 47px;
+  margin-left: 9%;
+}
+.lotterySchedule .rangeBox span {
+  display: block;
+  width: 70px;
+  margin-left: -35px;
+  font-size: 1.2rem;
+  color: #000;
+  position: absolute;
+  top: 0;
+}
+.lotterySchedule .rangeBox input {
+  -webkit-appearance: none;
+  background: -webkit-linear-gradient(#cccccc, #cccccc) no-repeat, #ffb33b;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+.lotterySchedule .rangeBox input[type=range]::-webkit-slider-thumb {
+  background: url(../image/range1.png) no-repeat;
+  height: 8px;
+  width: 11px;
+  background-size: 11px 8px;
+  margin-top: 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: -11px;
+  border: 0;
+  -webkit-appearance: none;
+}
+.lotterySchedule .rangeBox .left {
+  width: 60px;
+  height: auto;
+  position: absolute;
+  left: 5px;
+  bottom: 1.5rem;
+  margin-left: -30px;
+}
+.lotterySchedule .rangeBox .left i {
+  display: block;
+  width: 1px;
+  height: 10px;
+  margin: 0 auto;
+  background-color: #e5e5e5;
+}
+.lotterySchedule .rangeBox .left em {
+  display: block;
+  width: .5rem;
+  height: .5rem;
+  border: 1px solid #e5e5e5;
+  margin: 0 auto;
+  border-radius: .3rem;
+}
+.lotterySchedule .rangeBox .left p {
+  height: 1.4rem;
+  font-size: 1.2rem;
+  color: #000;
+  margin-top: .5rem;
+}
+.lotterySchedule .rangeBox .conter {
+  width: 58%;
+  height: 20px;
+  border-radius: 1rem;
+  background-color: #ff4d64;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #fff;
+  position: absolute;
+  bottom: 1.5rem;
+  margin-left: 21%;
+}
+.lotterySchedule .rangeBox .right {
+  width: 60px;
+  height: auto;
+  position: absolute;
+  right: 5px;
+  bottom: 1.5rem;
+  margin-right: -3rem;
+}
+.lotterySchedule .rangeBox .right i {
+  display: block;
+  width: 1px;
+  height: 10px;
+  margin: 0 auto;
+  background-color: #e5e5e5;
+}
+.lotterySchedule .rangeBox .right em {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #e5e5e5;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+.lotterySchedule .rangeBox .right p {
+  height: 1.4rem;
+  font-size: 1.2rem;
+  color: #000;
+  margin-top: .5rem;
+  text-align: center;
+}
+#specification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100vh;overflow:scroll;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+#specification .carBox {
+  width: 100%;
+  height:100vh;
+  position: absolute;left: 0;bottom: 0;overflow:scroll;
+}
+#specification .carBox .car {
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;*/
+  position: absolute;width: 100%;left: 0;bottom: 0;max-height: 100vh;overflow: scroll;
+}
+#specification .carBox .car .title {
+  height: 7rem;
+  position: relative;
+  padding-left: 13rem;background-color: #fff;
+}
+#specification .carBox .car .sBox{background: #fff;}
+#specification .carBox .car .title img {
+  width: 10rem;
+  height: 7.5rem;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+}
+#specification .carBox .car .title .price {
+  padding-top: 17px;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  font-size: 23px;
+  font-weight: bold;
+  color: #ff4d64;
+}
+#specification .carBox .car .title .select {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: .5rem;
+}
+#specification .carBox .car .title a.hide {
+  font-size: 1.6rem;
+  color: #999;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+#specification .carBox .car .specificationBox {
+  border-top: 1px solid #e5e5e5;
+  padding-bottom: 1.5rem;
+  margin: 0 1.5rem;
+}
+#specification .carBox .car .specificationBox .specification h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 1.3rem;
+  color: #000;
+}
+#specification .carBox .car .specificationBox .specification ul li {
+  width: 31%;
+  height: 3rem;
+  line-height: 3rem;
+  float: left;
+  margin-right: 3.5%;
+    margin-bottom: 3.5%;
+}
+
+#specification .carBox .car .specificationBox .specification ul li a {
+  display: block;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #333;
+}
+#specification .carBox .car .specificationBox .specification ul li a span {
+  display: none;
+  width: 20px;
+  height: 15px;
+  background: url(../image/on.png) no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#specification .carBox .car .specificationBox .specification ul li.on a {
+  border: 1px solid #ff4d64;
+  color: #ff4d64;
+}
+#specification .carBox .car .specificationBox .specification ul li.on a span {
+  display: block;
+}
+#specification .carBox .car .specificationBox .specification ul li:nth-child(3n) {
+  margin-right: 0;
+}
+#specification .carBox .car .quantity {
+  margin: 0 1.5rem;
+  height: 6.6rem;
+  line-height: 6.6rem;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+#specification .carBox .car .quantity .pubWidget_goods_num {
+  /*width: 14.8rem;
+  height: 3.3rem;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  border-radius: 3px;*/
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#specification .carBox .car .quantity .pubWidget_goods_num .box {
+    color: #7a7e83;
+  height: 3.3rem;
+  width: 3.3rem;
+  line-height: 3.3rem;
+  background-color: #f5f5f5;
+}
+#specification .carBox .car .quantity .pubWidget_goods_num input{width: 8rem;height: 3.3rem;line-height: 3.3rem;font-size: 1.4rem;color: #333;}
+
+#specification .carBox .car a.btn {
+  display: block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #ff4d64;
+  margin-top: 45px;
+}
+.remarkWindow {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+}
+.remarkWindow .remark {
+  background-color: #fff;
+  position: relative;
+  text-align: center;
+  padding: 40px 15px 20px 15px;
+}
+.remarkWindow .remark .dprice {
+  height: 1.8rem;
+  line-height: 1.8rem;
+  font-size: 1.6rem;
+  color: #000;
+  margin-bottom: 2rem;
+}
+.remarkWindow .remark .price {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  margin-bottom: 2rem;
+}
+.remarkWindow .remark .int {
+  height: 4.3rem;
+  line-height: 4.3rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  text-align: left;
+  position: relative;
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+.remarkWindow .remark .int input {
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+  text-indent: 1.5rem;
+}
+.remarkWindow .remark .int span {
+  display: inline-block;
+  position: absolute;
+  right: 1.5rem;
+}
+.remarkWindow .remark button {
+  display: block;
+  height: 4rem;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  width: 100%;
+  background-color: #ff4d64;
+  font-size: 1.5rem;
+}
+.remarkWindow .remark .shut_down {
+  font-size: 1.6rem;
+  color: #999;
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+}
+/*
+共用结束
+*/
+/*15-1拼嗨乐首页*/
+#pinhile_home{}
+#pinhile_home .awards{margin-bottom: 0;}
+#pinhile_home .rightSwitch{height: 34px;background-color: #fff;width: 100%;}
+#pinhile_home .rightSwitch .selBox{display: block;height: 33px;line-height: 33px;text-align: right;/*background-color: #fff;*/width:60px;padding-right:15px;background: url(../image/jianbian_bg.png) repeat-y right center;background-size:65px 1px; z-index: 999;position: absolute;right: 0;top: 0;/*-webkit-box-shadow: -30px 0 20px #fff;*/border-radius: 1px;}
+#pinhile_home .rightSwitch .selBox span{position: relative;z-index: 100;font-size: 1.2rem;}
+#pinhile_home .rightSwitch .selTip{width:3rem;height:34px;  line-height:34px;z-index: 99;
+  padding: 0 1.5rem;  font-size: 1.2rem;  color: #999;  text-align: left;
+  position: relative;position: absolute;left: 0;top: 0;position: absolute;left: 0;top: 0; width: 100%;background-color: #fff;}
+
+#openTopMore .moreWrap{/*height: 100vh;background: rgba(0,0,0,0.6);position: fixed; top:0;left: 0;z-index:999;width: 100%;*/} 
+#openTopMore .more{ height: auto;background-color: #fff;}
+#openTopMore .more h2 {
+  height: 3.4rem;
+  line-height: 3.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+  color: #999;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+#openTopMore .more h2 span {
+  position: absolute;
+  top:50%;margin-top: -0.6rem;
+  right: 1.5rem;
+  font-size: 1.2rem;
+  color: #000;
+}
+#openTopMore .more ul {
+  width: 100%;
+    overflow: hidden;
+}
+#openTopMore .more ul li {
+  width: 33.33%;
+  float: left;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+#openTopMore .more ul li i {
+  width: 1px;
+  height: 4.4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #e5e5e5;
+}
+#openTopMore .more ul li span {
+  display: none;
+  margin-left: 1rem;
+}
+#openTopMore .more ul li.on{color: #ff4d64;}
+#openTopMore .more ul li.on span {
+  display: inline-block;color: #ff4d64;
+}
+/*END*/
+/*15-1-1~2拼嗨乐 分类*/
+#pinhile_classification .titleBox {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  position: fixed;
+  top: 45px;
+  z-index: 9999;
+  background-color: #fff;
+}
+#pinhile_classification .titleBox span {
+  display: inline-block;
+  margin: 0 1.5rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  color: #000;
+}
+#pinhile_classification .titleBox span.on {
+  height: 38px;
+  border-bottom: 2px solid #ff4d64;
+  color: #ff4d64;
+}
+/*END*/
+/*15-2-1~2拼嗨乐 搜索列表*/
+/*END*/
+/*15-5-1拼嗨乐 商家主题列表*/
+/*END*/
+/*15-2-1~2拼嗨乐 搜索列表*/
+/*END*/
+/*15-5-4 主题商家活动详情*/
+#pinhile_mallDetail .activity_int {
+  background-color: #fff;
+}
+#pinhile_mallDetail .activity_int h2 {
+  height: 3.9rem;
+  line-height: 3.9rem;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0 1.5rem;
+}
+#pinhile_mallDetail .activity_int h2 i {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background-color: #ff4d64;
+  margin-right: 1rem;
+  position: relative;
+  top: 2px;
+}
+#pinhile_mallDetail .activity_int .con {
+  padding: 1.5rem;
+  line-height: 2.9rem;
+  font-size: 1.4rem;
+  color: #333;
+  padding-bottom: 3rem;
+}
+#pinhile_mallDetail .activity_int .con img {
+  width: 100%;
+  height: auto;
+  margin:0.5rem 0;
+}
+/*END*/
+/*15-7-1 拼攻略*/
+#pinhile_strategy .strategy {
+  margin-top: .5rem;
+}
+#pinhile_strategy .strategy ul li {
+  padding: 1.5rem;
+  background-color: #fff;
+  margin-bottom: .5rem;
+}
+#pinhile_strategy .strategy ul li .title {
+  line-height: 2.1rem;
+  font-size: 1.6rem;
+  color: #333;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#pinhile_strategy .strategy ul li .img {
+  margin-top: 11px;
+}
+#pinhile_strategy .strategy ul li .img img {
+  width: 32%;
+  margin-right: 2%;
+  float: left;
+  height: auto;
+}
+#pinhile_strategy .strategy ul li .img img:nth-child(3n) {
+  margin-right: 0;
+}
+#pinhile_strategy .strategy ul li .date {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  margin-top: 1.4rem;
+  position: relative;
+}
+#pinhile_strategy .strategy ul li .date em {
+  position: absolute;
+  right: 0;
+  top: 1px;
+}
+#pinhile_strategy .strategy ul li .date em span {
+  margin-right:.5rem;
+}
+#pinhile_strategy .strategy ul li.img_left {
+  padding: 1.5rem;
+  background-color: #fff;
+  padding-left: 12.7rem;
+  height: 7.7rem;
+  position: relative;
+}
+#pinhile_strategy .strategy ul li.img_left .title {
+  height: 4.2rem;
+  line-height: 2.1rem;
+  font-size: 1.6rem;
+  color: #333;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+  margin-bottom: .5rem;
+}
+#pinhile_strategy .strategy ul li.img_left .img_pos {
+  width: 10.3rem;
+  height: 7.7rem;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+#pinhile_strategy .strategy ul li.img_left .date {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  margin-top: 1.4rem;
+  position: relative;
+}
+#pinhile_strategy .strategy ul li.img_left .date em {
+  position: absolute;
+  right: 0;
+  top: 1px;
+}
+#pinhile_strategy .strategy ul li.img_left .date em span {
+  margin-right:.5rem;
+}
+/*END*/
+/*15-8-1选奖品*/
+#pinhile_xuanjiangpin .top_threeNav {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #333;
+  background-color: #fff;
+}
+#pinhile_xuanjiangpin .top_threeNav span {
+  margin: 0 1.5rem;
+}
+#pinhile_xuanjiangpin .top_threeNav span.on {
+  color: #ff4d64;
+}
+#pinhile_xuanjiangpin .top_threeCon {
+  background-color: #fff;
+}
+#pinhile_xuanjiangpin .top_threeCon .firefight2 {
+  padding-bottom: 0;
+}
+#pinhile_xuanjiangpin .top_threeCon .firefight2 ul {
+  padding-bottom: 0;
+}
+#pinhile_xuanjiangpin .top_threeCon .firefight2 ul li:last-child {
+  margin-bottom: 0;
+}
+/*END*/
+/*15-11-1满开*/
+#pinhile_mallDetailMankai .header.linear {
+      background-color: transparent;
+    border-bottom: none;
+}
+#pinhile_mallDetailMankai .header.linear .btn_left{color: #fff;}
+#pinhile_mallDetailMankai .header.linear .btn_right .icon-sharing{color: #fff;}
+#pinhile_mallDetailMankai .header.linear .wrap img {
+  height: 6rem;
+  margin: 0 auto;
+}
+#pinhile_mallDetailMankai .title_detail {
+  background-color: #fff;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+#pinhile_mallDetailMankai .title_detail .price {
+  height: 2rem;
+  line-height: 2rem;
+  position: relative;
+}
+#pinhile_mallDetailMankai .title_detail .price b {
+  font-size: 23px;
+  color: #ff4d64;
+  margin-right: 1.5rem;
+}
+#pinhile_mallDetailMankai .title_detail .price span {
+  text-decoration: line-through;
+  font-size: 1.2rem;
+  color: #666;
+}
+#pinhile_mallDetailMankai .title_detail .price i {
+  font-size: 1.2rem;
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
+#pinhile_mallDetailMankai .title_detail .title {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: 1.5rem;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#pinhile_mallDetailMankai .activity_int {
+  background-color: #fff;
+  margin-bottom: .5rem;
+}
+#pinhile_mallDetailMankai .activity_int h2 {
+  height: 3.9rem;
+  line-height: 3.9rem;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0 1.5rem;
+}
+#pinhile_mallDetailMankai .activity_int h2 i {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background-color: #ff4d64;
+  margin-right: 1rem;
+  position: relative;
+  top: 2px;
+}
+#pinhile_mallDetailMankai .activity_int .con {
+  padding: 1.5rem;
+  line-height: 29px;
+  font-size: 1.4rem;
+  color: #333;
+  padding-bottom: 3rem;
+}
+#pinhile_mallDetailMankai .activity_int .con img {
+  width: 100%;
+  height: auto;
+  margin:0;
+    display: block;
+}
+#pinhile_mallDetailMankai .commentaries {
+  background-color: #fff;
+  padding-top: 2rem;
+  margin-bottom: .5rem;
+}
+#pinhile_mallDetailMankai .commentaries h3 {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  padding: 0 1.5rem;
+}
+#pinhile_mallDetailMankai .commentaries h3 i {
+  display: inline-block;
+  width: 4px;
+  height: 1.4rem;
+  background-color: #ff4d64;
+  margin-right: 1rem;
+  margin-bottom: -2px;
+}
+#pinhile_mallDetailMankai .commentaries li {
+  padding-top: 2rem;
+  padding-left: 70px;
+  position: relative;
+}
+#pinhile_mallDetailMankai .commentaries li img.logo {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 2rem;
+}
+#pinhile_mallDetailMankai .commentaries li .con {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 1.5rem;
+  position: relative;
+  padding-right: 1.5rem;
+}
+#pinhile_mallDetailMankai .commentaries li .con p.nome {
+  height:1.5rem;
+  line-height:1.5rem;
+  font-size: 1.3rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+#pinhile_mallDetailMankai .commentaries li .con p.date {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+#pinhile_mallDetailMankai .commentaries li .con p.com {
+  line-height: 2.3rem;
+  font-size: 1.3rem;
+  color: #000;
+}
+#pinhile_mallDetailMankai .commentaries li .con p.com i {
+  color: #999;
+}
+#pinhile_mallDetailMankai .commentaries li .con a {
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+}
+#pinhile_mallDetailMankai .commentaries li .con img {
+  width: 30%;
+  height: auto;
+  margin-right: 5%;
+  margin-bottom: 4%;
+  margin-top: 1%;
+  float: left;
+}
+#pinhile_mallDetailMankai .commentaries li .con img:nth-child(3n) {
+  margin-right: 0;
+}
+#pinhile_mallDetailMankai .commentaries li:last-child .con {
+  border-bottom: 0;
+}
+/*END*/
+/*15-12提交订单*/
+#pinhile_submitOder .oder {
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#pinhile_submitOder .oder .list {
+  padding: 0 1.5rem;
+  background-color: #fff;
+}
+#pinhile_submitOder .oder .list li {
+  position: relative;
+  padding-left: 11.5rem;
+  height:7.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+#pinhile_submitOder .oder .list li img {
+  width: 9.8rem;
+  height:7.3rem;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  position: absolute;
+  top: 1.5rem;
+  left: 0px;
+}
+#pinhile_submitOder .oder .list li .title {
+  /*height: 3.4rem;*/
+  line-height: 17px;
+  font-size: 1.3rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#pinhile_submitOder .oder .list li .price {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 1.3rem;
+  color: #ff4d64;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+#pinhile_submitOder .oder .list li .specification {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: .5rem;
+}
+#pinhile_submitOder .oder .list li .specification i {
+  position: absolute;
+  right: 0;
+}
+#pinhile_submitOder .oder .list li:last-child {
+  border-bottom: 0;
+}
+#pinhile_submitOder .receiving_way {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#pinhile_submitOder .receiving_way h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 1.3rem;
+  color: #000;
+  font-weight: bold;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+#pinhile_submitOder .receiving_way h2 i {
+  display: inline-block;
+  height: 15px;
+  width: 2px;
+  background-color: #ff4d64;
+  margin-right: 13px;
+  position: relative;
+  top: 1px;
+}
+#pinhile_submitOder .receiving_way .way {
+  padding: 0 1.5rem;overflow: hidden;
+}
+#pinhile_submitOder .receiving_way .way .invite {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+}
+#pinhile_submitOder .receiving_way .way .invite span.widget-checkbox {
+  /*width: 15px;
+  height: 15px;
+  background-size: 30px 15px;
+  background-position: 0 0;*/
+  position: absolute;
+  right: 0;
+  top: 1.3rem;
+}
+#pinhile_submitOder .receiving_way .way .invite span.widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_submitOder .receiving_way .way .mail {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+}
+#pinhile_submitOder .receiving_way .way .mail span.widget-checkbox {
+  /*width: 15px;
+  height: 15px;
+  background-size: 30px 15px;
+  background-position: 0 0;*/
+  position: absolute;
+  right: 0;
+  top: 1.3rem;
+}
+#pinhile_submitOder .receiving_way .way .mail span.widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_submitOder .receiving_way .way .onaddress {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;
+}
+#pinhile_submitOder .receiving_way .way .onaddress span {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#pinhile_submitOder .receiving_way .way .address {
+  height: auto;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;
+}
+#pinhile_submitOder .receiving_way .way .address span {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -6px;
+}
+#pinhile_submitOder .receiving_way .way .address .nome {
+  font-size: 1.3rem;
+  color: #999;
+  font-weight: bold;
+  position: relative;
+  margin-top: 1.5rem;
+}
+#pinhile_submitOder .receiving_way .way .address .nome i {
+  position: absolute;
+  right: 3.5rem;
+}
+#pinhile_submitOder .receiving_way .way .address .addres {
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;
+  margin-top: 1.3rem;
+  margin-right: 3.5rem;
+  /*margin-bottom: 1.5rem;*/
+}
+#pinhile_submitOder .receiving_way .way div:last-child {
+  border-bottom: 1px solid #fff;
+}
+#pinhile_submitOder .receiving_way .messageBox {
+  padding: 1.5rem;
+}
+#pinhile_submitOder .receiving_way .messageBox .message {
+  display: block;font-size: 1.2rem;
+  width: 100%;
+  border: 0;
+  height: 85px;
+  background-color: transparent;
+  resize: none;
+}
+/*END*/
+/*15-13收银台*/
+#pinhile_checkstand .checkstand .state {
+  background-color: #fff;
+  padding: 2rem 0 1.5rem 0;
+  margin-bottom: 1rem;
+}
+#pinhile_checkstand .checkstand .state .state_t {
+  height: 4rem;
+  margin-left: 42%;
+  position: relative;
+  margin-bottom: 2rem;
+}
+#pinhile_checkstand .checkstand .state .state_t span {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  font-size: 38px;
+  color: #22ac38;
+  position: absolute;
+  left: -50px;
+  top: 0;
+}
+#pinhile_checkstand .checkstand .state .state_t p.tit {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+}
+#pinhile_checkstand .checkstand .state .state_t p.conter {
+  line-height: 4rem;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bold;
+}
+#pinhile_checkstand .checkstand .state .state_t p.title {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: .8rem;
+  font-weight: normal;
+}
+#pinhile_checkstand .checkstand .state .state_t.fail span {
+  color: #ff0000;
+}
+#pinhile_checkstand .checkstand .state .state_b {
+  width: 86%;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 14px 0;
+}
+#pinhile_checkstand .checkstand .state .state_b p {
+  padding: 0 10%;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  color: #666;
+}
+#pinhile_checkstand .checkstand .state .state_b p i {
+  color: #ff4444;
+}
+#pinhile_checkstand .checkstand .state .state_b .mail_detail {
+  line-height: 24px;
+  color: #333;
+  text-align: center;
+  padding: 0 10px;
+}
+#pinhile_checkstand .checkstand .state .state_b p:last-child {
+  margin-bottom: 0;
+}
+#pinhile_checkstand .checkstand .state .codebox {
+  padding: 20px 0 34px 0;
+}
+#pinhile_checkstand .checkstand .state .codebox p {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+#pinhile_checkstand .checkstand .state .codebox .code {
+  width: 52%;
+  height: 33px;
+  line-height: 33px;
+  border: 1px solid #760300;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #ff4d64;
+  font-weight: bold;
+  position: relative;
+  box-shadow: inset 0 0 9px rgba(160, 43, 26, 0.2);
+}
+#pinhile_checkstand .checkstand .state .codebox .code img {
+  width: 38px;
+  height: 4.5rem;
+  position: absolute;
+  left: -15px;
+  top: -9px;
+}
+#pinhile_checkstand .checkstand .pay_mode {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#pinhile_checkstand .checkstand .pay_mode h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 1.5rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000;
+}
+#pinhile_checkstand .checkstand .pay_mode h2 i {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background-color: #5bc0de;
+  margin-right: 1rem;
+  position: relative;
+  top: 2px;
+}
+#pinhile_checkstand .checkstand .pay_mode p {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  margin: 0 1.5rem;
+  font-size: 1.3rem;
+  color: #333;
+  border-bottom: 1px dashed #e5e5e5;
+  position: relative;
+}
+#pinhile_checkstand .checkstand .pay_mode p .widget-checkbox {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#pinhile_checkstand .checkstand .pay_mode p .widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_checkstand .checkstand .pay_mode .mode {
+  color: #000;
+  height: auto;
+}
+#pinhile_checkstand .checkstand .pay_mode .mode i {
+  color: #666;
+}
+#pinhile_checkstand .checkstand .pay_mode .mode input {
+  border: 0;
+  background-color: transparent;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.2rem 0;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  color: #fc6866;
+    font-size: 1.4rem;
+    width: 8rem;
+}
+#pinhile_checkstand .checkstand .pay_mode .onpay {
+  border-bottom: 1px dashed #e5e5e5;
+  padding: 7px 0;
+  margin: 0 1.5rem;
+}
+#pinhile_checkstand .checkstand .pay_mode .onpay p {
+  height: auto;
+  line-height: 29px;
+  border: 0;
+  margin: 0;
+}
+#pinhile_checkstand .checkstand .pay_mode .onpay p i {
+  color: #ff7414;
+}
+#pinhile_checkstand .checkstand .pay_mode .onpay p span {
+  color: #fc6866;
+}
+#pinhile_checkstand .checkstand .pay_mode .pay .widget-checkbox {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#pinhile_checkstand .checkstand .pay_mode .pay .widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_checkstand .checkstand .pay_mode .pay i {
+  display: inline-block;
+  width: 21px;
+  height: 1.8rem;
+  background: url(../image/winxin.png) no-repeat;
+  background-size: 100% 100%;
+  margin-left: 16px;
+  position: relative;
+  top: 5px;
+}
+#pinhile_checkstand .checkstand .pay_mode .pay.zfb i {
+  display: inline-block;
+  width: 21px;
+  height: 1.8rem;
+  background: url(../image/zfb.png) no-repeat;
+  background-size: 100% 100%;
+  margin-left: 16px;
+  position: relative;
+  top: 5px;
+}
+#pinhile_checkstand .checkstand .pay_mode p:last-child {
+  border-bottom: 1px solid #fff;
+}
+#pinhile_checkstand .checkstand .pay_detail {
+  background-color: #fff;
+}
+#pinhile_checkstand .checkstand .pay_detail ul {
+  padding: 7px 15px;
+}
+#pinhile_checkstand .checkstand .pay_detail ul li {
+  line-height: 2.8rem;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+}
+#pinhile_checkstand .checkstand .pay_detail ul li p {
+  width: 70%;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#pinhile_checkstand .checkstand .pay_detail ul li i {
+  display: block;
+  line-height: 2.8rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#pinhile_checkstand .checkstand .pay_detail ul li:last-child i {
+  color: #fc6866;
+}
+#pinhile_checkstand .checkstand .pay_detail.invite ul li:last-child {
+  border-top: 1px solid #e5e5e5;
+  margin: 0 -15px;
+  padding: 0 1.5rem;
+  margin-top: 7px;
+  padding-top: 7px;
+}
+#pinhile_checkstand .checkstand .pay_detail.invite ul li:last-child i {
+  display: block;
+  line-height: 2.8rem;
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+}
+/*END*/
+/*15-15/15-16-1~3查看奖品和开奖结果*/
+#pinhile_theLottery .not_lottery {
+  background-color: #fff;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+#pinhile_theLottery .not_lottery .period_top {
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: #fff;
+  position: relative;
+  padding-left: 65px;
+  height: 61px;
+}
+#pinhile_theLottery .not_lottery .period_top .period {
+  width: 50px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #000;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+#pinhile_theLottery .not_lottery .period_top .date {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  margin-top: 7px;
+}
+#pinhile_theLottery .not_lottery .period_top .position {
+  width: 2.5rem;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+#pinhile_theLottery .not_lottery .period_top .position img {
+  width: 100%;
+  height: auto;
+}
+#pinhile_theLottery .not_lottery .period_top .position p {
+  width: 3rem;
+  height: 1rem;
+  line-height: 1rem;
+  font-size:0.8rem;
+  margin-top: 7px;
+  color: #333;
+}
+#pinhile_theLottery .not_lottery .n_lotter {
+  margin: 0 1rem;
+  height: 1px;
+  background-color: #e5e5e5;
+  position: relative;
+  margin-bottom: 44px;
+}
+#pinhile_theLottery .not_lottery .n_lotter span {
+  display: block;
+  width: 65px;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  background-color: #fff;
+  margin-left: -33px;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+}
+#pinhile_theLottery .not_lottery .this_prize {
+  margin: 0 1rem;
+  padding: 1.5rem;padding-bottom: 1rem;
+  position: relative;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+}
+#pinhile_theLottery .not_lottery .this_prize span {
+  display: block;
+  width: 65px;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #000;
+  margin-left: -32px;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  background-color: #fff;
+}
+/*#pinhile_theLottery .not_lottery .this_prize a {
+  display: inline-block;
+  width: 58px;
+  height: 4.4rem;
+  border: 1px solid #e5e5e5;
+  margin: 3px;
+  overflow: hidden;
+}*/
+#pinhile_theLottery .not_lottery .this_prize .prizeImg {
+    width: 5rem;height: 5rem;padding: 0.5rem;border: solid 1px #e5e5e5;margin:0.5rem; 
+  /*width: 100%;*/
+}
+#pinhile_theLottery .not_lottery .this_prize .code {
+  width: 52%;
+  height: 33px;
+  line-height: 33px;
+  border: 1px solid #760300;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #ff4d64;
+  font-weight: bold;
+  position: relative;
+  box-shadow: inset 0 0 9px #a02b1a;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+#pinhile_theLottery .not_lottery .this_prize .code img {
+  width: 38px;
+  height: 4.5rem;
+  position: absolute;
+  left: -15px;
+  top: -9px;
+}
+#pinhile_theLottery .not_lottery .this_prize .p {
+  height: 13px;
+  line-height: 1.3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 4;
+  margin-bottom: 1rem;
+}
+#pinhile_theLottery .not_lottery .this_prize .date {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  margin-bottom: -15px;
+  background-color: #000;
+}
+#pinhile_theLottery .not_lottery .this_prize .date i {
+  color: #fff;
+}
+#pinhile_theLottery .not_lottery .this_prize.listbox {
+  margin-top: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#pinhile_theLottery .not_lottery .this_prize.listbox ul {
+  text-align: center;
+}
+#pinhile_theLottery .not_lottery .this_prize.listbox ul li {
+  width: 16.66%;
+  display: inline-block;
+}
+#pinhile_theLottery .not_lottery .this_prize.listbox ul li img {
+  width: 75%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+#pinhile_theLottery .not_lottery .this_prize.listbox ul li p {
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #000;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+#pinhile_theLottery .myNumber {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+}
+#pinhile_theLottery .myNumber .box {
+  width: 84%;
+  
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+}
+#pinhile_theLottery .myNumber .box .numsWrap{max-height:250px;overflow-y: scroll;padding-top: 10px;}
+
+#pinhile_theLottery .myNumber .box .mynumbox {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 26px 0;
+  border-radius: 10px;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes_tit {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes_tit i {
+  width: 12.3%;
+  height: 1px;
+  background-color: #e5e5e5;
+  display: inline-block;
+  position: relative;
+  bottom: 5px;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes_tit span {
+  display: inline-block;
+  margin: 0 1rem;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes_tit span.red {
+  color: #ff4d64;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .code {
+  width: 52%;
+  height: 33px;
+  line-height: 33px;
+  border: 1px solid #760300;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #ff4d64;
+  font-weight: bold;
+  position: relative;
+  box-shadow: inset 0 0 9px #a02b1a;
+  margin-bottom: 25px;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .code img {
+  width: 3.8rem;
+  height: 4.5rem;
+  position: absolute;
+  left: -15px;
+  top: -9px;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .code.no {
+  border: 1px solid #5d5d5d;
+  color: #000;
+  box-shadow: inset 0 0 9px #5d5d5d;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .code.nopen {
+  color: #000 !important;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes {
+  margin-bottom: 1.5rem;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes a {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border: 1px solid #e5e5e5;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .prizes a img {
+  width: 100%;
+  height: auto;
+}
+#pinhile_theLottery .myNumber .box .mynumbox .noprizes {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+}
+#pinhile_theLottery .myNumber .box .mynumbox button {
+  display: block;
+  width: 100px;
+  line-height: 3rem;
+  background-color: #000;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 15px;
+}
+#pinhile_theLottery .myNumber .box .mynumbox button.on {
+  background-color: #999;
+}
+#pinhile_theLottery .myNumber .box .shutDown {
+  margin-top: 1.5rem;
+  text-align: center
+            ;
+  font-size: 40px;
+  color: #fff;
+}
+/*END*/
+/*15-17领取商品*/
+#pinhile_getGoods .oder {
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#pinhile_getGoods .oder .list {
+  padding: 0 1.5rem;
+  background-color: #fff;
+}
+#pinhile_getGoods .oder .list li {
+  position: relative;
+  padding-left: 115px;
+  height: 75px;
+  border-bottom: 1px solid #e5e5e5;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+#pinhile_getGoods .oder .list li img {
+  width: 98px;
+  height: 73px;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  position: absolute;
+  top: 1.5rem;
+  left: 0px;
+}
+#pinhile_getGoods .oder .list li .title {
+  height: 3.4rem;
+  line-height: 17px;
+  font-size: 1.3rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+}
+#pinhile_getGoods .oder .list li .price {
+  height: 1.2rem;
+  line-height: 1.2rem;
+  font-size: 1.3rem;
+  color: #666;
+  font-weight: inherit;
+  margin-top: 1rem;
+}
+#pinhile_getGoods .oder .list li .specification {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: .5rem;
+}
+#pinhile_getGoods .oder .list li .specification i {
+  position: absolute;
+  right: 0;
+}
+#pinhile_getGoods .oder .list li:last-child {
+  border-bottom: 0;
+}
+#pinhile_getGoods .receiving_way {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#pinhile_getGoods .receiving_way h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 1.3rem;
+  color: #000;
+  font-weight: bold;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+#pinhile_getGoods .receiving_way h2 i {
+  display: inline-block;
+  height: 15px;
+  width: 2px;
+  background-color: #ff4d64;
+  margin-right: 13px;
+  position: relative;
+  top: 1px;
+}
+#pinhile_getGoods .receiving_way .way {
+  padding: 0 1.5rem;
+}
+#pinhile_getGoods .receiving_way .way .invite {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+}
+#pinhile_getGoods .receiving_way .way .invite span.widget-checkbox {
+  /*width: 15px;
+  height: 15px;
+  background-size: 30px 15px;
+  background-position: 0 0;*/
+  position: absolute;
+  right: 0;
+  top: 1.3rem;
+}
+#pinhile_getGoods .receiving_way .way .invite span.widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_getGoods .receiving_way .way .mail {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #000;
+  position: relative;
+}
+#pinhile_getGoods .receiving_way .way .mail span.widget-checkbox {
+ /* width: 15px;
+  height: 15px;
+  background-size: 30px 15px;
+  background-position: 0 0;*/
+  position: absolute;
+  right: 0;
+  top: 1.3rem;
+}
+#pinhile_getGoods .receiving_way .way .mail span.widget-checkbox.on {
+  /*background-position: -15px 0;*/
+}
+#pinhile_getGoods .receiving_way .way .mail em {
+  margin-right: 30px;
+  font-size: 1.4rem;
+  color: #b28850;
+  float: right;
+}
+#pinhile_getGoods .receiving_way .way .mail em i {
+  color: #f00;
+}
+#pinhile_getGoods .receiving_way .way .onaddress {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;
+}
+#pinhile_getGoods .receiving_way .way .onaddress span {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#pinhile_getGoods .receiving_way .way li:last-child{ 
+  border-bottom: 0;
+}
+#pinhile_getGoods .receiving_way .way .address {
+  height: auto;
+  border-bottom: 1px dotted #e5e5e5;
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;overflow: hidden;
+}
+#pinhile_getGoods .receiving_way .way .address span {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -6px;
+}
+#pinhile_getGoods .receiving_way .way .address .nome {
+  font-size: 1.3rem;
+  color: #999;
+  font-weight: bold;
+  position: relative;
+  margin-top: 1.5rem;
+}
+#pinhile_getGoods .receiving_way .way .address .nome i {
+  position: absolute;
+  right: 3.5rem;
+}
+#pinhile_getGoods .receiving_way .way .address .addres {
+  font-size: 1.3rem;
+  color: #999;
+  position: relative;
+  margin-top: 1.3rem;
+  margin-right: 3.5rem;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+#pinhile_getGoods .receiving_way .way div:last-child {
+  border-bottom: 1px solid #fff;
+}
+#pinhile_getGoods .receiving_way .messageBox {
+  padding: 1.5rem;
+}
+#pinhile_getGoods .receiving_way .messageBox .message {
+  display: block;
+  width: 100%;
+  border: 0;
+  height: 85px;
+  background-color: transparent;
+  resize: none;
+}
+/*END*/
+/*15-18-1提交结果邮寄*/
+/*15-18-1提交结果邮寄开始*/
+/*15-20晒奖*/
+#pinhile_sunAward .commentaries {
+  padding-top: 2rem;
+  margin-bottom: .5rem;
+}
+#pinhile_sunAward .commentaries h3 {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  padding: 0 1.5rem;
+}
+#pinhile_sunAward .commentaries h3 i {
+  display: inline-block;
+  width: 4px;
+  height: 1.4rem;
+  background-color: #ff4d64;
+  margin-right: 1rem;
+  margin-bottom: -2px;
+}
+#pinhile_sunAward .commentaries li {
+  padding-top: 2rem;
+  padding-left: 70px;
+  position: relative;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#pinhile_sunAward .commentaries li img.logo {
+  width: 40px;
+  height: 4rem;
+  border-radius: 2rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 2rem;
+}
+#pinhile_sunAward .commentaries li .con {
+  position: relative;
+  padding-right: 1.5rem;
+}
+#pinhile_sunAward .commentaries li .con p.nome {
+  height: 15px;
+  line-height: 15px;
+  font-size: 1.3rem;
+  color: #000;
+  margin-bottom: 1rem;
+  position: relative;
+}
+#pinhile_sunAward .commentaries li .con p.nome span {
+  display: block;
+  font-size: 1.2rem;
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 15px;
+  line-height: 15px;
+}
+#pinhile_sunAward .commentaries li .con p.com {
+  line-height: 2.3rem;
+  font-size: 1.3rem;
+  color: #000;
+}
+#pinhile_sunAward .commentaries li .con p.com i {
+  color: #999;
+}
+#pinhile_sunAward .commentaries li .con a {
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+}
+#pinhile_sunAward .commentaries li .con .img{ padding-bottom: 10px;}
+#pinhile_sunAward .commentaries li .con img {
+  width: 32%;
+  height: auto;
+  margin-right: 2%;
+  margin-bottom: 1%;
+  margin-top: 1%;
+  float: left;
+}
+#pinhile_sunAward .commentaries li .con img:nth-child(3n) {
+  margin-right: 0;
+}
+#pinhile_sunAward .commentaries li .list {
+  position: relative;
+  padding-left: 95px;
+  height: 6rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid #e5e5e5;
+}
+#pinhile_sunAward .commentaries li .list img {
+  width: 85px;
+  height: 6rem;
+  border-radius: 2px;
+  position: absolute;
+  top: 1.5rem;
+  left: 0px;
+  margin: 0;
+}
+#pinhile_sunAward .commentaries li .list .title {
+  height: 3rem;
+  line-height: 15px;
+  font-size: 1.2rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#pinhile_sunAward .commentaries li .list .specification {
+  height: 17px;
+  line-height: 17px;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: .5rem;
+  position: relative;
+}
+#pinhile_sunAward .commentaries li .list .specification b {
+  font-size: 1.5rem;
+  color: #ff4d64;
+  font-weight: bold;
+  margin-right: 30px;
+}
+#pinhile_sunAward .commentaries li .list .specification i {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 2px;
+}
+#pinhile_sunAward .commentaries li:last-child .con {
+  border-bottom: 0;
+}
+/*END*/
+/*15-21-1~2购物车*/
+#shopping_cart .list {
+  padding-top:1rem;
+}
+#shopping_cart .list li {
+  position: relative;
+  padding: 15px 15px 15px 155px;
+  height: 75px;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#shopping_cart .list li span.widget-checkbox {
+  /*width: 20px;
+  height: 20px;
+  background-size: 40px 20px;
+  background-position: 0 0;*/
+  position: absolute;
+  left: 10px;
+  top: 45px;
+}
+#shopping_cart .list li span.widget-checkbox.on {
+  /*background-position: -20px 0;*/
+}
+#shopping_cart .list li img {
+  width: 100px;
+  height: 75px;
+  border-radius: 5px;
+  position: absolute;
+  top: 1.5rem;
+  left: 40px;
+}
+#shopping_cart .list li .title {
+  height: 15px;
+  line-height: 15px;
+  font-size: 1.3rem;
+  color: #000;
+  white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: inherit;
+}
+#shopping_cart .list li .specification {
+  height: 15px;
+  line-height: 15px;
+  font-size: 1.3rem;
+  color: #666;
+  margin-top: 9px;
+}
+#shopping_cart .list li .price {
+  height: 15px;
+  line-height: 15px;
+  font-size: 1.3rem;
+  color: #fc6866;
+  margin-top: 18px;
+  white-space: pre-line;
+}
+#shopping_cart .list li .pubWidget_goods_num {
+  /*width: 108px;
+  height: 33px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  border-radius: 3px;*/
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  overflow: hidden;
+}
+#shopping_cart .list li .widget-goods-num a {
+  height: 33px;
+  width: 33px;
+  line-height: 33px;
+  background-color: #f5f5f5;
+}
+#shopping_cart .list li .widget-goods-num a span {
+  font-size: 1.3rem;
+  color: #7a7e83;
+}
+#shopping_cart .list li .widget-goods-num input[type=text] {
+  position: absolute;
+  left: 33px;
+  width: 40px;
+  text-align: center;
+  border: none;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #e5e5e5;
+  border-radius: 0;
+  height: 31px;
+  font-size: 1.4rem;
+  background-color: transparent;
+}
+#shopping_cart .null {
+  text-align: center;
+  padding-top:18rem;
+}
+#shopping_cart .null span {
+  font-size: 73px;
+  color: #ccc;
+}
+#shopping_cart .null p {
+  line-height: 25px;
+  font-size: 1.6rem;
+  color: #999;
+  margin-top: 25px;
+}
+#shopping_cart .null p a {
+  color: #fc6866;
+  text-decoration: underline;
+}
+/*END*/
+/*16-1~4注册登录*/
+#logIn .logInbox {
+  width: 65%;
+  margin: 0 auto;
+  padding-top: 45px;
+}
+#logIn .logInbox .p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+#logIn .logInbox .p input {
+  width: auto;
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+    font-size: 1.4rem;
+}
+#logIn .logInbox .p.code {
+  position: relative;
+    padding-right: 7rem;
+}
+#logIn .logInbox .p.code .verfiyBtn {
+  position: absolute;
+  right: 0;
+    bottom: 0;
+  color: #000;
+    font-size: 1.4rem;
+    height: 4.5rem;
+    width: 6rem;padding: 0;background-color: transparent;border: none;
+}
+#logIn .logInbox .p.code .verfiyBtn:disabled {
+  color: #999;
+}
+#logIn .logInbox .protocol {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: 18px;
+}
+#logIn .logInbox .protocol span {
+  margin-right: 1rem;
+}
+#logIn .logInbox .protocol a {
+  color: #0077ff;
+}
+#logIn .logInbox .btn-submit {
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: #ff4d64;
+  display: block;
+  margin-top: 30px;
+  border: 0;
+}
+#logIn .logInbox button:disabled {
+  background-color: #ccc;
+}
+#logIn .logInbox .a {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 35px;
+  font-size: 1.4rem;
+  color: #000;
+}
+#logIn .logInbox .a i {
+  color: #0077ff;
+}
+#logIn .logInbox .a.forget {
+  margin-top: 2rem;
+  margin-bottom: 30px;
+}
+#logIn .logInbox .login {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  position: relative;
+}
+#logIn .logInbox .login a {
+  color: #0077ff;
+}
+#logIn .logInbox .login a span {
+  color: #000;
+}
+#logIn .logInbox .login .right {
+  position: absolute;
+  right: 0;
+}
+#logIn .state {
+  background-color: #fff;
+  padding: 40px 0 40px 0;
+  margin-bottom: 1rem;
+}
+#logIn .state .state_t {
+  height: 4rem;
+  margin-left: 42%;
+  position: relative;
+  margin-bottom: 40px;
+}
+#logIn .state .state_t span {
+  display: block;
+  width: 40px;
+  height: 4rem;
+  font-size: 38px;
+  color: #22ac38;
+  position: absolute;
+  left: -50px;
+  top: 0;
+}
+#logIn .state .state_t p.tit {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+}
+#logIn .state .state_t p.conter {
+  line-height: 4rem;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bold;
+}
+#logIn .state .state_t p.title {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: .8rem;
+  font-weight: normal;
+}
+#logIn .state .certification {
+  padding: 0 10px;
+}
+#logIn .state .certification .individualbox {
+  background: url(../image/certification_01.jpg) no-repeat;
+  background-size: 100% 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#logIn .state .certification .individualbox .individual {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+#logIn .state .certification .individualbox .individual .p {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.7rem;
+  color: #ff4d64;
+  font-weight: bold;
+  position: relative;
+}
+#logIn .state .certification .individualbox .individual .p a {
+  display: inline-block;
+  width: 80px;
+  line-height: 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #ff4d64;
+  position: absolute;
+  right: 0;
+  border-radius: 2px;
+}
+#logIn .state .certification .individualbox .individual .btm {
+  border: solid 2px rgba(245, 60, 84, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 18px;
+  padding: 15px 15px 15px 60px;
+  font-size: 1.4rem;
+  color: #fff;
+  position: relative;
+}
+#logIn .state .certification .individualbox .individual .btm span {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  position: absolute;
+  top: 14px;
+  left: 1.5rem;
+}
+#logIn .state .certification .individualbox .individual .btm p {
+  line-height: 24px;
+  margin-top: -5px;
+}
+#logIn .state .certification .merchantbox {
+  background: url(../image/certification_02.jpg) no-repeat;
+  background-size: 100% 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#logIn .state .certification .merchantbox .individual {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+#logIn .state .certification .merchantbox .individual .p {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.7rem;
+  color: #ff8a36;
+  font-weight: bold;
+  position: relative;
+}
+#logIn .state .certification .merchantbox .individual .p a {
+  display: inline-block;
+  width: 80px;
+  line-height: 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: #ff8a36;
+  position: absolute;
+  right: 0;
+  border-radius: 2px;
+}
+#logIn .state .certification .merchantbox .individual .btm {
+  border: solid 2px rgba(255, 138, 54, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-top: 18px;
+  padding: 15px 15px 15px 60px;
+  font-size: 1.4rem;
+  color: #fff;
+  position: relative;
+}
+#logIn .state .certification .merchantbox .individual .btm span {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  position: absolute;
+  top: 14px;
+  left: 1.5rem;
+}
+#logIn .state .certification .merchantbox .individual .btm p {
+  line-height: 24px;
+  margin-top: -5px;
+}
+#logIn .state .certification .tiaog {
+  line-height: 1.6rem;
+  height: 1.6rem;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  font-size: 1.4rem;
+}
+#logIn .state .certification .tiaog a {
+  color: #000;
+}
+#logIn .state .certification .tiaog a i {
+  color: #0077ff;
+}
+/*END*/
+/*17个人中心*/
+#user .user_top .nologin {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #fff;
+}
+#user .user_top .nologin .login {
+  width: 13.8rem;
+  height: 2.8rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  color: #000;
+}
+#user .user_top .nologin .login a {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  line-height: 2.8rem;
+  float: left;
+}
+#user .user_top .nologin .login i {
+  display: block;
+  height: 2.8rem;
+  width: 1px;
+  background-color: #e5e5e5;
+  float: right;
+}
+#user .user_top .unauthorized {
+  background-color: #fff;
+}
+#user .user_top .unauthorized .top {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  background-color: #ffefc7;
+}
+#user .user_top .unauthorized .top i {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  border-radius: 9px;
+  background-color: #ff4d64;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: bold;
+  margin-right:.5rem;
+}
+#user .user_top .unauthorized .top a {
+  display: inline-block;
+  width: 6.8rem;
+  height: 2.3rem;
+  border-radius: 2px;
+  border: 1px solid #ff4d64;
+  line-height: 2.3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  margin-left: .5rem;
+}
+#user .user_top .unauthorized .top span {
+  font-size: 1.9rem;
+  color: #666;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.3rem;
+}
+#user .user_top .unauthorized .userPhoto {
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+}
+#user .user_top .unauthorized .userPhoto img {
+  width: 5.8rem;
+  height: 5.8rem;
+  border: 1px solid #e5e5e5;
+  border-radius:50%;
+  margin-right: 1.5rem;
+}
+#user .user_top .unauthorized .userPhoto span {
+  font-size: 1.4rem;
+  color: #000;
+}
+#user .user_top .authorized {
+  background-color: #fff;
+}
+#user .user_top .authorized .top {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding: 0 1.5rem;
+  position: relative;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  background-color: #ffefc7;
+}
+#user .user_top .authorized .top i {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  border-radius: 9px;
+  background-color: #ff4d64;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: bold;
+  margin-right:.5rem;
+}
+#user .user_top .authorized .top a {
+  display: inline-block;
+  width: 6.8rem;
+  height: 2.3rem;
+  border-radius: 2px;
+  border: 1px solid #ff4d64;
+  line-height: 2.3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  margin-left: .5rem;
+}
+#user .user_top .authorized .top span {
+  font-size: 1.9rem;
+  color: #666;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.3rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
+#user .user_top .authorized .userPhoto {
+  height: 9rem;
+  text-align: center;
+}
+#user .user_top .authorized .userPhoto .img {
+  width: 5.8rem;
+  height: 5.8rem;
+  border: 1px solid #e5e5e5;
+  border-radius:50%;
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+}
+#user .user_top .authorized .userPhoto .nome {
+  display: inline-block;
+  text-align: left;
+  line-height: 2.4rem;
+  position: relative;
+  top: 1.8rem;
+}
+#user .user_top .authorized .userPhoto .nome span {
+  font-size: 1.4rem;
+  color: #000;
+}
+#user .user_top .authorized .userPhoto .nome span img {
+  width: 1.2rem;
+  height: 1.4rem;
+  margin-left: 1rem;
+}
+#user .user_top .sign_in {
+  display: block;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  text-align: center;
+  background: url(../image/sign_in_01.jpg) no-repeat;
+  background-size: 100% auto;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .check_in {
+  display: block;
+  height: 4.5rem;
+  text-align: center;
+  background: url(../image/sign_in_02.jpg) no-repeat;
+  background-size: 100% 100%;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .glb {
+  background-color: #fff;
+  padding: 10px 0px;
+  margin-bottom: 1rem;
+}
+#user .user_top .glb span {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  text-indent: 1.5rem;
+  position: relative;
+}
+#user .user_top .glb span i {
+  display: block;
+  width: 1px;
+  height: 2.5rem;
+  background-color: #e5e5e5;
+  float: right;
+}
+#user .user_top .glb span em {
+  font-size: 1.6rem;
+  position: relative;
+}
+#user .user_top .glb span em a {
+  display: block;
+  width: 5.1rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  border-radius: 2px;
+  background-color: #ff5d7c;
+  position: absolute;
+  top: -1.1rem;
+  right: -5.5rem;
+}
+#user .user_top .glb span em a b {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+  text-indent: 3px;
+}
+#user .user_top .glb span em a b img {
+  width: 4px;
+  height: 6px;
+  position: absolute;
+  left: -3px;
+  top: 6px;
+}
+#user .user_top .glb span a {
+  display: block;
+  width: 5.1rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  border-radius: 2px;
+  background-color: #ff5d7c;
+  position: absolute;
+  top: -0.7rem;
+  right: 0;
+}
+#user .user_top .glb span a b {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+  text-indent: 3px;
+}
+#user .user_top .glb span a b img {
+  width:.4rem;
+  height:.6rem;
+  position: absolute;
+  left:-0.4rem;
+  top:.6rem;
+}
+#user .user_top .wholesale_car {
+  background-color: #fff;
+  padding: 1.5rem 3.8rem 1.5rem 6.5rem;
+  height: 4rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+#user .user_top .wholesale_car img {
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+}
+#user .user_top .wholesale_car p {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+  margin-bottom: 8px;
+}
+#user .user_top .wholesale_car p i {
+  position: absolute;
+  right: 0;
+  color: #999;
+}
+#user .user_top .wholesale_car .right {
+  width: 2rem;
+  height: 5.6rem;
+  background-color: #ffca00;
+  border-radius: 5px 0 0 5px;
+  font-size: 1rem;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: .5rem;
+  color: #fff;
+  line-height: 1.3rem;
+  padding-top: .4rem;
+}
+#user .user_top .generalize {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .generalize a {
+  display: block;
+}
+#user .user_top .generalize a img {
+  width: 2.4rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+#user .user_top .generalize a span {
+  font-size: 1.4rem;
+  color: #000;
+}
+#user .user_top .generalize1 {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .generalize1 a {
+  display: block;
+}
+#user .user_top .generalize1 a .img {
+  width: 4.1rem;
+  height: 2.4rem;
+  margin-right: 1rem;
+}
+#user .user_top .generalize1 a span {
+  display: inline-block;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+}
+#user .user_top .generalize1 a span i {
+  display: block;
+  width: 3rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  border-radius: 2px;
+  position: absolute;
+  right: -3.5rem;
+  background-color: #f00;
+  top: 4px;
+  font-size:0.8rem;
+  color: #fff;
+  text-align: center;
+}
+#user .user_top .generalize1 a span i img {
+  width: .4rem;
+  height: .6rem;
+  margin-right: 1px;
+    position: absolute;width: 3px;left: -3px;top: 50%;margin-top: -5px;
+    
+}
+#user .user_top .platoon_run {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  margin-bottom: 1rem;
+  padding: 0 10px;
+}
+#user .user_top .platoon_run span {
+  display: block;
+  width: 48%;
+  margin-right: 4%;
+  float: left;
+  background-color: #fff;
+  text-align: center;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#user .user_top .platoon_run span img {
+  width: 2.6rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+#user .user_top .platoon_run span:nth-child(2n) {
+  margin-right: 0px;
+}
+#user .user_top .oder {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .oder .top {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+}
+#user .user_top .oder .top a {
+  position: absolute;
+  right: 1.5rem;
+  top: 0px;
+}
+#user .user_top .oder .top a span {
+  margin-left: 1rem;
+  color: #666;
+}
+#user .user_top .oder ul li {
+  width: 25%;
+  float: left;
+  text-align: center;
+  padding: 1.5rem 0;
+  background-color: #fff;
+  position: relative;
+}
+#user .user_top .oder ul li span {
+  font-size: 2.5rem;
+  color: #666;
+}
+#user .user_top .oder ul li p {
+  height: 13px;
+  line-height: 1.3rem;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top:.9rem;
+}
+#user .user_top .oder ul li i {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid #ff0000;
+  border-radius:50%;
+  line-height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #ff0000;
+  position: absolute;
+  right: 50%;
+  top: .8rem;
+  margin-right: -1.9rem;
+  background-color: #fff;
+    display: -webkit-flex; -webkit-align-items: center; -webkit-justify-content: center;
+}
+#user .user_top .ambassador_btn {
+  display: block;
+  height: auto;
+  text-align: center;
+  background: url(../image/sign_in_03.jpg) no-repeat;
+  background-size: 100% 100%;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .ambassador_btn img {
+  width: 100%;
+}
+#user .user_top .ambassador_btn1 {
+  display: block;
+  height: auto;
+  text-align: center;
+  background: url(../image/sign_in_04.jpg) no-repeat;
+  background-size: 100% 100%;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .ambassador_btn1 img {
+  width: 100%;
+}
+#user .user_top .nav_btm {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#user .user_top .nav_btm li {
+  width: 25%;
+  padding: 1.5rem 0;
+  float: left;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+#user .user_top .nav_btm li img {
+  width: 3rem;
+  height: 3rem;
+}
+#user .user_top .nav_btm li p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 9px;
+}
+#user .user_top .business_man {
+  background-color: #fff;
+}
+#user .user_top .business_man .top {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+}
+#user .user_top .business_man .top a {
+  display: block;
+  height: 4.4rem;
+  line-height: 4.4rem;
+  color: #000;
+}
+#user .user_top .business_man .top a img {
+  width: 2.1rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+#user .user_top .business_man .top a span {
+  margin-left: 1rem;
+  color: #666;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+}
+#user .leaderboard .top {
+  height: 4rem;
+  line-height: 4rem;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: .5rem;
+}
+#user .leaderboard .top span {
+  display: inline-block;
+  width: auto;
+}
+#user .leaderboard .top i {
+  display: inline-block;
+  width: 33.33%;
+  margin: 0 auto;
+}
+#user .leaderboard .top span:nth-child(1) {
+  float: left;
+  margin-left: 5rem;
+}
+#user .leaderboard .top span:nth-child(3) {
+  float: right;
+  margin-right: 3rem;
+}
+#user .leaderboard .list li {
+  height: 5rem;
+  line-height: 5rem;
+  background-color: #fff;
+  padding: 0 1.5rem;
+}
+#user .leaderboard .list li p {
+  height: 4.9rem;
+  line-height: 4.9rem;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  font-size: 1.4rem;
+  color: #f47901;
+  text-align: center;
+}
+#user .leaderboard .list li p .photo {
+  width: 30px;
+  height: 3rem;
+  position: absolute;
+  left: 0;
+  top: 10px;
+  border-radius: 15px;
+}
+#user .leaderboard .list li p .awa {
+  width: 3.2rem;
+  height: 2.5rem;
+}
+#user .leaderboard .list li p span {
+  display: inline-block;
+  width: auto;
+  color: #000;
+  position: absolute;
+  left: 5rem;
+}
+#user .leaderboard .list li p i {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 7px;
+  background-color: #fab218;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+}
+#user .leaderboard .list li:nth-child(1) p,
+#user .leaderboard .list li:nth-child(2) p,
+#user .leaderboard .list li:nth-child(3) p {
+  color: #f00;
+}
+#user .leaderboard .list li:nth-child(1) i,
+#user .leaderboard .list li:nth-child(2) i,
+#user .leaderboard .list li:nth-child(3) i {
+  background-color: #f00;
+}
+#user .leaderboard .list li:nth-child(3),
+#user .leaderboard .list li:last-child {
+  margin-bottom: .5rem;
+}
+#user .leaderboard .list li:nth-child(3) p,
+#user .leaderboard .list li:last-child p {
+  border-bottom: 1px solid #fff;
+}
+/*END*/
+/*18每日签到*/
+#daily_check .check_top {
+  height: 20rem;
+  background: url(../image/daily_check.jpg) no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+}
+#daily_check .check_top .top {
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #fff;
+  padding-top: 30px;
+}
+#daily_check .check_top .date {
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #f3f370;
+  padding-top: 2rem;
+}
+#daily_check .check_top button {
+  border: solid 1px #f53c54;
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
+  width: 11.5rem;
+  height: 4rem;
+  border-radius: 2rem;
+  margin-top: 1.8rem;
+  overflow: hidden;
+  -webkit-appearance: none;
+  padding: 0;
+}
+#daily_check .check_top button span {
+  display: inline-block;
+  background-color: #f0f0f0;
+  box-shadow: inset 0px 0px 20px 3px rgba(250, 157, 169, 0.7);
+  margin: 0;
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  border-radius: 2rem;
+  margin-top: -2px;
+  font-size: 1.5rem;
+  color: #f53c54;
+}
+#daily_check .check_top button.on span {
+  font-size: 1.5rem;
+  color: #999;
+}
+#daily_check .check_top .btm {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #fff;
+  margin-top: 2.1rem;
+}
+#daily_check .list {
+  margin-bottom: 2rem;
+}
+#daily_check .list h2 {
+  height: 5.4rem;
+  line-height: 5.4rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  background-color: #fff;
+}
+#daily_check .list ul li {
+  height: 4rem;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  padding:1.5rem;
+  background-color: #fff;
+}
+#daily_check .list ul li .date {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #666;
+}
+#daily_check .list ul li .con {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #333;
+  margin-top: 1rem;
+}
+#daily_check .list ul li span {
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  color: #000;
+  position: absolute;
+  right: 1.5rem;
+  top: 2.5rem;
+}
+#daily_check .list .more {
+  height: 5rem;
+  line-height: 5rem;
+}
+/*END*/
+/*30-15我的团队*/
+#ambassador_team .team {
+  padding-top: 5px;
+}
+#ambassador_team .team .top {
+  padding: 1.5rem;
+  background-color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#ambassador_team .team .top .title {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #b28850;
+  margin-bottom: 1.8rem;
+}
+#ambassador_team .team .top .day {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #b28850;
+  margin-bottom: 2rem;
+}
+#ambassador_team .team .top .day b {
+  font-size: 40px;
+}
+#ambassador_team .team .top .date {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #b28850;
+}
+#ambassador_team .team .performance_list {
+  padding: 2rem 1.5rem;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#ambassador_team .team .performance_list p {
+  display: block;
+  width: 50%;
+  float: left;
+  text-align: center;
+  position: relative;
+}
+#ambassador_team .team .performance_list p span {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  margin-bottom: 13px;
+}
+#ambassador_team .team .performance_list p b {
+  display: block;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  font-size: 2rem;
+  color: #ff4d64;
+}
+#ambassador_team .team .performance_list p i {
+  display: block;
+  width: 1px;
+  height: 5rem;
+  background-color: #e5e5e5;
+  position: absolute;
+  top: 0px;
+  right: 0;
+}
+#ambassador_team .team .performance_list p em {
+  display: none;
+  line-height: 5rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#ambassador_team .team .performance_list p.on em {
+  display: block;
+}
+#ambassador_team .team .performance_list p.on span,
+#ambassador_team .team .performance_list p.on b {
+  display: none;
+}
+#ambassador_team .team ul li {
+  height: 6rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  margin-bottom: .5rem;
+  padding-left: 90px;
+  position: relative;
+}
+#ambassador_team .team ul li img.head {
+  width: 60px;
+  height: 6rem;
+  border-radius: 30px;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+#ambassador_team .team ul li p {
+  height: 2.4rem;
+  line-height: 2.4rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#ambassador_team .team ul li p .awa {
+  height: 1.6rem;
+  width: auto;
+  position: relative;
+  top: -2px;
+  margin-left: 1rem;
+}
+#ambassador_team .team ul li .pt {
+  padding-top: 6px;
+}
+#ambassador_team .team ul li span {
+  display: inline-block;
+  position: absolute;
+  right: 1.5rem;
+  top: 2.5rem;
+  text-align: right;
+}
+#ambassador_team .team ul li span i {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #999;
+  margin-bottom: 9px;
+}
+#ambassador_team .team ul li span b {
+  display: block;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #ff4d64;
+  font-weight: normal;
+}
+/*30-15我的团队 END*/
+/*30-16个人业绩*/
+#ambassador_performance .performance {
+  padding-top: 5px;
+}
+#ambassador_performance .performance h2 {
+  height: 5.5rem;
+  line-height: 5.5rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  font-size: 1.4rem;
+  color: #999;
+  text-align: center;
+}
+#ambassador_performance .performance h2 i {
+  color: #ff4d64;
+}
+#ambassador_performance .performance ul li {
+  height: 6rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  margin-bottom: .5rem;
+  padding-left: 90px;
+  position: relative;
+}
+#ambassador_performance .performance ul li img {
+  width: 60px;
+  height: 6rem;
+  border-radius: 30px;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+}
+#ambassador_performance .performance ul li p {
+  line-height: 2.4rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#ambassador_performance .performance ul li .pt {
+  padding-top: 6px;
+}
+/*30-16个人业绩 END*/
+/*30-17比赛排行榜*/
+#ambassador_list .rankingsbox .top {
+  background-color: #fff;
+  padding: 2rem 1.5rem;
+  margin-bottom: .5rem;
+}
+#ambassador_list .rankingsbox .top .left {
+  width: 25%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .top .conter {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .top .right {
+  width: 25%;
+  text-align: center;
+  float: right;
+}
+#ambassador_list .rankingsbox .top span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 1.2rem;
+}
+#ambassador_list .rankingsbox .top p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+#ambassador_list .rankingsbox .rankings {
+  margin-bottom: 1rem;
+}
+#ambassador_list .rankingsbox .rankings .title {
+  padding: 0 1.5rem;
+  background-color: #fff;
+  font-size: 1.2rem;
+  color: #666;
+  height: 39px;
+  line-height: 39px;
+  border-bottom: 1px solid #e5e5e5;
+}
+#ambassador_list .rankingsbox .rankings .title .left {
+  width: 25%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .rankings .title .conter {
+  width: 50%;
+  text-align: center;
+  float: left;
+  color: #000;
+}
+#ambassador_list .rankingsbox .rankings .title .right {
+  width: 25%;
+  text-align: center;
+  float: right;
+}
+#ambassador_list .rankingsbox .rankings ul li {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 1.4rem;
+  color: #000;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 1.5rem;
+  background-color: #fff;
+}
+#ambassador_list .rankingsbox .rankings ul li .left {
+  width: 25%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .rankings ul li .conter {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .rankings ul li .right {
+  width: 25%;
+  text-align: center;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#ambassador_list .rankingsbox .rankings ul li:nth-child(1),
+#ambassador_list .rankingsbox .rankings ul li:nth-child(2),
+#ambassador_list .rankingsbox .rankings ul li:nth-child(3) {
+  color: #ff4d64;
+}
+#ambassador_list .rankingsbox .rankings ul li:nth-child(3) {
+  border-bottom: 1px solid #fff;
+  margin-bottom: .5rem;
+}
+#ambassador_list .rankingsbox .btm {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  width: 100%;
+  font-size: 1.4rem;
+  color: #fab218;
+  border-top: 1px solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+}
+#ambassador_list .rankingsbox .btm .left {
+  width: 25%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .btm .conter {
+  width: 50%;
+  text-align: center;
+  float: left;
+}
+#ambassador_list .rankingsbox .btm .right {
+  width: 25%;
+  text-align: center;
+  float: right;
+}
+/*30-17比赛排行榜 END*/
+/*31卖车会员车商*/
+#buyCarVip .vipbox .bnr {
+  margin-bottom: 1rem;
+  position: relative;
+  text-align: center;
+}
+#buyCarVip .vipbox .bnr img {
+  width: 100%;
+  height: auto;
+}
+#buyCarVip .vipbox .bnr p {
+  width: 100%;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #ffca00;
+  position: absolute;
+  bottom: 22px;
+}
+#buyCarVip .vipbox .text {
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#buyCarVip .vipbox .text h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e5e5;
+}
+#buyCarVip .vipbox .text .text_con {
+  padding: 1.5rem;
+  line-height: 2.9rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#buyCarVip .vipbox .setMeal {
+  background-color: #fff;
+  padding: 1.5rem;
+  padding-bottom: 1px;
+}
+#buyCarVip .vipbox .setMeal .btn {
+  height: 5.8rem;
+  line-height: 5.8rem;
+  border: 1px solid #ffea3b;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-left: 70px;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+#buyCarVip .vipbox .setMeal .btn img {
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 2.3rem;
+  position: absolute;
+  top:.6rem;
+  left: 1rem;
+}
+#buyCarVip .vipbox .setMeal .btn .meal {
+  display: inline-block;
+  width: 34%;
+  height: 4rem;
+  line-height: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  float: left;
+}
+#buyCarVip .vipbox .setMeal .btn .meal span {
+  display: block;
+  font-size: 1.2rem;
+  color: #fff;
+}
+#buyCarVip .vipbox .setMeal .btn .meal b {
+  display: block;
+  font-size: 1.7rem;
+  color: #fff;
+  font-weight: bold;
+}
+#buyCarVip .vipbox .setMeal .btn .meal i {
+  display: block;
+  width: 1px;
+  height: 4rem;
+  background-color: #fce945;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#buyCarVip .vipbox .setMeal .btn .price {
+  display: inline-block;
+  width: auto;
+  height: 4rem;
+  line-height: 4rem;
+  float: left;
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  color: #fff;
+  font-weight: bold;
+  padding-left: 1.5rem;
+}
+#buyCarVip .vipbox .setMeal .btn button {
+  width: 8rem;
+  height: 4rem;
+    border: none;background: url(../image/buy_btnBg.png) no-repeat;background-size:8rem 4rem; 
+  /*border: 1px solid #ff9b05;*/
+  /*border-radius: 1.5rem;*/
+  position: absolute;
+  top: 0.9rem;
+  right:0.5rem;
+  background-color: transparent;
+  /*box-shadow: 0 0 15px 1px rgba(51, 51, 51, 0.3);*/
+  font-size: 1.2rem;
+  color: #117ffb;
+  padding: 0;
+}
+#buyCarVip .vipbox .setMeal .btn_bg1 {
+  background: url(../image/vip_bnt_bg_03.png) no-repeat;
+  background-repeat: repeat-x;
+}
+#buyCarVip .vipbox .setMeal .btn_bg2 {
+  background: url(../image/vip_bnt_bg_06.png) no-repeat;
+  background-repeat: repeat-x;
+}
+#buyCarVip .vipbox .setMeal .btn_bg3 {
+  background: url(../image/vip_bnt_bg_08.png) no-repeat;
+  background-repeat: repeat-x;
+}
+/*31卖车会员车商 END*/
+/*32入驻商家联盟*/
+#business_occupancy .business .top {
+  margin-bottom: 1rem;
+}
+#business_occupancy .business .top img {
+  width: 100%;
+  height: auto;
+}
+#business_occupancy .business .activity_int {
+  background-color: #fff;
+}
+#business_occupancy .business .activity_int h2 {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+#business_occupancy .business .activity_int .con {
+  padding: 1.5rem;
+  line-height: 3rem;
+  font-size: 1.4rem;
+  color: #000;
+  padding-bottom: 3rem;
+}
+#business_occupancy .business .activity_int .con img {
+  width: 100%;
+  height: auto;
+  margin:0.5rem 0;
+}
+#business_occupancy .business .activity_int .con p.on {
+  color: #ff4d64;
+}
+/*END*/
+/*33-1商家信息管理*/
+#administer .administerbox .recharge {
+  height: auto;
+  line-height: 2rem;
+  padding: 1rem 8rem 1rem 1.5rem;
+  position: relative;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  background-color: #ffefc7;
+  margin-bottom: .5rem;
+}
+#administer .administerbox .recharge i {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  border-radius: 9px;
+  background-color: #ff4d64;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: bold;
+  margin-right:.5rem;
+}
+#administer .administerbox .recharge a {
+  display: inline-block;
+  width: 6.8rem;
+  height: 2.3rem;
+  border-radius: 2px;
+  border: 1px solid #ff4d64;
+  line-height: 2.3rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff4d64;
+  margin-left: .5rem;
+  position: absolute;
+  right: 1.5rem;
+  top: .7rem;
+  background-color: #ffefc7;
+}
+#administer .administerbox .browse_praise {
+  margin-bottom: .5rem;
+}
+#administer .administerbox .browse_praise .left {
+  width: 49%;
+  margin-right: 2%;
+  float: left;
+  padding: 2rem 0;
+  text-align: center;
+  background-color: #fff;
+}
+#administer .administerbox .browse_praise .left span {
+  font-size: 1.6rem;
+  color: #ff5d7c;
+}
+#administer .administerbox .browse_praise .left p {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: .8rem;
+}
+#administer .administerbox .browse_praise .right {
+  width: 49%;
+  float: left;
+  padding: 2rem 0;
+  text-align: center;
+  background-color: #fff;
+}
+#administer .administerbox .browse_praise .right span {
+  font-size: 1.6rem;
+  color: #ff5d7c;
+}
+#administer .administerbox .browse_praise .right p {
+  height: 1.6rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #000;
+  margin-top: .8rem;
+}
+#administer .administerbox .validity_period {
+  color: #b28850;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#administer .administerbox .list li {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+  margin-bottom: 1rem;
+}
+#administer .administerbox .list li a {
+  display: block;
+  color: #000;
+}
+#administer .administerbox .list li a span {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  color: #666;
+}
+#administer .administerbox .list li .widget-switch {
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+  background-size: 55px 56px;
+  vertical-align: middle;
+  background-position: 0 0;
+  position: absolute;
+  right: 1.5rem;
+  top:1rem;
+}
+#administer .administerbox .list li .widget-switch.on {
+  background-position: 0 -28px;
+}
+#administer .administerbox .list li.widget {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+#administer .administerbox .list li:last-child {
+  margin-bottom: 0;
+  height: auto;
+  padding: 1.2rem 1.5rem;
+}
+#administer .administerbox .list li:last-child p {
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  color: #ff5d7c;
+  white-space: pre-line;
+}
+/*END*/
+/*33-2商家信息管理 认证*/
+#administer_certification .certification {
+  padding: 1.5rem 1.5rem 0;
+    background-color: #fff;
+}
+#administer_certification .certification li {
+  padding-left: 7.5rem;
+  height:1.5rem;line-height: 1.5rem;margin-bottom: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+}
+#administer_certification .certification li:last-child{margin-bottom: 0;}
+#administer_certification .certification li.upload{height: auto;border-bottom: solid 1px #ccc;padding-bottom: 1rem;}
+#administer_certification .certification li.upload:last-child{border-bottom: none;padding-bottom: 2rem;}
+#administer_certification .certification li.upload span{/*top: 0.2rem;*/}
+#administer_certification .shengjiTip{padding: 0 3rem;margin-top: 2rem;}
+#administer_certification .shengjiTip button{font-size: 1.6rem;color: #ff5d7c;background-color: #fff;border: solid 1px #ff5d7c;width: 100%;height: 4rem;line-height: 4rem;}
+
+#administer_certification .certification li span {
+  display: block;
+  height: 1.5rem;line-height: 1.5rem;
+  width: 7rem;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top:0.2rem;
+  text-align: right;
+}
+#administer_certification .certification li.upload span{top: 0;}
+#administer_certification .certification li p {
+  line-height: 1.5rem;
+  color: #999;
+  /*white-space: pre-line;*/
+}
+#administer_certification .certification li p.p {
+  margin-bottom: 1rem;
+}
+#administer_certification .certification li input {
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+    font-size: 1.4rem;
+}
+#administer_certification .certification li img {
+  width: 38%;
+  margin-right: 6%;
+  height: auto;
+  float: left;
+}
+#administer_certification .certification li a {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  text-align: center;
+  line-height: 10rem;
+  background-color: #ccc;
+  position: relative;margin-top: 0.5rem;
+}
+#administer_certification .certification li a img.img {
+  width: 100%;
+}
+#administer_certification .certification li a .icon-add {
+  font-size: 2rem;
+  color: #fff;
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+#administer_certification .certification.cer span {
+  text-align: left;
+}
+/*END*/
+/*33-3模板选择*/
+#administer_formwork .formwork {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+#administer_formwork .formwork li {
+  width: 48%;
+  margin-right: 4%;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 3%;
+  float: left;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+    box-sizing: border-box;
+}
+#administer_formwork .formwork li img {
+  width: 100%;
+  height: auto;
+}
+#administer_formwork .formwork li .select {
+  border-top: 1px solid #e5e5e5;
+  padding: 1rem;
+  text-align: center;
+}
+#administer_formwork .formwork li .select .numbering {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+#administer_formwork .formwork li .select .selectbtn {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #999;
+  color: #000;
+}
+#administer_formwork .formwork li .select .selectbtn span {
+  margin-right:.5rem;
+}
+#administer_formwork .formwork li .select .selectbtn .on {
+  color: #ff3d57;
+}
+#administer_formwork .formwork li:nth-child(2n) {
+  margin-right: 0;
+}
+/*END*/
+/*33-4_1~2添加/编辑轮播图片*/
+#administer_uploadBanner .uploadBanner {
+  padding-bottom: 1rem;
+}
+#administer_uploadBanner .uploadBanner .prompting {
+  height: 4rem;
+  line-height: 4rem;
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#administer_uploadBanner .uploadBanner .prompting i {
+  color: #ff5d7c;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox {
+  padding: 1.5rem;
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 1rem;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox img {
+  width: 100%;
+  height: auto;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox .uoload {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  background-color: #ccc;
+  text-align: center;
+  padding-top: 25.5%;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox .uoload span {
+  font-size: 40px;
+  color: #fff;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox .uoload p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-top: 9px;
+  color: #fff;
+}
+#administer_uploadBanner .uploadBanner .uoloadbox .uoload.on {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#administer_uploadBanner .uploadBanner .address {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  background-color: #fff;
+  padding: 0 1.5rem;
+  padding-left: 85px;
+  position: relative;
+  margin-bottom: 1rem;
+}
+#administer_uploadBanner .uploadBanner .address span {
+  display: block;
+  position: absolute;
+  left: 1.5rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#administer_uploadBanner .uploadBanner .address input {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+    font-size: 1.4rem;
+}
+#administer_uploadBanner .uploadBanner .widget {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+}
+#administer_uploadBanner .uploadBanner .widget .widget-switch {
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+  background-size: 55px 56px;
+  vertical-align: middle;
+  background-position: 0 0;
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+}
+#administer_uploadBanner .uploadBanner .widget .widget-switch.on {
+  background-position: 0 -28px;
+}
+#administer_uploadBanner .uploadBanner .preservation {
+  padding: 2rem 1.5rem;
+}
+#administer_uploadBanner .uploadBanner .preservation button {
+  display: block;
+  height: 4rem;
+  width: 100%;
+  background-color: #ff4d64;
+  font-size: 1.6rem;
+  color: #fff;
+  border: 0;
+}
+#administer_uploadBanner .detailBanner {
+  padding: 1rem 0;
+}
+#administer_uploadBanner .detailBanner li {
+  margin-bottom: 1rem;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox {
+  padding: 1.5rem;
+  background-color: #fff;
+  position: relative;
+  padding-bottom: 0;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox img {
+  width: 100%;
+  height: auto;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox .uoload {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0px;
+  background-color: #ccc;
+  text-align: center;
+  padding-top: 25.5%;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox .uoload span {
+  font-size: 40px;
+  color: #fff;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox .uoload p {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-top: 9px;
+  color: #fff;
+}
+#administer_uploadBanner .detailBanner li .uoloadbox .uoload.on {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#administer_uploadBanner .detailBanner .widget {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+}
+#administer_uploadBanner .detailBanner .widget span {
+  font-size: 1.2rem;
+  color: #7a7e83;
+  margin-right: 50px;
+}
+#administer_uploadBanner .detailBanner .widget span b {
+  font-size: 1.5rem;
+  position: relative;
+  top: 2px;
+  margin-right:.5rem;
+}
+#administer_uploadBanner .detailBanner .widget .widget-switch {
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+  background-size: 55px 56px;
+  vertical-align: middle;
+  background-position: 0 0;
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+}
+#administer_uploadBanner .detailBanner .widget .widget-switch.on {
+  background-position: 0 -28px;
+}
+/*END*/
+/*33-5商家介绍*/
+#administer_set .introduce .textarea {
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+#administer_set .introduce .textarea textarea {
+  width: 100%;
+  min-height:13rem;
+  border: 0;
+  resize: none;
+  background-color: transparent;
+    font-size: 1.4rem;
+}
+#administer_set .introduce .upload {
+  background-color: #fff;
+  padding: 0 1.5rem;
+}
+#administer_set .introduce .upload p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+#administer_set .introduce .upload p span {
+  color: #ccc;
+  margin-left: 1rem;
+}
+#administer_set .introduce .upload ul {
+  padding-bottom: 1rem;
+}
+#administer_set .introduce .upload ul li {
+  width:100px;
+  height:75px;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  float: left;
+}
+#administer_set .introduce .upload ul li img {
+  width:100px;
+  height: 75px;
+}
+#administer_set .introduce .upload ul li:nth-child(3n) {
+  margin-right: 0;
+}
+/*END*/
+/*33-5~7基本设置*/
+#administer_set .set {
+  padding-top: 1rem;
+}
+#administer_set .logo_set {
+  background-color: #fff;
+  padding: 4.5rem 1.5rem 1.5rem 8.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+#administer_set .logo_set p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  padding-left: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#administer_set .logo_set p .title{width: 7rem;display: inline-block;}
+#administer_set .logo_set p span {
+  color: #ccc;
+}
+#administer_set .logo_set a {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  text-align: center;
+  line-height: 10rem;
+  background-color: #ccc;
+}
+#administer_set .logo_set a img {
+  width: 100%;
+}
+#administer_set .logo_set a span {
+  font-size: 2rem;
+  color: #fff;
+}
+#administer_set .set .upload p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  padding-left: 8.5rem;
+  padding-right: 1rem;
+  position: relative;
+}
+#administer_set .set .upload p i {
+  position: absolute;
+  display: block;
+  left: 1.5rem;
+  width: 70px;
+  color: #000;
+}
+#administer_set .set .upload p a {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+#administer_set .set .upload p a .icon-arrow_right {
+  color: #ccc;
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+}
+#administer_set .set .upload p input {
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+/*END*/
+/*33-2~7商家信息管理 认证*/
+#administer_contact .certification {
+  padding-top: 1.5rem;
+  margin-bottom:1rem;
+}
+#administer_contact .certification li {
+  padding: 12px 15px 12px 100px;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+  min-height: 1.6rem;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+#administer_contact .certification li span {
+  display: block;
+  height: 1.6rem;
+  width: 7rem;
+  overflow: hidden;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.2rem;
+  text-align: left;
+}
+#administer_contact .certification li p {
+  line-height: 2.1rem;
+  color: #999;
+  white-space: pre-line;
+}
+#administer_contact .certification li textarea {
+  line-height: 2.1rem;
+  white-space: pre-line;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
+  resize: none;
+    font-size: 1.4rem;
+}
+#administer_contact .certification li input {
+  line-height: 2.1rem;
+  white-space: pre-line;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
+    font-size: 1.4rem;
+}
+#administer_contact .certification li img {
+  width: 38%;
+  margin-right: 6%;
+  height: auto;
+  float: left;
+}
+#administer_contact .certification li i {
+  position: absolute;
+  font-size: 2rem;
+  color: #999;
+  right: 1.5rem;
+  top: 12px;
+}
+#administer_contact .certification li i.red {
+  color: #ff5d7c;
+}
+#administer_contact .certification li.btm0 {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/*....................................*/
+#administer_contact .contactType .box{margin-bottom: 1rem;}
+#administer_contact .contactType .box:first-child .icon-adds{color: #ff5d7c !important;display: block;}
+#administer_contact .contactType .box:first-child .icon-turn_off{display: none;}
+#administer_contact .contactType .box .icon-turn_off{display:block;}
+#administer_contact .contactType .box .icon-adds{display:none;}
+#administer_contact .contactType .box .smbox{
+  padding: 12px 15px 12px 100px;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+  min-height: 1.6rem;
+  background-color: #fff;
+    border-bottom: solid 1px #e5e5e5;
+}
+#administer_contact .contactType .box .smbox:last-child{border-bottom: none;}
+#administer_contact .contactType .box .smbox span {
+  display: block;
+  height: 1.6rem;
+  width: 7rem;
+  overflow: hidden;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.2rem;
+  text-align: left;
+}
+#administer_contact .certification li p {
+  line-height: 2.1rem;
+  color: #999;
+  white-space: pre-line;
+}
+
+#administer_contact .contactType .box .smbox input {
+  line-height: 2.1rem;
+  white-space: pre-line;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  padding: 0;
+    font-size: 1.4rem;
+}
+#administer_contact .contactType .box .smbox img {
+  width: 38%;
+  margin-right: 6%;
+  height: auto;
+  float: left;
+}
+#administer_contact .contactType .box .smbox i {
+  position: absolute;
+  font-size: 2rem;
+  color: #999;
+  right: 1.5rem;
+  top: 12px;
+}
+#administer_contact .contactType .box .smbox i.red {
+  color: #ff5d7c;
+}
+
+/*....................................*/
+/*END*/
+/*34-1个人中心*/
+#user2 .user_set .list {
+  padding-top: 1rem;
+}
+#user2 .user_set .list li {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  position: relative;
+  margin-bottom: 1rem;
+    color: #000;
+}
+
+#user2 .user_set .list li span {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  color: #666;
+}
+#user2 .user_set .list li .widget-switch {
+  display: inline-block;
+  width: 55px;
+  height: 28px;
+  background-size: 55px 56px;
+  vertical-align: middle;
+  background-position: 0 0;
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+}
+#user2 .user_set .list li .widget-switch.on {
+  background-position: 0 -28px;
+}
+#user2 .user_set .list li .right {
+  position: absolute;
+  right: 1.5rem;
+  top: 0px;
+}
+#user2 .user_set .list li.widget {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+#user2 .user_set .list li:last-child {
+  margin-bottom: 0;
+  color: #ff4d64;
+  text-align: center;
+}
+#user2 .user_set .list li:last-child a {
+  color: #ff4d64;
+}
+/*END*/
+/*34-2个人信息*/
+#user2_individual .individual .infourmation {
+  padding: 0 3rem 2rem;
+  background-color: #fff;
+}
+#user2_individual .individual .infourmation p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  padding-left: 7rem;
+  position: relative;
+  font-size: 1.4rem;
+  color: #000;
+}
+#user2_individual .individual .infourmation p .left {
+  display: block;
+  width: 7rem;
+  position: absolute;
+  left: 0;
+}
+#user2_individual .individual .infourmation p input {
+  width: auto;
+  border: 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+    font-size: 1.4rem;
+}
+#user2_individual .individual .infourmation p em {
+  margin-right: 4rem;
+}
+#user2_individual .individual .infourmation p .widget-checkbox {
+  margin-right: 1rem;
+  position: relative;
+  bottom: 3px;
+}
+#user2_individual .individual .infourmation p i {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  color: #666;
+}
+#user2_individual .individual .infourmation p .mr {
+  margin-right: 0;
+}
+
+#user2_individual .individual .icon-arrow_right{position: absolute;right: 0;bottom: 0;line-height: 4.5rem;}
+#user2_individual .individual .infourmation .upload{height: auto;border-bottom: none;}
+#user2_individual .individual .infourmation .upload .tip{color: #ccc;font-size: 1.4rem;}
+#user2_individual .individual .infourmation .upload img{width: 10rem;height: 10rem;display: block;}
+
+#user2_individual .individual .logo_set {
+  background-color: #fff;
+  padding: 4.5rem 1.5rem 1.5rem 10rem;
+  position: relative;
+}
+#user2_individual .individual .logo_set p {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 1.4rem;
+  color: #ccc;
+  padding-left: 1.5rem;
+  
+}
+#user2_individual .individual .logo_set p span {
+  color: #000;
+  display: inline-block;
+  width: 8.5rem;
+  text-indent: 1.5rem;
+}
+#user2_individual .individual .logo_set a {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  text-align: center;
+  line-height: 10rem;
+  background-color: #ccc;
+}
+#user2_individual .individual .logo_set a img {
+  width: 100%;
+}
+#user2_individual .individual .logo_set a span {
+  font-size: 2rem;
+  color: #fff;
+}
+#user2_individual .individual .preservation {
+  padding: 2rem 1.5rem;
+}
+#user2_individual .individual .preservation button {
+  display: block;
+  height: 4rem;
+  width: 100%;
+  background-color: #ff4d64;
+  font-size: 1.6rem;
+  color: #fff;
+  border: 0;
+}
+/*END*/
+/*34-4关于平台*/
+#user_platform .platform .top {
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+#user_platform .platform .top img {
+  width: 4.8rem;
+  height: 5.5rem;
+  margin-top: -1.5rem;
+  margin-right: 1.5rem;
+}
+#user_platform .platform .top span {
+  display: inline-block;
+  text-align: left;
+  position: relative;
+  top: 6px;
+}
+#user_platform .platform .top span b {
+  height: 2.1rem;
+  font-size: 1.9rem;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+#user_platform .platform .top span i {
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.2rem;
+  color: #000;
+}
+#user_platform .platform .cnt {
+  background-color: #fff;
+  padding: 1.5rem;
+  line-height: 2.3rem;
+  font-size: 1.3rem;
+  color: #000;
+}
+#user_platform .platform .cnt img {
+  width: 100%;
+  height: auto;
+}
+/*END>*/
+/*35-8车源列表*/
+#user_optionsList .options .list_title {
+  height: 4rem;
+  margin-bottom: .5rem;
+  background-color: #fff;
+}
+#user_optionsList .options .list_title span {
+  display: block;
+  width: 50%;
+  height: 4rem;
+  line-height: 4rem;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  font-size: 1.3rem;
+  color: #333;
+  float: left;
+}
+#user_optionsList .options .list_title span i {
+  display: block;
+  width: 1px;
+  height: 4rem;
+  background-color: #e5e5e5;
+  float: right;
+}
+#user_optionsList .options .list_title span.on {
+  border-bottom: 1px solid #ff4d64;
+  color: #ff4d64;
+}
+#user_optionsList .options .listBox ul li {
+  background-color: #fff;
+  padding: 0 1.5rem;
+  margin-bottom: .5rem;
+}
+#user_optionsList .options .listBox ul li .top {
+  height: 9rem;
+  padding: 1.5rem 0;
+  padding-left: 13.5rem;
+  position: relative;
+  border-bottom: 1px solid #e5e5e5;
+}
+#user_optionsList .options .listBox ul li .top img {
+  width: 12rem;
+  height: 9rem;
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+}
+#user_optionsList .options .listBox ul li .top .title {
+  height: 36px;
+  line-height: 1.8rem;
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+  margin-top: -2px;
+  margin-bottom: 13px;
+}
+#user_optionsList .options .listBox ul li .top .date {
+  height: 13px;
+  font-size: 1.1rem;
+  color: #8a869e;
+  margin-bottom: 13px;
+}
+#user_optionsList .options .listBox ul li .top .price {
+  height: 1.8rem;
+  line-height: 1.8rem;
+  font-size: 1.6rem;
+  color: #ff4d64;
+  font-weight: bold;
+}
+#user_optionsList .options .listBox ul li .top .price span {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+#user_optionsList .options .listBox ul li .top .price.on {
+  display: none;
+  position: relative;
+}
+#user_optionsList .options .listBox ul li .top .price.on em {
+  text-decoration: line-through;
+  color: #999;
+}
+#user_optionsList .options .listBox ul li .top .price.on i {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+#user_optionsList .options .listBox ul li .bottom {
+  height: 5rem;
+}
+#user_optionsList .options .listBox ul li .bottom button {
+  width: 48%;
+  height: 2.6rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 1.3rem;
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: #000;
+  margin-top: 1.2rem;
+  float: left;
+}
+#user_optionsList .options .listBox ul li .bottom button span {
+  font-size: 1.6rem;
+  color: #666;
+  margin-right: 1rem;
+  position: relative;
+  top: .2rem;
+}
+#user_optionsList .options .listBox ul li .bottom button.reds {
+  border: 1px solid #ff4d64;
+  background-color: #ff4d64;
+  color: #fff;
+  margin-left: 4%;
+}
+#user_optionsList .options .listBox ul li .bottom button.reds span {
+  color: #fff;
+}
+#user_optionsList .options .listBox ul li .bottom button.reds.on {
+  display: none;
+  border: 1px solid #ff4d64;
+  background-color: transparent;
+  color: #ff4d64;
+  margin-left: 4%;
+}
+#user_optionsList .options .listBox ul li .bottom button.reds.on span {
+  color: #ff4d64;
+}
+#user_optionsList .options .listBox ul li.on .top .price {
+  display: none;
+}
+#user_optionsList .options .listBox ul li.on .top .price.on {
+  display: block;
+}
+#user_optionsList .options .listBox ul li.on .bottom button.reds {
+  display: none;
+}
+#user_optionsList .options .listBox ul li.on .bottom button.reds.on {
+  display: block;
+}
+/*END*/
+/*35-10~11汽车详情*/
+#details .banner .kpf {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 3rem;
+  width: 8.4rem;
+}
+#details .topDetails {
+  background-color: #fff;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+#details .topDetails .tilte {
+  font-size: 1.6rem;
+  color: #000;
+  line-height: 2.6rem;
+  font-weight: bold;
+}
+#details .topDetails .price {
+  font-size: 2.5rem;
+  color: #ff4d64;
+  font-weight: bold;
+  margin-top: .5rem;
+}
+#details .topDetails .price em {
+  font-size: 1.6rem;
+}
+#details .topDetails .guide {
+  height: 4.3rem;
+  line-height: 4.3rem;
+  background-color: #ffecef;
+  border: solid 1px #ffa1ae;
+  position: relative;
+  margin-top: 1.5rem;
+}
+#details .topDetails .guide a {
+  display: inline-block;
+  width: 43%;
+  font-size: 1.6rem;
+  color: #5b5e7b;
+  font-weight: bold;
+}
+#details .topDetails .guide a em {
+  font-size: 1.2rem;
+  color: #5b5e7b;
+}
+#details .topDetails .guide .lBox {
+  position: absolute;
+  left: 0;
+  text-align: center;
+}
+#details .topDetails .guide .rBox {
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+#details .topDetails .guide img {
+  display: inline-block;
+  width: 4.6rem;
+  position: absolute;
+  left: 50%;
+  margin-left: -2.3rem;
+  top: -1.5rem;
+}
+#details .topDetails .carInfo {
+  border-top: solid 1px #e5e5e5;
+  padding-top: 2rem;
+  overflow: hidden;
+}
+#details .topDetails .carInfo li {
+  width: 33.3%;
+  float: left;
+  margin-bottom: 2rem;
+}
+#details .topDetails .carInfo li p {
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: bold;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  margin-bottom: 1rem;
+}
+#details .topDetails .carInfo li span {
+  font-size: 1.2rem;
+  color: #666;
+  height: 1.2rem;
+  line-height: 1.2rem;
+}
+#details .testReport {
+  background-color: #fff;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+#details .testReport .pubMoreLine {
+  font-weight: bold;
+  border-bottom: solid 1px #e5e5e5;
+}
+#details .testReport .demand {
+  height: 4.3rem;
+  line-height: 4.3rem;
+  background-color: #eaebf6;
+  margin: 1.5rem;
+  border: solid 1px #818795;
+  text-align: center;
+}
+#details .testReport .demand a {
+  display: block;
+  font-size: 1.6rem;
+  color: #ff4d64;
+  font-weight: bold;
+}
+#details .testReport .icon-detect {
+  font-size: 21px;
+  margin-right: 1rem;
+  position: relative;
+  top: 3px;
+}
+#details .testReport .icon-arrow_right {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+#details .carScene {
+  margin-top: 1rem;
+  background-color: #fff;
+}
+#details .carScene .pictureBox {
+  padding: 1.5rem;
+}
+#details .carScene .pictureBox li {
+  margin-bottom: 1.5rem;
+}
+#details .carScene .pictureBox li img {
+  width: 100%;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+#details .carScene .pictureBox li .description {
+  overflow: hidden;
+  margin-bottom: 23px;
+}
+#details .carScene .pictureBox li:last-child {
+  margin-bottom: 0;
+}
+#details .carScene .pictureBox li:last-child .description {
+  margin-bottom: 0;
+}
+#details .carScene .pictureBox li .description span {
+  float: left;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #333;
+  margin-right: 1.5rem;
+}
+#details .carScene .pictureBox li .description span em {
+  display: inline-block;
+  width: 2px;
+  height: 1.2rem;
+  background-color: #ff4d64;
+  margin-right:.5rem;
+}
+#details .carScene .pictureBox li .description .txt {
+  font-size: 1.4rem;
+  color: #666;
+}
+#details .likeArea {
+  margin-top: 1rem;
+  background-color: #fff;
+}
+#details .likeArea li {
+  margin-top: 0;
+  border-bottom: solid 1px #e5e5e5;
+}
+#popWindowTop {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+}
+#popWindowTop .box {
+  background-color: #fff;
+  padding: 4rem 1.5rem 2.5rem 1.5rem;
+  position: relative;
+}
+#popWindowTop .box h5 {
+  font-size: 1.6rem;
+  color: #000;
+  text-align: center;
+  height: 1.6rem;
+  line-height: 1.6rem;
+}
+#popWindowTop .box .tip {
+  font-size: 1.4rem;
+  color: #999;
+  text-align: center;
+  line-height: 1.9rem;
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+}
+#popWindowTop .box .price {
+  font-size: 1.4rem;
+  color: #ff4d64;
+  text-align: center;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+}
+#popWindowTop .box .inputLine {
+  height: 2.3rem;
+  line-height: 2.3rem;
+  border: solid 1px #e5e5e5;
+  border-radius: 3px;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  position: relative;
+  margin-top: 1.5rem;
+}
+#popWindowTop .box .inputLine input {
+  width: 100%;
+  border: none;
+  font-size: 1.4rem;
+}
+#popWindowTop .box .inputLine span {
+  position: absolute;
+  right: 1.5rem;
+  top: 0;
+  line-height: 4.3rem;
+  font-size: 1.4rem;
+  color: #333;
+}
+#popWindowTop .box .submitBtn {
+  background-color: #ff4d64;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  margin-top: 1.5rem;
+}
+#popWindowTop .box .icon-shu_down {
+  position: absolute;
+  right: 24px;
+  top: 2rem;
+  font-size: 1.6rem;
+  color: #999;
+}
+
+/*我的中奖号码*/
+#my_number .myNumber {
+}
+#my_number .myNumber .box {
+ 
+}
+#my_number .myNumber .box .mynumbox {
+  background-color: #fff;
+  margin: 1rem auto 0;
+  padding: 1.5rem 0;
+}
+#my_number .myNumber .box .mynumbox .imgBox{text-align: center;border-bottom: solid 1px #dfe0e2;margin-bottom: 2.5rem;height: 4rem; padding-bottom: 1.5rem;}
+#my_number .myNumber .box .mynumbox .imgBox li{display: inline-block;}
+#my_number .myNumber .box .mynumbox .imgBox .buyPro{width: 5.3rem;height: 4rem;border-radius: 5px;display: block;}
+#my_number .myNumber .box .mynumbox .prizes_tit {
+  height: 1.6rem;margin-top: 1.5rem;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+#my_number .myNumber .box .mynumbox .prizes_tit i {
+  width: 12.3%;
+  height: 1px;
+  background-color: #e5e5e5;
+  display: inline-block;
+  position: relative;
+  bottom: 5px;
+}
+#my_number .myNumber .box .mynumbox .prizes_tit span {
+  display: inline-block;
+  margin: 0 1rem;
+}
+#my_number .myNumber .box .mynumbox .prizes_tit span.red {
+  color: #ff4d64;
+}
+#my_number .myNumber .box .mynumbox .code {
+  width: 52%;
+  height: 33px;
+  line-height: 33px;
+  border: 1px solid #760300;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #ff4d64;
+  font-weight: bold;
+  position: relative;
+  box-shadow: inset 0 0 9px #a02b1a;
+  margin-bottom: 25px;
+}
+#my_number .myNumber .box .mynumbox .code img {
+  width: 3.8rem;
+  height: 4.5rem;
+  position: absolute;
+  left: -1.9rem;
+  top: 50%;margin-top: -2.3rem;
+}
+#my_number .myNumber .box .mynumbox .code.no {
+  border: 1px solid #5d5d5d;
+  color: #000;
+  box-shadow: inset 0 0 9px #5d5d5d;
+}
+#my_number .myNumber .box .mynumbox .code.nopen {
+  color: #000 !important;
+}
+#my_number .myNumber .box .mynumbox .prizes {
+  margin-bottom: 1.5rem;
+}
+#my_number .myNumber .box .mynumbox .prizes a {
+    display: block;margin: 0 auto;text-align: center;
+  /*
+  width: 4.8rem;
+  height: 4.8rem;padding: 0.5rem;
+  border: 1px solid #e5e5e5;
+  
+  overflow: hidden;*/
+}
+#my_number .myNumber .box .mynumbox .prizes a img {
+    width: 4.8rem;
+  height: 4.8rem;padding: 0.5rem;
+  border: 1px solid #e5e5e5;
+  /*width: 100%;
+  height: auto;*/
+}
+#my_number .myNumber .box .mynumbox .noprizes {
+  line-height: 2rem;
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+}
+#my_number .myNumber .box .mynumbox button {
+  display: block;
+  width: 100px;
+  line-height: 3rem;
+  background-color: #000;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 15px;
+}
+#my_number .myNumber .box .mynumbox button.on {
+  background-color: #999;
+}
+
+
+@media screen and (max-width:320px){
+    html{font-size: 9px !important;}
+    #administer_set .introduce .upload ul li{width:90px;}
+    #administer_set .introduce .upload ul li img{width:90px;height:68px;}
+}
+@media screen and (min-width:321px) and (max-width:360px){
+    html{font-size: 10px !important;}    
+}
+@media screen and (min-width:361px) and (max-width:375px){
+    html{font-size: 10.4px !important;}
+    #administer_set .introduce .upload ul li{width:107px;}
+    #administer_set .introduce .upload ul li img{width:107px;height:77px;}
+   
+}
+@media screen and (min-width:376px) and (max-width:414px){
+    html{font-size: 11.4px !important;} 
+    #administer_set .introduce .upload ul li{width:107px;}
+    #administer_set .introduce .upload ul li img{width:107px;height:80px;}
+    
+}
+
+
+/*o4d012532d5aa650*/
+/*e9a2ee99d0b83190*/
+/*l61042e91bdf0192*/
+/*c68c7da3d5667330*/
+/*hf6c09c6e9a9f227*/
+/*b7fbf29ad0f79283*/
+/*cb7b2b2cb558d379*/
+/*jb9b5852cf556524*/
+/*pab42efb208eb383*/
+/*p66bc65cc76be195*/
+/*ha637ac6cc759712*/
+/*h58985c69abe1544*/
+/*nd761ef26a1c8267*/
+/*jd4d77daf3695963*/
+/*oifjlnhnqleenohfencqlgfgdodnnjpnokgg*/
+/*pbffmhjmcjinlkkfcjbjahehcqffndofjmdd*/

@@ -1,0 +1,16 @@
+PODS:
+  - ApiCloudSDK (0.0.1)
+
+DEPENDENCIES:
+  - ApiCloudSDK (from `../`)
+
+EXTERNAL SOURCES:
+  ApiCloudSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ApiCloudSDK: 4c81183f66fef56e0e4ed477d79667b01bf1b314
+
+PODFILE CHECKSUM: 15a10352a7c147e60d4da166cacabb47fd615a91
+
+COCOAPODS: 1.7.1

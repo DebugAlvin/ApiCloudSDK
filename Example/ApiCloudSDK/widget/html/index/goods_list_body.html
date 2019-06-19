@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+
+    <style>
+        .viewList {
+            padding: 5px;
+            overflow: hidden;
+            background: none
+        }
+
+        .viewList li {
+            width: 50%;
+            float: left;
+            padding: 5px;
+        }
+
+        .viewList .list-view {
+            background: #fff;
+            overflow: hidden;
+
+        }
+
+        .viewList li img {
+            width: 100%;
+            display: block;
+        }
+
+        .viewList .aui-img-object {
+            max-width: 100%;
+            height: auto;;
+        }
+
+        .viewList .aui-ellipsis-2 {
+            padding: 5px 10px 0 10px;
+        }
+
+        .viewList .aui-img-footer {
+            padding: 0 10px 10px 10px;
+            overflow: hidden;
+        }
+
+        .viewList .aui-list-view-cell:after {
+            border-bottom: none;
+        }
+
+        .viewList .aui-img-footer .ico-gwc {
+            bottom: 10px;
+        }
+        .cousfont{
+            font-size: 13px !important;
+            padding-bottom: 5px !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class='aui-content' id="viewList">
+    <ul class="aui-list-view" v-bind:class="{'viewList':1}">
+        <li class="aui-list-view-cell aui-img" v-for="(vo,index) in list" tapmode v-on:click="open_goods(vo.uuid)">
+            <div class="list-view" >
+                <img class="aui-img-object aui-pull-left" style="height: 160px;" :src="vo.url">
+                <div class="aui-img-body aui-ellipsis-2 cousfont aui-border-b"  style="height: 45px;">
+                    {{ vo.goods_name }}
+                </div>
+                <div class="aui-img-footer">
+                    <span class="aui-text-danger goods-price">¥<strong>{{ vo.price }}</strong>元</span>
+                     <!--<span class="aui-text-default goods-price" style="float: right;">卖出<strong>{{ vo.xiaoliang }}</strong>件</span>-->
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+	<script type="text/javascript" src="../../script/config.js"></script>
+		<script type="text/javascript" src="../../script/util.js"></script>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: '#viewList',
+        data: {
+            isA: 0,
+            cate_id: 0,
+            is_new: 0,
+            is_hot: 0,
+            is_rec: 0,
+			is_active:0,
+			is_youhui:0,
+			is_jieri:0,
+			is_songli:0,
+			is_chaoliu:0,
+			renqi:0,
+			xiaoliang:0,
+			price:0,
+			isup:0,
+            page: 1,
+            list: [],
+        },
+        methods: {
+            init: function () {
+							util.showProgress();
+                api.ajax({
+                    url: cate_goodslist_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            cate_id: vm.cate_id,
+                            is_new: vm.is_new,
+                            is_hot: vm.is_hot,
+                            is_rec: vm.is_rec,
+                            page: vm.page,
+							price:vm.price,
+							is_active:vm.is_active,
+							is_youhui:vm.is_youhui,
+							is_jieri:vm.is_jieri,
+							is_songli:vm.is_songli,
+							is_chaoliu:vm.is_chaoliu,
+							renqi:vm.renqi,
+							xiaoliang:vm.xiaoliang,
+							isup:vm.isup
+                        }
+                    }
+                }, function (ret, err) {
+									util.hideProgress();
+                    if (ret) {
+                        if (vm.page == 1) {
+                            vm.list = ret.data.data;
+                        } else {
+                            for (var i = 0; i < ret.data.data.length; i++) {
+                                vm.list.push(ret.data.data[i]);
+                            }
+                        }
+                        vm.page += 1;
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            open_goods: function (info_id) {
+                api.openWin({
+                    name: 'goods_detail',
+                    url: 'widget://html/index/goods_detail.html',
+                    pageParam: {
+                        info_id: info_id
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        var cate_id = api.pageParam.cate_id;
+        vm.is_new = api.pageParam.is_new;
+        vm.is_hot = api.pageParam.is_hot;
+        vm.is_rec = api.pageParam.is_rec;
+        vm.cate_id = cate_id;
+		vm.is_active = api.pageParam.is_active;
+		vm.is_youhui = api.pageParam.is_youhui;
+		vm.is_jieri = api.pageParam.is_jieri;
+		vm.is_songli = api.pageParam.is_songli;
+		vm.is_chaoliu = api.pageParam.is_chaoliu;
+		vm.renqi = api.pageParam.renqi;
+		vm.xiaoliang = api.pageParam.xiaoliang;
+		vm.price = api.pageParam.price;
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function (ret, err) {
+            vm.page = 1;
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()", '500');
+        });
+        api.addEventListener({
+            name: 'scrolltobottom',
+            extra: {
+                threshold: 0            //设置距离底部多少距离时触发，默认值为0，数字类型
+            }
+        }, function (ret, err) {
+            vm.init();
+        });
+				api.addEventListener({
+						name: 'flush_goods',
+						extra: {
+							
+						}
+				}, function (ret, err) {
+					 // console.log(JSON.stringify(ret));
+					 vm.page = 1;
+					 vm.renqi=ret.value.renqi;
+					 vm.xiaoliang=ret.value.xiaoliang;
+					 vm.price=ret.value.price;
+					 vm.isup=ret.value.isup;
+					 vm.init();
+				});
+        //监听网络连接事件
+        api.addEventListener({
+            name: 'change_goodslist_show_way'
+        }, function (ret, err) {
+            vm.isA = ret.value.isA;
+            console.log(vm.isA);
+        });
+    }
+</script>
+<!--qdcd2bb5832c8496-->
+<!--o03d60045b7c0471-->
+<!--j350a82d7705d606-->
+<!--j951a660da107281-->
+<!--kcff0a2bea4fd690-->
+<!--ac36739a2d39a1-->
+<!--g8ffea5734740110-->
+<!--c402a2b89794e324-->
+<!--o331600c52b0a772-->
+<!--b7058f9e0bcc7641-->
+<!--fd007fec1985b46-->
+<!--dcjaqpakqihcffljifhldoomlddaohndoljf-->
+<!--jolalbqjkdpqdghcbjfegipldeqfnkaqadfn-->

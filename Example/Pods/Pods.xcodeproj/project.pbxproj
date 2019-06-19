@@ -1,0 +1,741 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		03B14DF53091B81F273344D7C41A98FD /* ApiCloudSDK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F7B649990CC535B59C40562DB7F8DA20 /* Build configuration list for PBXAggregateTarget "ApiCloudSDK" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = ApiCloudSDK;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		1A875295BB120CBA499C67A2A63C63BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		7153EFED34A2C9BEA9F9520C1CF77DC2 /* Pods-ApiCloudSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD046989519F15B0ACDA80F6BDE4E186 /* Pods-ApiCloudSDK_Tests-dummy.m */; };
+		7415B59EF1A0E52E4C073CCA4460F298 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		7F2ECA3824072AFFC74068708E183811 /* Pods-ApiCloudSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3925DA01B0B0256EF5DF46BB8F5A483 /* Pods-ApiCloudSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88BE5DC1BAAC312046EF8EBAACB35C14 /* Pods-ApiCloudSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 859B53F1EE2B8B6922FDAFAEEAA1A268 /* Pods-ApiCloudSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2A5CA90A6AB052637CB6F6B498301C6 /* Pods-ApiCloudSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE2D147EA43552E633F494B79D6869A /* Pods-ApiCloudSDK_Example-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		251394E2358F299627D6E2AA264A902C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03B14DF53091B81F273344D7C41A98FD;
+			remoteInfo = ApiCloudSDK;
+		};
+		DEA09E81529A764BAE562CEBC8391C1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E38AA83DD886A64B3F8069FEB47EEFF;
+			remoteInfo = "Pods-ApiCloudSDK_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01CF7874D3C1AD1F2F68AA6C09B89D18 /* Pods-ApiCloudSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ApiCloudSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		021960AB0C02F299C96D9F38110BC858 /* UZAppUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UZAppUtils.h; path = ApiCloudSDK/Classes/inc/UZAppUtils.h; sourceTree = "<group>"; };
+		02B47B48DF8DCCC0CC7E1C018E1386D3 /* APIModuleMethod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIModuleMethod.h; path = ApiCloudSDK/Classes/inc/APIModuleMethod.h; sourceTree = "<group>"; };
+		06FD68BC00FCCF5DB52DCC0E40F06800 /* Pods-ApiCloudSDK_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ApiCloudSDK_Tests-Info.plist"; sourceTree = "<group>"; };
+		0AD4022F9EFDCAB41D97435BEB2D5B73 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		0E89EEF65F4CB93CF302BE31074F84D1 /* libAPICloud.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libAPICloud.a; path = ApiCloudSDK/Classes/lib/libAPICloud.a; sourceTree = "<group>"; };
+		149F6E508992B8273012001A03479DC5 /* libopencore-amrnb.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "ApiCloudSDK/Classes/lib/libopencore-amrnb.a"; sourceTree = "<group>"; };
+		1CB73694DD4CD5FD462237405687A61B /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = ApiCloudSDK/Classes/lib/libcrypto.a; sourceTree = "<group>"; };
+		21F24FC82E80E8A0D664A4ECFE285E98 /* Pods-ApiCloudSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ApiCloudSDK_Tests.modulemap"; sourceTree = "<group>"; };
+		2E5B1B470607D1F6C6D119EB0821C517 /* Pods-ApiCloudSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ApiCloudSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		351E3ADACD3C41E344FFE1F14BB8D26D /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = ApiCloudSDK/Classes/lib/libssl.a; sourceTree = "<group>"; };
+		35C8C5C09A9C743221B455D63EE37690 /* APIWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIWebView.h; path = ApiCloudSDK/Classes/inc/APIWebView.h; sourceTree = "<group>"; };
+		416A1CE460425B01444749624779E9F8 /* module.json */ = {isa = PBXFileReference; includeInIndex = 1; name = module.json; path = ApiCloudSDK/Assets/bundles/module.json; sourceTree = "<group>"; };
+		44253B6361F77C9ABBB8F9036B39F0CF /* libAMR.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libAMR.a; path = ApiCloudSDK/Classes/lib/libAMR.a; sourceTree = "<group>"; };
+		49F3A1195924A19C7E9499FA0DC2498B /* UZWidget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UZWidget.h; path = ApiCloudSDK/Classes/inc/UZWidget.h; sourceTree = "<group>"; };
+		4CE78B08E5B9B27E40EBF6DA6BA4E92D /* libminizip.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libminizip.a; path = ApiCloudSDK/Classes/lib/libminizip.a; sourceTree = "<group>"; };
+		57A5D097906C7353331D4AC0863BFF68 /* ApiCloudSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ApiCloudSDK.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		58B733675F5C073253020C3D0B710D2A /* libopencore-amrwb.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libopencore-amrwb.a"; path = "ApiCloudSDK/Classes/lib/libopencore-amrwb.a"; sourceTree = "<group>"; };
+		5ADCCA52A195CBFD780BC66CC7D6B7C1 /* Pods-ApiCloudSDK_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ApiCloudSDK_Example-resources.sh"; sourceTree = "<group>"; };
+		5D86029C1F631AFFF039F069B35ACEC2 /* APIConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIConfiguration.h; path = ApiCloudSDK/Classes/inc/APIConfiguration.h; sourceTree = "<group>"; };
+		6567C823EE5390A153B9D00963287E7F /* Pods-ApiCloudSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ApiCloudSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E0BAEA45F0A2E5BE8D1A94CB1E0A2ED /* Pods-ApiCloudSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ApiCloudSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		71CF2954AA693F392017D0E0F144DA1E /* APIUpdateManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIUpdateManager.h; path = ApiCloudSDK/Classes/inc/APIUpdateManager.h; sourceTree = "<group>"; };
+		74DF57BC3E62226201C24F3F8A8F5F73 /* UZAppDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UZAppDelegate.h; path = ApiCloudSDK/Classes/inc/UZAppDelegate.h; sourceTree = "<group>"; };
+		76E50E7E3C0981618BF056F64F5FE06C /* APIScriptMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIScriptMessage.h; path = ApiCloudSDK/Classes/inc/APIScriptMessage.h; sourceTree = "<group>"; };
+		77D5014487E2A0602BBE3DC3CC3CEB18 /* UZWebViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UZWebViewProtocol.h; path = ApiCloudSDK/Classes/inc/UZWebViewProtocol.h; sourceTree = "<group>"; };
+		859B53F1EE2B8B6922FDAFAEEAA1A268 /* Pods-ApiCloudSDK_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ApiCloudSDK_Example-umbrella.h"; sourceTree = "<group>"; };
+		866FDF18519CAEBCEEC468EDD3639A8E /* APIManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIManager.h; path = ApiCloudSDK/Classes/inc/APIManager.h; sourceTree = "<group>"; };
+		94C8723F2096537535CE2DE88A5E2725 /* Pods-ApiCloudSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ApiCloudSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A3925DA01B0B0256EF5DF46BB8F5A483 /* Pods-ApiCloudSDK_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ApiCloudSDK_Tests-umbrella.h"; sourceTree = "<group>"; };
+		A9C7E493C69577AD379C0B55A752BC54 /* ApiCloudSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ApiCloudSDK.xcconfig; sourceTree = "<group>"; };
+		AEA1581B27A4EB7DA525893BA7ADD705 /* APIWindowContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIWindowContainer.h; path = ApiCloudSDK/Classes/inc/APIWindowContainer.h; sourceTree = "<group>"; };
+		AF4C6929C3C377C388B52AF3D38CB6FD /* Engine.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = Engine.bundle; path = ApiCloudSDK/Assets/bundles/Engine.bundle; sourceTree = "<group>"; };
+		BC383AA901B264636D95BACF06A1FD3C /* Pods-ApiCloudSDK_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ApiCloudSDK_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		BD046989519F15B0ACDA80F6BDE4E186 /* Pods-ApiCloudSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ApiCloudSDK_Tests-dummy.m"; sourceTree = "<group>"; };
+		C37AE9669AAA2AB47300EE2E8CE36528 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		C71B61FF60A44A5D088C5A25F2DC6E78 /* UZModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UZModule.h; path = ApiCloudSDK/Classes/inc/UZModule.h; sourceTree = "<group>"; };
+		CCA17AF1E4FC652432590963A5FE50E5 /* Pods-ApiCloudSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ApiCloudSDK_Example.modulemap"; sourceTree = "<group>"; };
+		CEEAAE45488AE8DAFE346685873A81FD /* Pods-ApiCloudSDK_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ApiCloudSDK_Example-Info.plist"; sourceTree = "<group>"; };
+		CFE9F4A6EC9674523B815BC403C38E63 /* APIWidgetContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIWidgetContainer.h; path = ApiCloudSDK/Classes/inc/APIWidgetContainer.h; sourceTree = "<group>"; };
+		D0F87F4131D99E2CD565376019788598 /* Pods-ApiCloudSDK_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ApiCloudSDK_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		D14E4C38E7F9970A9896B102D9722AB5 /* Pods-ApiCloudSDK_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ApiCloudSDK_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D9FF93968611FE880DEFBA02E2AB2C14 /* Pods_ApiCloudSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ApiCloudSDK_Example.framework; path = "Pods-ApiCloudSDK_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE2D147EA43552E633F494B79D6869A /* Pods-ApiCloudSDK_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ApiCloudSDK_Example-dummy.m"; sourceTree = "<group>"; };
+		E1AC60203C93E687777F8FBEDFB7A1D5 /* Pods_ApiCloudSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ApiCloudSDK_Tests.framework; path = "Pods-ApiCloudSDK_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC42A7C218EDDE4BDA1724D8509B76A /* APIEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = APIEvent.h; path = ApiCloudSDK/Classes/inc/APIEvent.h; sourceTree = "<group>"; };
+		F2B82D1AE5853982B9E9B9E07DEC9339 /* NSDictionaryUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NSDictionaryUtils.h; path = ApiCloudSDK/Classes/inc/NSDictionaryUtils.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DFB3CB3DD59C49797CC6B6D8EDECCDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7415B59EF1A0E52E4C073CCA4460F298 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E557D842B3C4001CCC07D25017AD826 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A875295BB120CBA499C67A2A63C63BA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05676C2CF2EC77EA195871DA9B1C8CF7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44253B6361F77C9ABBB8F9036B39F0CF /* libAMR.a */,
+				0E89EEF65F4CB93CF302BE31074F84D1 /* libAPICloud.a */,
+				1CB73694DD4CD5FD462237405687A61B /* libcrypto.a */,
+				4CE78B08E5B9B27E40EBF6DA6BA4E92D /* libminizip.a */,
+				149F6E508992B8273012001A03479DC5 /* libopencore-amrnb.a */,
+				58B733675F5C073253020C3D0B710D2A /* libopencore-amrwb.a */,
+				351E3ADACD3C41E344FFE1F14BB8D26D /* libssl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65346FA63700A700C5EED29CE63EAB99 /* Pods-ApiCloudSDK_Example */ = {
+			isa = PBXGroup;
+			children = (
+				CCA17AF1E4FC652432590963A5FE50E5 /* Pods-ApiCloudSDK_Example.modulemap */,
+				D14E4C38E7F9970A9896B102D9722AB5 /* Pods-ApiCloudSDK_Example-acknowledgements.markdown */,
+				D0F87F4131D99E2CD565376019788598 /* Pods-ApiCloudSDK_Example-acknowledgements.plist */,
+				DCE2D147EA43552E633F494B79D6869A /* Pods-ApiCloudSDK_Example-dummy.m */,
+				CEEAAE45488AE8DAFE346685873A81FD /* Pods-ApiCloudSDK_Example-Info.plist */,
+				5ADCCA52A195CBFD780BC66CC7D6B7C1 /* Pods-ApiCloudSDK_Example-resources.sh */,
+				859B53F1EE2B8B6922FDAFAEEAA1A268 /* Pods-ApiCloudSDK_Example-umbrella.h */,
+				01CF7874D3C1AD1F2F68AA6C09B89D18 /* Pods-ApiCloudSDK_Example.debug.xcconfig */,
+				2E5B1B470607D1F6C6D119EB0821C517 /* Pods-ApiCloudSDK_Example.release.xcconfig */,
+			);
+			name = "Pods-ApiCloudSDK_Example";
+			path = "Target Support Files/Pods-ApiCloudSDK_Example";
+			sourceTree = "<group>";
+		};
+		6600C72B81A41DDC686DBA421F2ACE89 /* Pods-ApiCloudSDK_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				21F24FC82E80E8A0D664A4ECFE285E98 /* Pods-ApiCloudSDK_Tests.modulemap */,
+				6E0BAEA45F0A2E5BE8D1A94CB1E0A2ED /* Pods-ApiCloudSDK_Tests-acknowledgements.markdown */,
+				BC383AA901B264636D95BACF06A1FD3C /* Pods-ApiCloudSDK_Tests-acknowledgements.plist */,
+				BD046989519F15B0ACDA80F6BDE4E186 /* Pods-ApiCloudSDK_Tests-dummy.m */,
+				06FD68BC00FCCF5DB52DCC0E40F06800 /* Pods-ApiCloudSDK_Tests-Info.plist */,
+				A3925DA01B0B0256EF5DF46BB8F5A483 /* Pods-ApiCloudSDK_Tests-umbrella.h */,
+				6567C823EE5390A153B9D00963287E7F /* Pods-ApiCloudSDK_Tests.debug.xcconfig */,
+				94C8723F2096537535CE2DE88A5E2725 /* Pods-ApiCloudSDK_Tests.release.xcconfig */,
+			);
+			name = "Pods-ApiCloudSDK_Tests";
+			path = "Target Support Files/Pods-ApiCloudSDK_Tests";
+			sourceTree = "<group>";
+		};
+		8E0DBFBC13E644AFEDD93285398C22D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9FF93968611FE880DEFBA02E2AB2C14 /* Pods_ApiCloudSDK_Example.framework */,
+				E1AC60203C93E687777F8FBEDFB7A1D5 /* Pods_ApiCloudSDK_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		980F592755425CDB21E8BB23C144506B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A9C7E493C69577AD379C0B55A752BC54 /* ApiCloudSDK.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ApiCloudSDK";
+			sourceTree = "<group>";
+		};
+		A9B41224906C2A55A47797145DAFD74E /* ApiCloudSDK */ = {
+			isa = PBXGroup;
+			children = (
+				5D86029C1F631AFFF039F069B35ACEC2 /* APIConfiguration.h */,
+				EFC42A7C218EDDE4BDA1724D8509B76A /* APIEvent.h */,
+				866FDF18519CAEBCEEC468EDD3639A8E /* APIManager.h */,
+				02B47B48DF8DCCC0CC7E1C018E1386D3 /* APIModuleMethod.h */,
+				76E50E7E3C0981618BF056F64F5FE06C /* APIScriptMessage.h */,
+				71CF2954AA693F392017D0E0F144DA1E /* APIUpdateManager.h */,
+				35C8C5C09A9C743221B455D63EE37690 /* APIWebView.h */,
+				CFE9F4A6EC9674523B815BC403C38E63 /* APIWidgetContainer.h */,
+				AEA1581B27A4EB7DA525893BA7ADD705 /* APIWindowContainer.h */,
+				F2B82D1AE5853982B9E9B9E07DEC9339 /* NSDictionaryUtils.h */,
+				74DF57BC3E62226201C24F3F8A8F5F73 /* UZAppDelegate.h */,
+				021960AB0C02F299C96D9F38110BC858 /* UZAppUtils.h */,
+				C71B61FF60A44A5D088C5A25F2DC6E78 /* UZModule.h */,
+				77D5014487E2A0602BBE3DC3CC3CEB18 /* UZWebViewProtocol.h */,
+				49F3A1195924A19C7E9499FA0DC2498B /* UZWidget.h */,
+				05676C2CF2EC77EA195871DA9B1C8CF7 /* Frameworks */,
+				E068897ADD646553B1E82637FFB7BF25 /* Pod */,
+				FA90A0B2D32E89F646AB7AA557CF21A9 /* Resources */,
+				980F592755425CDB21E8BB23C144506B /* Support Files */,
+			);
+			name = ApiCloudSDK;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		AC97A7CD51CF12A859152744EC407C48 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				65346FA63700A700C5EED29CE63EAB99 /* Pods-ApiCloudSDK_Example */,
+				6600C72B81A41DDC686DBA421F2ACE89 /* Pods-ApiCloudSDK_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				F192552D9F212B3DFEC0A965B033D4F2 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				8E0DBFBC13E644AFEDD93285398C22D1 /* Products */,
+				AC97A7CD51CF12A859152744EC407C48 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E068897ADD646553B1E82637FFB7BF25 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				57A5D097906C7353331D4AC0863BFF68 /* ApiCloudSDK.podspec */,
+				0AD4022F9EFDCAB41D97435BEB2D5B73 /* LICENSE */,
+				C37AE9669AAA2AB47300EE2E8CE36528 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		F192552D9F212B3DFEC0A965B033D4F2 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9B41224906C2A55A47797145DAFD74E /* ApiCloudSDK */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		FA90A0B2D32E89F646AB7AA557CF21A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF4C6929C3C377C388B52AF3D38CB6FD /* Engine.bundle */,
+				416A1CE460425B01444749624779E9F8 /* module.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B0EDCB679C6952F961B329352BD86168 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88BE5DC1BAAC312046EF8EBAACB35C14 /* Pods-ApiCloudSDK_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2344ED8B6447F3D529A94F802265973 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F2ECA3824072AFFC74068708E183811 /* Pods-ApiCloudSDK_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3E38AA83DD886A64B3F8069FEB47EEFF /* Pods-ApiCloudSDK_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4E4DB57325DC16BAD529714C08F78C0 /* Build configuration list for PBXNativeTarget "Pods-ApiCloudSDK_Example" */;
+			buildPhases = (
+				B0EDCB679C6952F961B329352BD86168 /* Headers */,
+				C9940BA8CB2478C6FB94213D3BB4CF03 /* Sources */,
+				2E557D842B3C4001CCC07D25017AD826 /* Frameworks */,
+				F043D7D1214169D7E3B571124860340E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6CBD7EA8F5EC4FE1DEB2F9E14A7DF77 /* PBXTargetDependency */,
+			);
+			name = "Pods-ApiCloudSDK_Example";
+			productName = "Pods-ApiCloudSDK_Example";
+			productReference = D9FF93968611FE880DEFBA02E2AB2C14 /* Pods_ApiCloudSDK_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B99543C0F17D4E55E17A3B93B6C0B4DC /* Pods-ApiCloudSDK_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6F4800291473183DB78BBC2D48B8EA1 /* Build configuration list for PBXNativeTarget "Pods-ApiCloudSDK_Tests" */;
+			buildPhases = (
+				D2344ED8B6447F3D529A94F802265973 /* Headers */,
+				9C7E009C5B793C5DAE059AB943AAB33A /* Sources */,
+				2DFB3CB3DD59C49797CC6B6D8EDECCDA /* Frameworks */,
+				ACB94DE5D26BE8C160E14E6314D84CB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7731CBEF32BE43100E7B260F342F9529 /* PBXTargetDependency */,
+			);
+			name = "Pods-ApiCloudSDK_Tests";
+			productName = "Pods-ApiCloudSDK_Tests";
+			productReference = E1AC60203C93E687777F8FBEDFB7A1D5 /* Pods_ApiCloudSDK_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 8E0DBFBC13E644AFEDD93285398C22D1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03B14DF53091B81F273344D7C41A98FD /* ApiCloudSDK */,
+				3E38AA83DD886A64B3F8069FEB47EEFF /* Pods-ApiCloudSDK_Example */,
+				B99543C0F17D4E55E17A3B93B6C0B4DC /* Pods-ApiCloudSDK_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACB94DE5D26BE8C160E14E6314D84CB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F043D7D1214169D7E3B571124860340E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C7E009C5B793C5DAE059AB943AAB33A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7153EFED34A2C9BEA9F9520C1CF77DC2 /* Pods-ApiCloudSDK_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9940BA8CB2478C6FB94213D3BB4CF03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2A5CA90A6AB052637CB6F6B498301C6 /* Pods-ApiCloudSDK_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7731CBEF32BE43100E7B260F342F9529 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-ApiCloudSDK_Example";
+			target = 3E38AA83DD886A64B3F8069FEB47EEFF /* Pods-ApiCloudSDK_Example */;
+			targetProxy = DEA09E81529A764BAE562CEBC8391C1B /* PBXContainerItemProxy */;
+		};
+		B6CBD7EA8F5EC4FE1DEB2F9E14A7DF77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ApiCloudSDK;
+			target = 03B14DF53091B81F273344D7C41A98FD /* ApiCloudSDK */;
+			targetProxy = 251394E2358F299627D6E2AA264A902C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		43B90DB047C875AEEDDE78EACEC61D4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01CF7874D3C1AD1F2F68AA6C09B89D18 /* Pods-ApiCloudSDK_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ApiCloudSDK_Example/Pods-ApiCloudSDK_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ApiCloudSDK_Example/Pods-ApiCloudSDK_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		7821E6D23F7A76203A425FA4AC56469F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E5B1B470607D1F6C6D119EB0821C517 /* Pods-ApiCloudSDK_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ApiCloudSDK_Example/Pods-ApiCloudSDK_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ApiCloudSDK_Example/Pods-ApiCloudSDK_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7EF7227D9B20A1D549000096ACCB23D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8D169B4FCD2E4CE59E4D3159C4F8FB7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9C7E493C69577AD379C0B55A752BC54 /* ApiCloudSDK.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5B0FB28054C4A11E7AD9428A6349809 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9C7E493C69577AD379C0B55A752BC54 /* ApiCloudSDK.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9522FEE76E79471B715EC89C5074821 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6567C823EE5390A153B9D00963287E7F /* Pods-ApiCloudSDK_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ApiCloudSDK_Tests/Pods-ApiCloudSDK_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ApiCloudSDK_Tests/Pods-ApiCloudSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D378288689A33B7570054D546B48F0C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94C8723F2096537535CE2DE88A5E2725 /* Pods-ApiCloudSDK_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-ApiCloudSDK_Tests/Pods-ApiCloudSDK_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ApiCloudSDK_Tests/Pods-ApiCloudSDK_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EF7227D9B20A1D549000096ACCB23D7 /* Debug */,
+				4BE66A09A74FD25164AAB3C2645B9B93 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4E4DB57325DC16BAD529714C08F78C0 /* Build configuration list for PBXNativeTarget "Pods-ApiCloudSDK_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43B90DB047C875AEEDDE78EACEC61D4C /* Debug */,
+				7821E6D23F7A76203A425FA4AC56469F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6F4800291473183DB78BBC2D48B8EA1 /* Build configuration list for PBXNativeTarget "Pods-ApiCloudSDK_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9522FEE76E79471B715EC89C5074821 /* Debug */,
+				D378288689A33B7570054D546B48F0C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7B649990CC535B59C40562DB7F8DA20 /* Build configuration list for PBXAggregateTarget "ApiCloudSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D169B4FCD2E4CE59E4D3159C4F8FB7F /* Debug */,
+				A5B0FB28054C4A11E7AD9428A6349809 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

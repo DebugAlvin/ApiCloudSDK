@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'ApiCloudSDK_Example' do
+  pod 'ApiCloudSDK', :path => '../'
+
+  target 'ApiCloudSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

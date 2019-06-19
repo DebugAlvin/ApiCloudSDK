@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-nav{
+            height: 55px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 55px;
+        }
+        .aui-nav .aui-col-xs-4{
+            color:#666666;
+        }
+        #right{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">订单详情</div>
+</header>
+
+<footer class="aui-nav">
+    <div class="aui-col-xs-8 aui-border-t">
+        金额：<strong class="aui-text-danger">￥480</strong> <span class="aui-text-danger aui-margin-l-10">已付款</span>
+    </div>
+    <div class="aui-col-xs-4 aui-bg-danger aui-border-t" id="right">
+        付款
+    </div>
+</footer>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_order_detail_body',
+            url: './order_detail_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: api.winHeight - $api.dom('header').offsetHeight - $api.dom('footer').offsetHeight
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--q829fa6ce2e49683-->
+<!--he9dbf257dfa1958-->
+<!--cb2fdbdf9b170594-->
+<!--fcbc893d7358c970-->
+<!--m1da87383bd86237-->
+<!--p76ac78382f0288-->
+<!--acd4c7c46e300198-->
+<!--g1d5fc32e6076278-->
+<!--i1f9a69befebd808-->
+<!--f7af36db49269158-->
+<!--lf47d858d5ec4552-->
+<!--moinbdopfhepqjcpdkncccdkhepqcmlqlfga-->
+<!--bilnofohgejphcheigbdqbblfqnaioainmpo-->

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-form{
+            padding: 0 10px 0 10px;
+        }
+        .aui-input-row:first-child:after {
+            border-top: none;
+        }
+        .falst-input{
+            padding: 15px 0;
+        }
+        #footer{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .aui-footer{
+            font-size: 14px;
+        }
+        .aui-btn-row{
+            padding: 0 15px 15px 15px;
+        }
+        .aui-btn-row:after {
+            border-bottom: none
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <section class='aui-content bg-white'>
+            <div class="aui-form">
+                <div class="aui-input-row falst-input">
+                    <span class="aui-input-addon">钱包余额：</span>
+                    <strong class="aui-text-danger">￥{{ member.money }}</strong>
+                </div>
+                <div class="aui-input-row">
+                    <span class="aui-input-addon">提现范围：（{{ member.minwithdraw }}-{{ member.maxwithdraw }}元）</span>
+                    <input type="number" class="aui-input" placeholder="输入金额" v-model="money">
+                </div>
+            </div>
+        </section>
+        <div id="footer">
+            <div class="aui-row aui-padded-15 aui-footer">
+                <div class="aui-col-xs-12">
+                    提现手续费（从到账金额中扣除）：
+                    <span class="aui-pull-right aui-text-danger">￥{{ fee_money }}</span>
+                </div>
+                <div class="aui-col-xs-12 aui-margin-t-10">
+                    实际到账金额：
+                    <span class="aui-pull-right aui-text-danger">￥{{ fact_money }}</span>
+                </div>
+            </div>
+            <div class="aui-btn-row" tapmode v-on:click="submit()">
+                <div class="aui-btn aui-btn-danger aui-btn-block">确定提现</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            member: {},
+            money: '',
+            fee_money: '0.00',
+            fact_money: '0.00'
+        },
+        methods: {
+            init: function () {
+                api.ajax({
+                    url: withdraw_before_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        if (ret.status == 1) {
+                            vm.member = ret.data;
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            submit:function () {
+                if(vm.money > vm.member.money){
+                    api.toast({
+                        msg: '提现金额大于余额',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    vm.money = 0;
+                    return false;
+                }
+               if(vm.money < vm.member.minwithdraw){
+                   api.toast({
+                       msg: '提现金额小于'+vm.member.minwithdraw,
+                       duration: 2000,
+                       location: 'bottom'
+                   });
+                   vm.money = 0;
+                   return false;
+               }
+               if(vm.money > vm.member.maxwithdraw){
+                   api.toast({
+                       msg: '提现金额大于'+vm.member.maxwithdraw,
+                       duration: 2000,
+                       location: 'bottom'
+                   });
+                   vm.money = 0;
+                   return false;
+               }
+                api.ajax({
+                    url: withdraw_after_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            money: vm.money
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            setTimeout(function () {
+                                api.closeWin({
+                                    name:'member_withdrawals'
+                                });
+                            },500);
+                        }
+                        console.log(JSON.stringify(ret));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+        },
+        watch: {
+            money: {
+                handler: function (val, oldVal) {
+                    vm.fee_money = ((vm.money * vm.member.withdrawrate)/100).toFixed(2);
+                    vm.fact_money = vm.money - vm.fee_money;
+                },
+                deep: true
+            }
+        }
+    });
+    apiready = function () {
+        vm.init();
+    };
+</script>
+<!--g0f91344093ac382-->
+<!--ofe5cde1edf1c760-->
+<!--q074b4db4e3a2136-->
+<!--d7714d3efa7cc2-->
+<!--ob75eaa455d03276-->
+<!--bc1cbf88701d4186-->
+<!--e44de68361253497-->
+<!--id794dcc6ba94960-->
+<!--a062547046e02311-->
+<!--me9c09d9fb7b5423-->
+<!--jc883925bf498616-->
+<!--ifqqkocedgnpecqfgqomqonbknnljagpfkli-->
+<!--pickfqolclklqlejpelkenggqiecqmpdnokp-->

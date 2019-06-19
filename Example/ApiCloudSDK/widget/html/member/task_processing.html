@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">任务处理</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_task_processing_body',
+            url: './task_processing_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--od246d891c0f4446-->
+<!--hfb28a3da9718493-->
+<!--je96c0b64729b962-->
+<!--n9f92e7fdd5c8520-->
+<!--b4af0b5e4ff55114-->
+<!--lf6d591b45de8332-->
+<!--fecaefc97a31765-->
+<!--d962547323f48619-->
+<!--n8688f50815e1768-->
+<!--od0572ce936bc329-->
+<!--lbf82f2782c91737-->
+<!--cjoipkajknqpimpqeddnpqajgkfpnchiccgc-->
+<!--adfnglmjodcogcaakonfgccpdkdblbmkamgp-->

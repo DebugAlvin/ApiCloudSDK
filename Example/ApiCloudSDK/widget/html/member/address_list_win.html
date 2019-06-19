@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+
+    <div class="aui-title">收货地址管理</div>
+    <a class="aui-pull-right" onclick="open_address_add_win()">
+        <i class="aui-iconfont aui-icon-add1"></i>
+    </a>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'address_list_frm',
+            url: 'widget://html/member/address_list_frm.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+    function open_address_add_win() {
+        api.openWin({
+            name: 'address_add_win',
+            url: 'widget://html/member/address_add_win.html',
+            pageParam: {
+                name: 'pageparamname'
+            }
+        });
+    }
+</script>
+</body>
+</html>
+<!--c9997bcb7141c618-->
+<!--bdc4c50ddf9c0920-->
+<!--b3c96438c2270232-->
+<!--p1e1601afcaab914-->
+<!--mbde7ab38bcdb564-->
+<!--g5d423e6588ea773-->
+<!--dabd909017fd9641-->
+<!--pe1ef2975c2a9483-->
+<!--b3bf6c5b2974f12-->
+<!--lb93e84caba0d372-->
+<!--gbec0f844ea04750-->
+<!--mkiicqfjkhjmjcpjempafbeimgcpdqiqbang-->
+<!--fpqnngjqiaiabbbdaqiepkfhcnjdfgnnhfjq-->

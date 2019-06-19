@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">注册</div>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame ({
+            name: 'member_registered_body',
+            url: './registered_body.html',
+            rect:{
+                x:0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces:true
+        });
+    };
+</script>
+</body>
+</html>
+<!--e943dad541064376-->
+<!--ace9c6eff73e7993-->
+<!--l16ee5b3c2b3f69-->
+<!--h9df8a1314398232-->
+<!--dea354bcd861a857-->
+<!--n245d3eab07b1480-->
+<!--g6a02936d856535-->
+<!--j4e8f2efa13bc437-->
+<!--k681d85b1f9bf671-->
+<!--a0e2a9d2e1408986-->
+<!--h94615b67fad1801-->
+<!--glnacedjdefkhogklhqalejcplcacgcoacfa-->
+<!--mkdhgbifjbghaeicjfpdkhkdnandmkanbqpq-->

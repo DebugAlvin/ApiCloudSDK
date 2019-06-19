@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .addres-header{
+            padding: 10px 10px 0 10px;
+            overflow: hidden;
+
+        }
+        .addres-body{
+            padding: 5px 10px 10px 10px;
+            font-size: 14px;
+        }
+        .addres-footer{
+            padding: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+        .aui-pull-right{
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <section class="aui-content bg-white aui-border-b" v-for="(vo,index) in list">
+        <div class="addres-header">
+        <span class="aui-pull-left">{{ vo.name }}</span>
+        <span class="aui-pull-right">{{ vo.mobile }}</span>
+        </div>
+        <div class="addres-body aui-border-b">{{vo.pos_name}} {{vo.address_info}}</div>
+        <div class="addres-footer aui-overflow">
+            <div class="aui-col-xs-4 aui-text-center aui-border-r" v-bind:class="{'aui-text-danger': vo.is_default==1}" tapmode v-on:click="set_default_address(index)">
+                <i class="aui-iconfont aui-icon-location"></i> 设为默认
+            </div>
+            <div class="aui-col-xs-4 aui-text-center aui-border-r" tapmode v-on:click="open_adderss_edit(vo.id)">
+                <i class="aui-iconfont aui-icon-edit"></i> 修改
+            </div>
+            <div class="aui-col-xs-4 aui-text-center" tapmode v-on:click="delete_address(index)">
+                <i class="aui-iconfont aui-icon-delete"></i> 删除
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list: [],
+        },
+        methods: {
+            set_default_address: function (index) {
+                api.ajax({
+                    url: set_default_address_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            id: vm.list[index].id,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        api.toast({
+                            msg: '设置成功',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        vm.init();
+                        api.sendEvent({
+                            name: 'update_order_confirm',
+                        });
+                    } else {
+                        //api.alert(JSON.stringify(err));
+						api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            },
+            delete_address: function (index) {
+                api.confirm({
+                    title: '地址管理',
+                    msg: '是否删除？',
+                    buttons: ['确定', '取消']
+                }, function (ret, err) {
+                    if (ret) {
+                        if(ret.buttonIndex == 1){
+                            var id = vm.list[index].id;
+                            vm.list.splice(index, 1);
+                            api.ajax({
+                                url: delete_address_url,
+                                method: 'post',
+                                timeout: 30,
+                                dataType: 'json',
+                                returnAll: false,
+                                data: {
+                                    values: {
+                                        token: $api.getStorage('token'),
+                                        id: id,
+                                    }
+                                }
+                            }, function (ret, err) {
+                                if (ret) {
+                                    api.toast({
+                                        msg: '删除成功',
+                                        duration: 2000,
+                                        location: 'bottom'
+                                    });
+                                } else {
+                                    //api.alert(JSON.stringify(err));
+									api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                                }
+                            });
+                        }
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            },
+            open_adderss_edit:function (id) {
+                api.openWin({
+                    name: 'address_edit_win',
+                    url: 'widget://html/member/address_edit_win.html',
+                    pageParam: {
+                        id: id
+                    }
+                });
+            },
+            init:function () {
+                api.ajax({
+                    url: list_address_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token')
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        vm.list = ret.data;
+                        console.log(JSON.stringify(vm.list));
+                    } else {
+                        console.log(JSON.stringify(err));
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function(ret, err) {
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()",'1000');
+        });
+        vm.init();//渲染数据
+        api.addEventListener({
+            name: 'address_list_init'//更新地址列表
+        }, function (ret, err) {
+            vm.init();
+        });
+    };
+
+</script>
+<!--i9da29d30c4ee622-->
+<!--p86aa601c5062450-->
+<!--ke85554c12e65283-->
+<!--d9c87bed7316e471-->
+<!--k58bab92c1251659-->
+<!--bf83cde0ea8e0205-->
+<!--l31255966e3f7850-->
+<!--mccf7ebb6fd57568-->
+<!--e62fe14250901135-->
+<!--i137dd83ce311941-->
+<!--iea43bdeb3842886-->
+<!--jaijeiklacfljmlngeobgaijgohchgqbkgok-->
+<!--npllljhpdoqlmokjogapbhigqnemlmanifjf-->

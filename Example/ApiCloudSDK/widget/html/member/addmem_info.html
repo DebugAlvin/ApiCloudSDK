@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+        <a class="aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+
+        <div class="aui-title">联系人姓名</div>
+    </header>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script>
+        apiready = function () {
+            var header = document.querySelector('header');
+            $api.fixIos7Bar(header);
+            var id = api.pageParam.id;
+            api.openFrame({
+                name: 'member_addmem_info_body',
+                url: './addmem_info_body.html',
+                bounces: true,
+                rect: {
+                    x: 0,
+                    y: $api.dom('header').offsetHeight,
+                    w: 'auto',
+                    h: 'auto'
+                },
+                pageParam: {
+                    id:id
+                }
+            })
+        };
+    </script>
+</body>
+</html>
+<!--ge3bd6ae9928f896-->
+<!--l52d2fb214223184-->
+<!--q0a2316da219f236-->
+<!--ma613729ef650313-->
+<!--k6e99cf93e749678-->
+<!--qac4a70477499852-->
+<!--b037f7d85165f361-->
+<!--d4a59c860fbd8659-->
+<!--mad8635de2265814-->
+<!--bfa03fe5a765c352-->
+<!--ld0845d8f4aa0309-->
+<!--ddkgaidmhmdnnmehalbepbofcnddjgkkgcpk-->
+<!--imcafknchjhcbhjdjjikibjeeiknnnoqgpjq-->

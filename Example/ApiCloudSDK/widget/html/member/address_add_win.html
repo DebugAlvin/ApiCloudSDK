@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">添加</div>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame ({
+            name: 'address_add_frm',
+            url: 'widget://html/member/address_add_frm.html',
+            rect:{
+                x:0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces:true
+        });
+    };
+</script>
+</body>
+</html>
+<!--l88b5a5534b62544-->
+<!--i02c1c1380a12433-->
+<!--b63add15345f657-->
+<!--pe4be90c7c11e531-->
+<!--mf6c9957907b2913-->
+<!--q4ab244e62fcb479-->
+<!--g2b016765532d513-->
+<!--h9a9f3f626f3c877-->
+<!--e732dbdbb0ff8849-->
+<!--q2bf3b8f0db98287-->
+<!--ocfec1f62c78f776-->
+<!--jkgjocfglgppdpmlbibojenebolimocfqppe-->
+<!--ickehofeipmalooeqqqplpclldnlcimagjeg-->

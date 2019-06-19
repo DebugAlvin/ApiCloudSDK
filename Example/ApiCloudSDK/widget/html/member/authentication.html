@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+    <a class="aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">提现认证</div>
+</header>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'member_authentication_body',
+            url: './authentication_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            }
+        })
+    };
+</script>
+</body>
+</html>
+<!--d6b89276e0653441-->
+<!--p0423c8ec805d140-->
+<!--qe9ab1277929a919-->
+<!--pc4c9470c3811327-->
+<!--o895c8a6c1ee8184-->
+<!--g8875786f77c587-->
+<!--i30b450a5f4e2187-->
+<!--i373ddaf0b658990-->
+<!--i4353b2faa361335-->
+<!--ge70bcb6139ed990-->
+<!--n10f508b19fcb107-->
+<!--aijoliigqcangebkdeldmbjggmhhpodaoqbf-->
+<!--jcckcnlamllddqgdoolcamibhhjmdnqlqbpl-->

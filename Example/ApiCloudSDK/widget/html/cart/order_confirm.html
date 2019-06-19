@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-nav{
+            height: 55px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 55px;
+        }
+        .aui-nav .aui-col-xs-4{
+            color:#666666;
+        }
+        #right{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <header class="aui-bar aui-bar-nav aui-bar-custom aui-border-b">
+        <a class="aui-pull-left" onclick="api.closeWin();">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">确认订单</div>
+    </header>
+    <footer class="aui-nav">
+        <div class="aui-col-xs-8">
+            金额：<strong class="aui-text-danger">￥{{order_total}}</strong>
+        </div>
+        <div class="aui-col-xs-4 aui-bg-info" id="right" tapmode v-on:click="order_create()">
+            立即下单
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            trans_type: 1,
+            address_info: '',
+            total_price: '',
+            trans_price: '',
+            order_total: '0.00',
+            address_info:'',
+            content:'',
+            list: []
+        },
+        methods: {
+            order_create: function () {
+                if(!vm.address_info){
+                    api.alert({
+                        title: '下单操作',
+                        msg: '请添加收货地址',
+                    }, function(ret, err) {
+
+                    });
+                    return false;
+                }
+                api.ajax({
+                    url: order_create_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            token: $api.getStorage('token'),
+                            trans_type: vm.trans_type,
+                            content: vm.content,
+                        }
+                    }
+                }, function (ret, err) {
+                    if (ret) {
+                        console.log(JSON.stringify(ret));
+                        if(ret.status == 1){
+                            api.sendEvent({
+                                name: 'update_cart_list',//创建订单成功，更新购物车列表
+                            });
+                            api.sendEvent({
+                                name: 'tatal_goods_sum'//更新全局购物车数量显示function
+                            });
+                            api.openWin({
+                                name: 'pay',
+                                url: 'widget://html/cart/pay.html',
+                                pageParam: {
+                                    order_id: ret.data.order_id,
+                                    order_total: ret.data.order_total
+                                }
+                            });
+                        }
+                    } else {
+                    	console.log(JSON.stringify(ret));
+                        //api.alert(JSON.stringify(err));
+						api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        api.openFrame({
+            name: 'cart_order_confirm_body',
+            url: './order_confirm_body.html',
+            bounces: true,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: api.winHeight - $api.dom('header').offsetHeight - $api.dom('footer').offsetHeight
+            }
+        });
+        //监听网络连接事件
+        api.addEventListener({
+            name: 'update_order_total'//监听订单支付总计
+        }, function(ret, err) {
+            console.log(JSON.stringify(ret));
+            vm.order_total = ret.value.order_total;
+            vm.trans_type = ret.value.trans_type;
+            vm.content = ret.value.content;
+            vm.address_info = ret.value.address_info;
+        });
+    };
+</script>
+<!--bb303e7294d9b578-->
+<!--ef361b2983aaa112-->
+<!--g8a498a74f60b547-->
+<!--p1cb5b6f8b191150-->
+<!--p4aa2062f844c118-->
+<!--c9c0f5434a5ef630-->
+<!--e85a88e63f468305-->
+<!--f4a944f81aec0491-->
+<!--i52d11335827d112-->
+<!--kfb23d9b8068a799-->
+<!--d466eb7b80f84996-->
+<!--cmhddmhodhdqajcmqqbiinbogomclamfadnd-->
+<!--jnqqfmkialpmlfogeqckkjffnlomcihekkcf-->

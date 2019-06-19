@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui-slide.css"/>
+    <style>
+        #info {
+            padding: 5px;
+        }
+
+        .goods-info .right {
+            margin-left: 30px;
+        }
+
+        .goods {
+            padding: 10px 0;
+        }
+
+        .label-list {
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .label-list .label {
+            display: block;
+            float: left;
+            margin-right: 10px;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .label-list .active {
+            color: #e74c3c;
+        }
+
+        .label-list .active.aui-border:after {
+            border: 1px solid #e74c3c;
+        }
+
+        .label-list .active.aui-border:after {
+            border-radius: 5px;
+        }
+        .label-list .aui-border:after {
+            border-radius: 5px;
+        }
+        .label-list .label input {
+            display: none;
+        }
+        .aui-slide-node img {
+            max-height: 200px !important;height: auto;width: auto;
+        }
+        .controlimg{
+            word-break:break-all !important; /*支持IE，chrome，FF不支持*/
+            word-wrap:break-word !important;/*支持IE，chrome，FF*/
+        }
+        .controlimg img{
+            width: 100% !important;
+        }
+        .controlimg table{
+            width: 100% !important;
+        }
+        .goods-title{
+            font-size: 13px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="aui-slide" style="min-height: auto;">
+        <div class="aui-slide-wrap">
+            <div class="aui-slide-node bg-dark aui-text-center" v-for="(cover,index) in gallery" v-cloak>
+                <img :src="cover.url"   tapmode v-on:click="open_goods_gallery(info_id)" style="width:95%;min-height:100%;">
+            </div>
+        </div>
+        <div class="aui-slide-page-wrap"></div>
+    </div>
+    <section class="aui-content bg-white" id="info">
+        <div class="goods-title">{{ goods_info.goods_name }}</div>
+        <div class="aui-text-danger goods-price">
+            ¥<strong>{{ goods.price }}</strong>元
+        </div>
+        <p class="goods-info aui-padded-b-10 aui-padded-t-5">
+            共售出<span class="aui-text-danger"> {{goods.xiaoliang}} </span>件
+            <span class="right">库存 {{goods.kucun}}  件</span>
+        </p>
+        <template v-if="standard_list.length>0 && is_has>0">
+            <p class="goods-info aui-padded-b-10 aui-padded-t-5">
+                已选：{{goods.standard[0]}} {{goods.standard[1]}} {{goods.standard[2]}}
+            </p>
+        </template>
+
+        <p class="goods-info aui-padded-b-10 aui-padded-t-5" v-if="is_has==0">
+            <span class="aui-text-danger">所选产品暂时无货</span>
+        </p>
+        <div class="goods aui-border-t" v-for="(vo,index1) in standard_list" v-if="index1==0" v-cloak>
+            <div class="title">
+                {{ vo.name }}
+            </div>
+            <div class="label-list">
+                <label class="label aui-border" v-for="(vo2,index2) in vo.value_list" v-bind:class="{ 'active': vo2.standard_value==goods.standard[index1] }" v-cloak>
+                    <input type="radio" name="sex" tapmode v-on:click="cutinit(index1,vo2.standard_value)" />{{ vo2.standard_value }}
+                </label>
+            </div>
+        </div>
+        <div class="goods aui-border-t" style="display: none;">
+            <div class="title">
+                数量
+            </div>
+            <div class="label-shuliang">
+                <div class="aui-counter aui-danger aui-margin-t-10">
+                    <div class="aui-counter-minus aui-disabled" tapmode v-on:click="change_goods_num(0)"></div>
+                    <input class="aui-counter-input" type="number" v-model="goods_sum">
+                    <div class="aui-counter-plus" tapmode v-on:click="change_goods_num(1)"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="aui-content-padded">
+    	 <div class="title aui-padded-10 aui-border-b bg-white" >
+                图文详情
+         </div>
+        <div class="controlimg" v-html="goods_info.content"></div>
+    </section>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-slide.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript" src="../../script/config.js"></script>
+<script type="text/javascript" src="../../script/util.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            currentPage: 0,
+            info_id: 0,
+            goods_info: {},
+            goods: {"standard":["","",""]},
+            gallery: [],
+            standard_list: '',
+            goods_sum: 1,
+            is_has: 1
+
+        },
+        methods: {
+            init: function () {
+                console.log(JSON.stringify(vm.goods.standard));
+                util.showProgress();
+                api.ajax({
+                    url: goods_info_url,
+                    method: 'post',
+                    timeout: 30,
+                    dataType: 'json',
+                    returnAll: false,
+                    data: {
+                        values: {
+                            info_id: vm.info_id,
+                            standard_value1: vm.goods.standard[0],
+                            standard_value2: vm.goods.standard[1],
+                            standard_value3: vm.goods.standard[2],
+                        }
+                    }
+                }, function (ret, err) {
+                  util.hideProgress();
+                    if (ret) {
+                        if(ret.status == 0){
+                            console.log(JSON.stringify(ret));
+                            api.toast({
+                                msg: '此产品暂时无货',
+                                duration: 2000,
+                                location: 'bottom'
+                            });
+                            vm.is_has = 0;
+                            api.sendEvent({
+                                name: 'assin_cartinfo',
+                                extra: {
+                                    goods_id: vm.goods.id,
+                                    goods_sum: vm.goods_sum,
+                                    is_has: vm.is_has
+                                }
+                            });
+                            return false;
+                        }else{
+                            console.log(JSON.stringify(ret));
+                            vm.is_has = 1;
+                            vm.goods_info = ret.data.goods_info;
+                            vm.goods = ret.data.goods;
+                            console.log(JSON.stringify(vm.goods.standard));
+                            if(!vm.gallery.length){
+                                vm.gallery = ret.data.gallery;
+                                setTimeout(function () {
+                                    var slide = new auiSlide({
+                                        container: document.getElementById("aui-slide"),
+                                        "height": 180,
+                                        "speed": 300,
+                                        "pageShow": true,
+                                        "pageStyle": 'dot',
+                                        "loop": true,
+                                        'autoPlay': 5000,
+                                        'dotPosition': 'center',
+                                        currentPage: currentFun
+                                    });
+                                },'100');
+                            }
+                            vm.standard_list = ret.data.standard_list;
+                            vm.goods_sum = 1;
+                            api.sendEvent({
+                                name: 'assin_cartinfo',
+                                extra: {
+                                    goods_id: vm.goods.id,
+                                    goods_sum: vm.goods_sum,
+                                    is_has: vm.is_has
+                                }
+                            });
+                        }
+
+                    } else {
+                      //  api.alert(JSON.stringify(err));
+                      util.hideProgress();
+                      api.toast({
+                          msg: '您当前的网络不太好，请重新试试!',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                    }
+                });
+            },
+            cutinit: function (index,val) {
+                switch (index){
+                    case 0:
+                        var val0 = val;
+                        var val1 = vm.goods.standard[1];
+                        var val2 = vm.goods.standard[2];
+                        vm.goods.standard = [val0,val1,val2];
+                        break;
+                    case 1:
+                        var val1 = val;
+                        var val0 = vm.goods.standard[0];
+                        var val2 = vm.goods.standard[2];
+                        vm.goods.standard = [val0,val1,val2];
+                        break;
+                    case 2:
+                        var val2 = val;
+                        var val0 = vm.goods.standard[0];
+                        var val1 = vm.goods.standard[1];
+                        vm.goods.standard = [val0,val1,val2];
+                        break;
+                }
+                vm.init();
+            },
+            change_goods_num:function (index) {
+                var goods_sum = vm.goods_sum;
+                if(index == 1){
+                    vm.goods_sum = goods_sum + 1;
+                }else{
+                    if(vm.goods_sum == 1){
+                        api.toast({
+                            msg: '最少订购不能小于1',
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        return false;
+                    }
+                    vm.goods_sum = goods_sum - 1;
+                }
+                console.log(vm.is_has);
+
+                api.sendEvent({
+                    name: 'assin_cartinfo',
+                    extra: {
+                        goods_id: vm.goods.id,
+                        goods_sum: vm.goods_sum,
+                        is_has: vm.is_has
+                    }
+                });
+            },
+            //打开相册
+            open_goods_gallery:function (info_id) {
+                api.openWin({
+                    name: 'goods_gallery',
+                    url: 'widget://html/index/goods_gallery.html',
+                    pageParam:{
+                        currentPage: vm.currentPage,
+                        info_id: info_id,
+                        gallery: vm.gallery
+                    }
+                });
+            }
+        }
+    });
+    apiready = function () {
+        console.log(api.pageParam.info_id);
+        vm.info_id = api.pageParam.info_id;
+        vm.init();
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#f4f4f4',
+            textColor: '#333333',
+            textDown: '下拉刷新...',
+            textUp: '松开刷新...',
+            showTime: true
+        }, function(ret, err) {
+            vm.init();
+            setTimeout("api.refreshHeaderLoadDone()",'500');
+        });
+    };
+
+    // 当前页
+    function currentFun(index) {
+        vm.currentPage = index;
+    }
+</script>
+<!--feccef9cfe32b55-->
+<!--cde993c4dc996775-->
+<!--o3b71f3703c1c13-->
+<!--ge87418620fa1990-->
+<!--f2319bea1e842683-->
+<!--l2d0709793732222-->
+<!--bf37bf0d58fb1168-->
+<!--a82c1d1e7a38e854-->
+<!--k1aa3f87d7163608-->
+<!--c214e3f61340f173-->
+<!--q01e7fe4a6787916-->
+<!--odnibknjmmdiqplambbpjnefiifgncooffko-->
+<!--kiepcmgjdphpmbqpfkqkbdjfimjlbgdfagip-->

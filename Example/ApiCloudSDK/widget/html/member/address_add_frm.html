@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/public.css"/>
+    <style>
+        .aui-input-row:first-child:after{
+            border-top:none
+        }
+        .aui-input-row {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="aui-content">
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <input type="text" class="aui-input" placeholder="收货人姓名" v-model="name" maxlength="20"/>
+            </div>
+            <div class="aui-input-row">
+                <input type="number" class="aui-input" placeholder="输入手机号码" v-model="mobile"/>
+            </div>
+            <div class="aui-input-row" id='addressView'>
+                <input type="text" class="aui-input" placeholder="收货地区" v-model="pos_name" readonly="readonly"/>
+            </div>
+            <div class="aui-input-row">
+                <input type="text" class="aui-input" placeholder="详细地址" v-model="address_info"/>
+            </div>
+        </div>
+    </div>
+    <div class="aui-content-padded">
+        <div class="aui-btn aui-btn-danger aui-btn-block aui-margin-t-10" @click="add_address()">提交</div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            mobile: '',
+            pos_province: '',
+            pos_city: '',
+            pos_district: '',
+            pos_name: '',
+            address_info: '',
+            //token: $api.getStorage('token'),
+        },
+        methods: {
+            add_address: function () {
+                if(!vm.name){
+                    api.toast({
+                        msg: '姓名不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if (!vm.mobile) {
+                    api.toast({
+                        msg: '请输入手机号码',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if (!(/^1[3|4|5|8]\d{9}$/.test(vm.mobile))) {
+                    api.toast({
+                        msg: '手机号码有误',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if(!vm.pos_name){
+                    api.toast({
+                        msg: '添加收货地区',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }
+                if (!vm.address_info) {
+                    api.toast({
+                        msg: '详细地址不能为空',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+                    return false;
+                }else{
+                    api.ajax({
+                        url: add_address_url,
+                        method: 'post',
+                        timeout: 30,
+                        dataType: 'json',
+                        returnAll: false,
+                        data: {
+                            values: {
+                                name: vm.name,
+                                mobile: vm.mobile,
+                                pos_province: vm.pos_province,
+                                pos_city: vm.pos_city,
+                                pos_district: vm.pos_district,
+                                pos_name: vm.pos_name,
+                                address_info: vm.address_info,
+                                token: $api.getStorage('token'),
+                                deviceid: api.deviceId
+                            }
+                        }
+                    }, function (ret, err) {
+                        console.log(JSON.stringify(ret));
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 2000,
+                            location: 'bottom'
+                        });
+                        if (ret.status == 1) {
+                            api.sendEvent({
+                                name: 'address_list_init'
+                            });
+                            setTimeout(function () {
+                                api.closeWin({
+                                    name: 'address_add_win'
+                                });
+                            },200);
+                        }
+                    });
+                }
+
+            }
+        }
+    });
+    apiready = function () {
+        var header = document.querySelector('header');
+        $api.fixIos7Bar(header);
+        var addressView = api.require('addressView');
+        addressView.open({
+            file_addr: 'widget://res/district.txt', //数据源地址
+            selected_color: '#ff0000', //颜色
+            pro_id: 410000, //省id
+            city_id: 410100, //市id
+            dir_id: 410104 //区id
+        });
+        $api.addEvt($api.byId("addressView"), 'click', function () {
+            addressView.show({}, function (ret, err) {
+                if (ret.status) {
+                    vm.pos_province = ret.data[0].id;
+                    vm.pos_city = ret.data[1].id;
+                    vm.pos_district = ret.data[2].id;
+                    vm.pos_name = ret.data[0].name+'  '+ret.data[1].name+'  '+ret.data[2].name;
+                }
+            });
+        });
+    };
+</script>
+<!--qd74f66d1258b663-->
+<!--q773d4bcdc29a84-->
+<!--f9181ceb1dbf3622-->
+<!--dca957de903bf694-->
+<!--pf394a8a03ca856-->
+<!--gcbc0b7b810f9588-->
+<!--i1c8a0fde8ef2618-->
+<!--p16321c8cd1f9570-->
+<!--c139f852676a1605-->
+<!--cc559a8d995ee558-->
+<!--f7770e2ba079050-->
+<!--kdqlgqbfigocjkkmkigdgmqfcoqqepglblop-->
+<!--acjjnnclfglohclkcoemkfqnmacmkdjaaqjp-->
